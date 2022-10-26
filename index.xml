@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>介绍 on Mingzefei</title>
-    <link>https://example.com/</link>
-    <description>Recent content in 介绍 on Mingzefei</description>
+    <title>明泽飞&#39;s Blog</title>
+    <link>https://mingzefei.github.io/</link>
+    <description>Recent content on 明泽飞&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
     
-	<atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mingzefei.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>My First Post</title>
-      <link>https://example.com/posts/my_first_post/</link>
-      <pubDate>Mon, 24 Oct 2022 17:05:11 +0800</pubDate>
-      
-      <guid>https://example.com/posts/my_first_post/</guid>
-      <description>just for test</description>
-    </item>
     
   </channel>
 </rss>

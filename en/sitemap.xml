@@ -3,55 +3,44 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.com/posts/my_first_post/</loc>
-    <lastmod>2022-10-24T18:50:46+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://example.com/posts/</loc>
-    <lastmod>2022-10-24T18:50:46+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://example.com/categories/</loc>
+    <loc>https://mingzefei.github.io/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="zh"
-                href="https://example.com/zh/categories/"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/categories/"
+                href="https://mingzefei.github.io/en/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/tags/</loc>
+    <loc>https://mingzefei.github.io/en/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="zh"
-                href="https://example.com/zh/tags/"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/tags/"
+                href="https://mingzefei.github.io/en/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/</loc>
-    <lastmod>2022-10-24T18:50:46+08:00</lastmod>
+    <loc>https://mingzefei.github.io/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="zh"
-                href="https://example.com/zh/"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/"
+                href="https://mingzefei.github.io/en/tags/"
                 />
   </url>
   
