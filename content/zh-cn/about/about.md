@@ -1,12 +1,13 @@
 ---
-title: "关于"
+title: "About"
 description: ""
-date: "2022-10-26T16:34:11+08:00"
+date: "2022-11-04T09:55:57+08:00"
 thumbnail: ""
 categories:
   - "about"
 tags:
-  - "About"
+  - "about"
+sidebar: false
 ---
 
 ## 怎么称呼？

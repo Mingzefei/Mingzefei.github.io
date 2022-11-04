@@ -1,39 +1,42 @@
 baseURL = 'https://mingzefei.github.io'
-languageCode = 'en-us'
+# languageCode = 'en-us'
 theme = 'mainroad'
 # theme = 'hugo-book'
 
 hasCJKLanguage = true # To make summary displays correctly
 publishDir = 'public' # Incase the default public dir change
 DefaultContentLanguage = 'zh-cn'
+DefaultContentLanguageInSubdir = true
 
 [Languages]
   [Languages.zh-cn]
+    languageCode = 'zh-cn'
     title = "明泽飞's Blog"
+    subtitle = ''
     # subtitle = "泽飞's Blog"
-    contentDir = '/zh-cn'
+    contentDir = 'content/zh-cn'
     languageName = '简体中文'
     weight = 1
   [Languages.zh-cn.menu]
+    # [[Languages.zh-cn.menu.main]]
+    #   identifier = 'gohome-cn'
+    #   name = '首页'
+    #   url = '/'
+    #   weight = 101
     [[Languages.zh-cn.menu.main]]
-      identifier = 'gohome'
-      name = '首页'
-      url = '/'
-      weight = 101
-    [[Languages.zh-cn.menu.main]]
-      identifier = 'goblog'
+      identifier = 'goblog-cn'
       name = '日志'
       url = '/zh-cn/posts'
       weight = 102
     [[Languages.zh-cn.menu.main]]
-      identifier = 'goabout'
+      identifier = 'goabout-cn'
       name = '关于'
-      url = '/about.md'
+      url = '/zh-cn/about/about'
       weight = 103
     [[Languages.zh-cn.menu.main]]
-      identifier = 'gocv'
+      identifier = 'gocv-cn'
       name = '简历'
-      url = '/my_cv.md'
+      url = '/zh-cn/about/my_cv'
       weight = 104
 #     [[Languages.zh-cn.menu.main]]
 #       identifier = 'issues-cn'
@@ -51,31 +54,32 @@ DefaultContentLanguage = 'zh-cn'
     # avatar = ''
 
   [Languages.en]
+    languageCode = 'en-us'
     title = "Ming zefei's Blog"
     # subtitle = "zefei's Blog"
-    contentDir = '/en'
+    contentDir = 'content/en'
     languageName = 'English'
     weight = 2
   [Languages.en.menu]
+    # [[Languages.en.menu.main]]
+    #   identifier = 'gohome-en'
+    #   name = 'home'
+    #   url = '/'
+    #   weight = 101
     [[Languages.en.menu.main]]
-      identifier = 'gohome'
-      name = 'home'
-      url = '/'
-      weight = 101
-    [[Languages.en.menu.main]]
-      identifier = 'goblog'
+      identifier = 'goblog-en'
       name = 'blog'
       url = '/en/posts'
       weight = 102
     [[Languages.en.menu.main]]
-      identifier = 'goabout'
+      identifier = 'goabout-en'
       name = 'about'
-      url = '/en/about.md'
+      url = '/en/about/about'
       weight = 103
     [[Languages.en.menu.main]]
-      identifier = 'gocv'
+      identifier = 'gocv-en'
       name = 'vitae'
-      url = '/en/my_cv.md'
+      url = '/en/about/my_cv'
       weight = 104
 #     [[Languages.en.menu.main]]
 #       identifier = 'issues-cn'
@@ -94,18 +98,36 @@ DefaultContentLanguage = 'zh-cn'
 
 [Params]
   description = "Mingzefei's Personal blog"
-  copyright = 'HUA guangbin'
+  copyright = 'HUA Guangbin'
   toc = true # Enable Table of Contents
-  mathjax = true
+  mathjax = true # Enable MathJax
+  mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" # Specify MathJax path
+  mathjaxConfig = "TeX-AMS-MML_HTMLorMML" # Specify MathJax config
   post_meta = ['date','categories','translations'] # Order of post meta information
+#   mainSection = ['zh-cn/posts','en','zh-cn']
   mainSection = ['posts']
   highlightColor = '#224298' # default #e22d30
   [Params.sidebar]
     home = 'right'
-    widgets = ['search','categories','recent','taglist','social']
+    list = 'right'
+    single = 'right'
+ #    widgets = ['search','categories','recent','taglist','social']
+    widgets = ['categories']
   # [Params.widgets]
   #   [Params.widgets.search]
   #     url = "/search/"
   #     input.name = false
   #     input.pre = ""
 
+  # Valine.
+  # You can get your appid and appkey from https://leancloud.cn
+  # more info please open https://valine.js.org
+  [Params.valine]
+    enable = true
+    appId = '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz'
+    appKey = 'Xzo9x3Euwd2redfSk9bHafaB'
+    notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
+    verify = false # Verification code
+    avatar = 'mm'
+    placeholder = '说点什么吧...'
+    visitor = true
