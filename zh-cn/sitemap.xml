@@ -3,7 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mingzefei.github.io/categories/</loc>
+    <loc>https://mingzefei.github.io/zh-cn/tags/about/</loc>
+    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/categories/about/</loc>
+    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/about/</loc>
+    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/categories/</loc>
+    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -12,12 +28,18 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://mingzefei.github.io/categories/"
+                href="https://mingzefei.github.io/zh-cn/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://mingzefei.github.io/tags/</loc>
+    <loc>https://mingzefei.github.io/zh-cn/about/my_cv/</loc>
+    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/</loc>
+    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -26,12 +48,33 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://mingzefei.github.io/tags/"
+                href="https://mingzefei.github.io/zh-cn/tags/"
                 />
   </url>
   
   <url>
-    <loc>https://mingzefei.github.io/</loc>
+    <loc>https://mingzefei.github.io/zh-cn/about/about/</loc>
+    <lastmod>2022-11-04T09:55:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/tree/</loc>
+    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/tree/</loc>
+    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/categories/tree/</loc>
+    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/</loc>
+    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -40,8 +83,58 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://mingzefei.github.io/"
+                href="https://mingzefei.github.io/zh-cn/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/</loc>
+    <lastmod>2022-10-26T20:39:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/test/</loc>
+    <lastmod>2022-10-26T20:39:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/tags/test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/test/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/categories/test/</loc>
+    <lastmod>2022-10-26T20:39:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/categories/test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/categories/test/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2022-10-26T20:39:26+08:00</lastmod>
   </url>
   
 </urlset>
