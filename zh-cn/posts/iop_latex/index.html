@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Posts - 明泽飞&#39;s Blog</title>
+	<title>IOP Latex 模板的部分报错问题 - 明泽飞&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,6 @@
 
 	<link rel="stylesheet" href="/css/style.css">
 	
-	<link rel="alternate" type="application/rss+xml" href="/zh-cn/posts/index.xml" title="明泽飞's Blog">
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
@@ -74,50 +73,79 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
-<main class="main list" role="main">
-	<header class="main__header">
-		<h1 class="main__title">Posts</h1>
-	</header><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/zh-cn/posts/iop_latex/" rel="bookmark">
-			IOP Latex 模板的部分报错问题
-			</a>
-		</h2>
-		<div class="list__meta meta">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">IOP Latex 模板的部分报错问题</h1>
+			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-11-21T09:51:05&#43;08:00">November 21, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
 	</span>
 </div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		要在英国物理学会（Institute of Physics, IOP）上发文章，使用官方提供的 Latex 模板编写，期间遇到如下问题，记录如下。 amsmath 和 iopart 不兼容 同时使用两个宏包
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#amsmath-和-iopart-不兼容"><code>amsmath</code> 和 <code>iopart</code> 不兼容</a></li>
+  </ul>
+</nav>
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/zh-cn/posts/%E6%B5%8B%E8%AF%95/" rel="bookmark">
-			测试
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-10-26T20:39:26&#43;08:00">October 26, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/zh-cn/categories/test/" rel="category">test</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		二级标题测试 这是一段中文文字。 公式测试 行间公式 $$ E = mc^2 $$ 行内公式 $v=at$ 代码片段测试 代码块 import sys print(&#39;Hello!&#39;) 行间 print('World!') 代码
-	</div>
-</article>
+</div><div class="content post__content clearfix">
+			<p>要在英国物理学会（Institute of Physics, IOP）上发文章，使用<a href="https://publishingsupport.iopscience.iop.org/questions/latex-template/">官方提供的 Latex 模板</a>编写，期间遇到如下问题，记录如下。</p>
+<h2 id="amsmath-和-iopart-不兼容"><code>amsmath</code> 和 <code>iopart</code> 不兼容</h2>
+<p>同时使用两个宏包会出现如下报错：</p>
+<pre><code>! LaTeX Error: Command \equation* already defined. 
+Or name \end... illegal, see p.192 of the manual.
+</code></pre><p><a href="https://www.guanjihuan.com/archives/3598">Ji-Huan Guan 提到过</a>是不兼容问题，官网上也有类似说明。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/41469740">妙脆角 提供了一种解决方法</a>：</p>
+<pre><code>\expandafter\let\csname equation*\endcsname\relax
+\expandafter\let\csname endequation*\endcsname\relax
+\usepackage{amsmath}
+</code></pre><p>不再产生报错。</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/zh-cn/tags//" rel="tag"></a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
 </main>
 
 
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
 			</div>
-			
-<aside class="sidebar">
+			<aside class="sidebar">
 <div class="widget-categories widget">
 	<h4 class="widget__title">分类</h4>
 	<div class="widget__content">
@@ -144,5 +172,7 @@
 </footer>
 	</div>
 <script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
 </body>
 </html>

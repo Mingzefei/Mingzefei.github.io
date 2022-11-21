@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 明泽飞&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 26 Oct 2022 20:39:26 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 21 Nov 2022 09:51:05 +0800</lastBuildDate>
     
 	<atom:link href="https://mingzefei.github.io/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IOP Latex 模板的部分报错问题</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/iop_latex/</link>
+      <pubDate>Mon, 21 Nov 2022 09:51:05 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/iop_latex/</guid>
+      <description>要在英国物理学会（Institute of Physics, IOP）上发文章，使用官方提供的 Latex 模板编写，期间遇到如下问题，记录如下。 amsmath 和 iopart 不兼容 同时使用两个宏包</description>
+    </item>
     
     <item>
       <title>测试</title>

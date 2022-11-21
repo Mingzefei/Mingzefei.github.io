@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/iop_latex/</loc>
+    <lastmod>2022-11-21T09:51:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/</loc>
+    <lastmod>2022-11-21T09:51:05+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/posts/"
+                />
+  </url>
+  
+  <url>
     <loc>https://mingzefei.github.io/zh-cn/tags/about/</loc>
     <lastmod>2022-11-04T10:18:18+08:00</lastmod>
   </url>
@@ -84,21 +104,6 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://mingzefei.github.io/zh-cn/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/</loc>
-    <lastmod>2022-10-26T20:39:26+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mingzefei.github.io/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/posts/"
                 />
   </url>
   
