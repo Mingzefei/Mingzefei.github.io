@@ -3,13 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/iop_latex/</loc>
-    <lastmod>2022-11-21T09:51:05+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mingzefei.github.io/zh-cn/posts/</loc>
-    <lastmod>2022-11-21T09:51:05+08:00</lastmod>
+    <lastmod>2022-11-28T21:45:50+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -20,6 +15,36 @@
                 hreflang="zh-cn"
                 href="https://mingzefei.github.io/zh-cn/posts/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/</loc>
+    <lastmod>2022-11-28T21:45:50+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/%E4%BB%8E%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9C%8B%E8%8B%8F%E8%BD%BC%E5%BE%90%E5%B7%9E%E6%B2%BB%E6%B0%B4/</loc>
+    <lastmod>2022-11-28T21:45:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/%E6%B0%91%E4%BF%97/</loc>
+    <lastmod>2022-11-28T21:45:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/iop_latex/</loc>
+    <lastmod>2022-11-21T09:51:05+08:00</lastmod>
   </url>
   
   <url>
@@ -55,21 +80,6 @@
   <url>
     <loc>https://mingzefei.github.io/zh-cn/about/my_cv/</loc>
     <lastmod>2022-11-04T10:18:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/zh-cn/tags/</loc>
-    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mingzefei.github.io/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/tags/"
-                />
   </url>
   
   <url>
