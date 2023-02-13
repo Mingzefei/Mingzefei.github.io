@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 明泽飞&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 28 Nov 2022 21:45:50 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Feb 2023 09:28:02 +0800</lastBuildDate>
     
 	<atom:link href="https://mingzefei.github.io/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tex2docx</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/tex2docx/</link>
+      <pubDate>Mon, 13 Feb 2023 09:28:02 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/tex2docx/</guid>
+      <description>需要从 Latex 文件生成 Word。 主要使用 pandoc 和插件pandoc-crossref（改善交叉引用）。 安装 pandoc 安装 Ubuntu 的 sudo apt-get install pandoc 安装的版本太低，这里直接从 Github</description>
+    </item>
     
     <item>
       <title>从系统方法论看苏轼徐州治水</title>
