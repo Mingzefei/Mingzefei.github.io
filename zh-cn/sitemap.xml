@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/mainroad_beian/</loc>
+    <lastmod>2023-02-27T22:35:46+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mingzefei.github.io/zh-cn/posts/</loc>
-    <lastmod>2023-02-27T19:38:10+08:00</lastmod>
+    <lastmod>2023-02-27T22:35:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
