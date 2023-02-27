@@ -107,6 +107,8 @@ DefaultContentLanguageInSubdir = true
 #   mainSection = ['zh-cn/posts','en','zh-cn']
   mainSection = ['posts']
   highlightColor = '#224298' # default #e22d30
+  BeianURL = "http://beian.miit.gov.cn"
+  BeianTXT = "苏ICP备2022045537号"
   [Params.sidebar]
     home = 'right'
     list = 'right'
