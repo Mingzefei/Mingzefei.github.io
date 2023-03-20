@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Ming zefei&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Oct 2022 23:03:08 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Mar 2023 23:03:47 +0800</lastBuildDate>
     
 	<atom:link href="https://mingzefei.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Siesta Install</title>
+      <link>https://mingzefei.github.io/en/posts/siesta_install/</link>
+      <pubDate>Mon, 20 Mar 2023 23:03:47 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/en/posts/siesta_install/</guid>
+      <description>Main reference to Centos6.6系统里安装SIESTA 4 | 知乎 。 Related software and libraries are installed under ~/software if not otherwise specified. system and environment Linux version 5.15.90.1-microsoft-standard-WSL2 (oe-user@oe-host) (x86_64-msft-linux-gcc (GCC) 9.3.0, GNU ld (GNU Binutils) 2.34.0.20200220) #1 SMP Fri Jan 27 02:56:13 UTC 2023 Ubuntu 20.04.4 LTS GCC already installed openmpi</description>
+    </item>
     
     <item>
       <title>Test</title>
