@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Latex 中的复杂矩阵</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</link>
+      <pubDate>Fri, 24 Mar 2023 17:23:33 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</guid>
+      <description>写 paper 时遇到一个矩阵，需要对块、行和列进行标记。 方法一 \begin{equation} \bordermatrix{ &amp;amp; e_\text{o} &amp;amp; &amp;amp; e_\text{b} &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp;e_\text{s} &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp;\cr v_1 &amp;amp;-1 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;1 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 \cr v_2 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;-1&amp;amp;1 &amp;amp;1 &amp;amp;1 &amp;amp;0 &amp;amp;0</description>
+    </item>
+    
+    <item>
       <title>池中蜻蜓</title>
       <link>https://mingzefei.github.io/zh-cn/posts/plot_and_setting_of_novel/</link>
       <pubDate>Sat, 04 Mar 2023 14:11:04 +0800</pubDate>
