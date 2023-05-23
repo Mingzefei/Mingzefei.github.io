@@ -38,6 +38,26 @@
   </url>
   
   <url>
+    <loc>https://mingzefei.github.io/en/tags/simulation/</loc>
+    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/en/tags/</loc>
+    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/tags/"
+                />
+  </url>
+  
+  <url>
     <loc>https://mingzefei.github.io/en/categories/</loc>
     <lastmod>2022-10-26T23:03:08+08:00</lastmod>
     <xhtml:link
@@ -49,21 +69,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://mingzefei.github.io/en/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/en/tags/</loc>
-    <lastmod>2022-10-26T23:03:08+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mingzefei.github.io/en/tags/"
                 />
   </url>
   
@@ -100,6 +105,24 @@
                 hreflang="en"
                 href="https://mingzefei.github.io/en/categories/test/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/en/tags/latex/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/latex/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/tags/latex/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/en/posts/latex2word_en/</loc>
   </url>
   
 </urlset>

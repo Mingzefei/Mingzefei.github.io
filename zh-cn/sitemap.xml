@@ -3,13 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</loc>
-    <lastmod>2023-03-24T17:23:33+08:00</lastmod>
+    <loc>https://mingzefei.github.io/zh-cn/tags/latex/</loc>
+    <lastmod>2023-05-22T23:05:15+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/tags/latex/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/latex/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/latex2word/</loc>
+    <lastmod>2023-05-22T23:05:15+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://mingzefei.github.io/zh-cn/posts/</loc>
-    <lastmod>2023-03-24T17:23:33+08:00</lastmod>
+    <lastmod>2023-05-22T23:05:15+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -24,7 +39,7 @@
   
   <url>
     <loc>https://mingzefei.github.io/zh-cn/tags/</loc>
-    <lastmod>2023-03-04T14:11:04+08:00</lastmod>
+    <lastmod>2023-05-22T23:05:15+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -38,13 +53,33 @@
   </url>
   
   <url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/code/</loc>
+    <lastmod>2023-05-16T23:05:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</loc>
+    <lastmod>2023-05-16T23:05:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1/</loc>
+    <lastmod>2023-05-08T23:05:32+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mingzefei.github.io/zh-cn/tags/%E6%96%87%E5%8C%96/</loc>
-    <lastmod>2023-03-04T14:11:04+08:00</lastmod>
+    <lastmod>2023-05-08T23:05:32+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://mingzefei.github.io/zh-cn/tags/%E6%B0%91%E4%BF%97/</loc>
-    <lastmod>2023-03-04T14:11:04+08:00</lastmod>
+    <lastmod>2023-05-08T23:05:32+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</loc>
+    <lastmod>2023-03-24T17:23:33+08:00</lastmod>
   </url>
   
   <url>
@@ -60,11 +95,6 @@
   <url>
     <loc>https://mingzefei.github.io/zh-cn/posts/sci_writing/</loc>
     <lastmod>2023-02-27T19:38:10+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/tex2docx/</loc>
-    <lastmod>2023-02-13T09:28:02+08:00</lastmod>
   </url>
   
   <url>
@@ -180,14 +210,6 @@
   <url>
     <loc>https://mingzefei.github.io/zh-cn/posts/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2022-10-26T20:39:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1/</loc>
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</loc>
   </url>
   
 </urlset>

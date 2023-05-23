@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Latex2Word_en - Ming zefei&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/en" title="Ming zefei&#39;s Blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Ming zefei&#39;s Blog</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/en/posts">
+				
+				<span class="menu__text">blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en/about/about">
+				
+				<span class="menu__text">about</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en/about/my_cv">
+				
+				<span class="menu__text">vitae</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn">
+				
+				<span class="menu__text">中文</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Latex2Word_en</h1>
+			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#outstanding-issues">Outstanding Issues</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<p>There are two types of people in the world: those who use LaTeX and those who don&rsquo;t. The latter often ask the former for Word versions of their files. Therefore, the following command line is created:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pandoc input.tex -o output.docx<span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter pandoc-crossref <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --reference-doc<span style="color:#f92672">=</span>my_temp.docx <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --number-sections <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -M autoEqnLabels -M tableEqns <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bibliography<span style="color:#f92672">=</span>my_ref.bib <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --citeproc --csl ieee.csl
+</code></pre></div><p>The files used by this command can be found in the repository <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a>.</p>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>pandoc: Refer to the <a href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">official documentation</a> for instruction and installation. It is recommended to download the latest deb installation package from <a href="https://github.com/jgm/pandoc/releases">Releases · jgm/pandoc (github.com)</a> and use <code>sudo dpkg -i /path/to/the/deb/file</code> to install it.</li>
+<li>pandoc-crossref: Refer to the <a href="https://github.com/lierdakil/pandoc-crossref">official documentation</a> for instruction and installation. <strong>NOTE: Download the version that matches your pandoc version and move the executable file <code>pandoc-crossref</code> to <code>/usr/bin</code>, or specify the specific file when using the above command.</strong></li>
+</ol>
+<h2 id="usage">Usage</h2>
+<ol>
+<li><code>--filter pandoc-crossref</code> processes cross-references.</li>
+<li><code>--reference-doc=my_temp.docx</code> processes the converted <code>output.docx</code> according to the style in <code>my_temp.docx</code>. There are two template files, <code>TIE-temp.docx</code> and <code>my_temp.docx</code>, in the repository <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a>. The former is the Word template for TIE journal submissions (two columns), and the latter is a Word template adjusted by the author (single column, large font, suitable for annotations).</li>
+<li><code>--number-sections</code> adds numerical numbering before (sub)chapter titles.</li>
+<li><code>-M autoEqnLabels</code>, <code>-M tableEqns</code> sets the numbering of equations, tables, etc.</li>
+<li><code>-M reference-sction-title=Reference</code> adds the chapter title &ldquo;Reference&rdquo; to the reference section.</li>
+<li><code>--biblipgraphy=my_ref.bib</code> generates the reference list using <code>my_ref.bib</code>.</li>
+<li>The <code>--citeproc --csl ieee.csl</code> generates the references in the <code>ieee</code> format.</li>
+</ol>
+<h2 id="outstanding-issues">Outstanding Issues</h2>
+<ol>
+<li>&ldquo;Error&rdquo; may raise when opening the converted docx document. This is likely due to the complexity of the tex file being converted. Try reducing the number of images and avoiding the use of tikz, for example.</li>
+<li>Poor support for subfigures, particularly with regard to numbering. If the tex file does not involve subfigures, use the <code>-t docx+native_numbering</code> option to optimize numbering for images and tables.</li>
+<li>References to equations appear in the form <code>[&lt;label&gt;]</code>. See <a href="https://github.com/lierdakil/pandoc-crossref/issues/221">Equation numbering in MS Word · Issue</a> for more information. No solution has been found yet, but global replace commands can be used in Word to replace them.</li>
+<li>The image size set in tex does not work in the converted docx file. A method for setting the caption style for images has not been found yet.</li>
+</ol>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/en/tags/latex/" rel="tag">latex</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			<aside class="sidebar">
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/en/categories/test/">test</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 HUA Guangbin.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

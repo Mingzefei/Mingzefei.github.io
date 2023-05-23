@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>一些抽象 - 明泽飞&#39;s Blog</title>
+	<title>Latex2Word - 明泽飞&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,10 +86,10 @@
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">一些抽象</h1>
+			<h1 class="post__title">Latex2Word</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-05-08T23:05:32&#43;08:00">May 08, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-05-22T23:05:15&#43;08:00">May 22, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
 	</span>
 </div></div>
 		</header>
@@ -99,19 +99,47 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
-    <li><a href="#花与生殖器崇拜">花与生殖器崇拜</a></li>
+    <li><a href="#软件安装">软件安装</a></li>
+    <li><a href="#使用说明">使用说明</a></li>
+    <li><a href="#遗留问题">遗留问题</a></li>
   </ul>
 </nav>
 	</div>
 </div><div class="content post__content clearfix">
-			<h2 id="花与生殖器崇拜">花与生殖器崇拜</h2>
-<blockquote>
-<p>M：想到一个事儿。喜欢花的人是不是有生殖器崇拜？某种意义上。<br>
-L：6。还真是。那鲜花饼怎么说。<br>
-M：和烤牛欢喜差不多。<br>
-L：哈哈哈哈哈哈哈哈哈<br>
-2023-5-8</p>
-</blockquote>
+			<p>世界上有两种人，一种人会用 Latex，另一种人不会用 Latex。
+后者常常向前者要 Word 版本文件。
+因此有了如下一行命令。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pandoc input.tex -o output.docx<span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter pandoc-crossref <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --reference-doc<span style="color:#f92672">=</span>my_temp.docx <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --number-sections <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -M autoEqnLabels -M tableEqns <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bibliography<span style="color:#f92672">=</span>my_ref.bib <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --citeproc --csl ieee.csl
+</code></pre></div><p>该命令用到的文件可以在仓库 <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a>中找到。</p>
+<h2 id="软件安装">软件安装</h2>
+<ol>
+<li>pandoc ：介绍及安装参考<a href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">官方文档</a>。建议在<a href="https://github.com/jgm/pandoc/releases">Releases · jgm/pandoc (github.com)</a>上下载最新 deb 安装包，用<code>sudo dpkg -i /path/to/the/deb/file</code>。</li>
+<li>pandoc-crossref : 介绍及安装参考<a href="https://github.com/lierdakil/pandoc-crossref">官方文档</a>。下载与 pandoc 相<strong>匹配</strong>的版本，并将其中的可执行文件 <code>pandoc-crossref</code> 移入 <code>/usr/bin</code> ，或在转换时指定具体文件。</li>
+</ol>
+<h2 id="使用说明">使用说明</h2>
+<ol>
+<li><code>--filter pandoc-crossref</code> 处理交叉引用；</li>
+<li><code>--reference-doc=my_temp.docx</code> 依照 <code>my_temp.docx</code> 中的样式处理转换后的 <code>output.docx</code>。在仓库 <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a> 中有两个模板文件 <code>TIE-temp.docx</code> 和 <code>my_temp.docx</code>，前者是 TIE 期刊的投稿 Word 模板（双栏），后者是个人调整出的 Word 模板（单栏，字大，便于批注）；</li>
+<li><code>--number-sections</code> 在（子）章节标题前添加数字编号；</li>
+<li><code>-M autoEqnLabels</code>， <code>-M tableEqns</code>设置公式、表格等的编号；</li>
+<li><code>-M reference-sction-title=Reference</code> 在参考文献部分添加章节标题 Reference；</li>
+<li><code>--biblipgraphy=my_ref.bib</code> 使用 <code>my_ref.bib</code> 生成参考文献；</li>
+<li><code>--citeproc --csl ieee.csl</code> 生成的参考文献格式为 <code>ieee</code> 。</li>
+</ol>
+<h2 id="遗留问题">遗留问题</h2>
+<ol>
+<li>可能出现转换后的 docx 文档无法打开。大概率是待转换的 tex 文件过于复杂导致，尝试减少图片数量、避免使用 tikz 等。</li>
+<li>对 subfigure 支持一般，特别是编号容易出错。如果 tex 文件没有涉及子图，可以使用 <code>-t docx+native_numbering</code> 对图片和表格的编号进行优化。</li>
+<li>公式的引用会以 <code>[&lt;label&gt;]</code> 的形式出现。参考<a href="https://github.com/lierdakil/pandoc-crossref/issues/221">Equation numbering in MS Word · Issue</a>，尚未找到解决方法；可以在 Word 中用全局替换命令进行替换。</li>
+<li>在 tex 中设置的图片大小不对转换后的 docx 起作用；图片的 caption 样式尚未找到设置方法。</li>
+</ol>
 
 		</div>
 		<footer class="post__footer">
@@ -120,10 +148,7 @@ L：哈哈哈哈哈哈哈哈哈<br>
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/zh-cn/tags/%E6%B0%91%E4%BF%97/" rel="tag">民俗</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/zh-cn/tags/%E6%96%87%E5%8C%96/" rel="tag">文化</a>
+			<a class="tags__link btn" href="/zh-cn/tags/latex/" rel="tag">latex</a>
 		</li>
 	</ul>
 </div>
