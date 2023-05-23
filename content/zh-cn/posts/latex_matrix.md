@@ -6,7 +6,7 @@ thumbnail: ""
 categories:
   - ""
 tags:
-  - ""
+  - "latex"
 sidebar: true
 ---
 

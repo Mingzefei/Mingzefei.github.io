@@ -6,7 +6,7 @@ thumbnail: ""
 categories:
   - ""
 tags:
-  - ""
+  - "simulation"
 sidebar: true
 ---
 
