@@ -99,6 +99,11 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
+    <li><a href="#the-best-way-to-install-siesta-i-think">the best way to install siesta (I think)</a>
+      <ul>
+        <li><a href="#install-netcdf4">install netCDF4</a></li>
+      </ul>
+    </li>
     <li><a href="#system-and-environment">system and environment</a></li>
     <li><a href="#openmpi">openmpi</a></li>
     <li><a href="#mpiblacs">mpiblacs</a></li>
@@ -109,7 +114,25 @@
 </nav>
 	</div>
 </div><div class="content post__content clearfix">
-			<p>Main reference to <a href="https://zhuanlan.zhihu.com/p/22834848">Centos6.6系统里安装SIESTA 4 | 知乎</a> 。<br>
+			<h2 id="the-best-way-to-install-siesta-i-think">the best way to install siesta (I think)</h2>
+<blockquote>
+<p>We have prepared recipes to install Siesta with it. Setup is simple. You need at least to install the miniconda framework (provide more details) and then do:
+<code>conda install -c conda-forge siesta</code>
+to install a serial Siesta executable (current version is 4.1.5).</p>
+<p>To install a parallel version, you need to use, depending on your choice of parallel environment:
+<code>conda install -c conda-forge &quot;siesta=*=*openmpi*&quot;</code>
+<code>conda install -c conda-forge &quot;siesta=*=*mpich*&quot;</code></p>
+</blockquote>
+<p><em>from <a href="https://docs.siesta-project.org/projects/siesta/en/latest/how-to/conda.html">Building Siesta with conda — Siesta Documentation (siesta-project.org)</a></em></p>
+<h3 id="install-netcdf4">install netCDF4</h3>
+<p>Try <code>conda install -c conda-forge netcdf4</code> first. If there is a conflict that requires siesta to be downgraded, try the following:</p>
+<ol>
+<li>Use <code>pip debug --verbose</code> to check for compatible tags.</li>
+<li>Download the appropriate whl files from the <a href="https://www.cnpython.com/pypi/cftime/download#">cftime website</a> and the <a href="https://pypi.org/project/netCDF4/#files">netCDF4 website</a>.</li>
+<li>Install the two files using <code>pip install &lt;file_name&gt;.whl</code> (numpy and wheel should be installed beforehand, which can be done directly with conda and should not result in errors).</li>
+</ol>
+<hr>
+<p>Main reference to <a href="https://zhuanlan.zhihu.com/p/22834848">Centos6.6系统里安装SIESTA 4 | 知乎</a> 。<br>
 Related software and libraries are installed under <code>~/software</code> if not otherwise specified.</p>
 <h2 id="system-and-environment">system and environment</h2>
 <pre><code>Linux version 5.15.90.1-microsoft-standard-WSL2 (oe-user@oe-host) (x86_64-msft-linux-gcc (GCC) 9.3.0, GNU ld (GNU Binutils) 2.34.0.20200220) #1 SMP Fri Jan 27 02:56:13 UTC 2023
