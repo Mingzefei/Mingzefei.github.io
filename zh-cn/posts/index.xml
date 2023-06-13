@@ -101,5 +101,14 @@
       <description>二级标题测试 这是一段中文文字。 公式测试 行间公式 $$ E = mc^2 $$ 行内公式 $v=at$ 代码片段测试 代码块 import sys print(&amp;#39;Hello!&amp;#39;) 行间 print(&#39;World!&#39;) 代码</description>
     </item>
     
+    <item>
+      <title>ssh2win10</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/ssh2win10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/ssh2win10/</guid>
+      <description>实验室的一台计算机是 Win10 系统，通过 ssh 连接并使用 git bash 的终端。 Win10服务启动 在开始-设置-应用-可选功能中安装 OpenSSH 客户端和服务端，cmd中输入s</description>
+    </item>
+    
   </channel>
 </rss>
