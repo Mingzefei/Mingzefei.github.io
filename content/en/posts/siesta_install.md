@@ -10,6 +10,27 @@ tags:
 sidebar: true
 ---
 
+## the best way to install siesta (I think)
+
+
+> We have prepared recipes to install Siesta with it. Setup is simple. You need at least to install the miniconda framework (provide more details) and then do:
+> `conda install -c conda-forge siesta`
+> to install a serial Siesta executable (current version is 4.1.5).
+> 
+> To install a parallel version, you need to use, depending on your choice of parallel environment:
+> `conda install -c conda-forge "siesta=*=*openmpi*"`
+> `conda install -c conda-forge "siesta=*=*mpich*"`
+
+*from [Building Siesta with conda — Siesta Documentation (siesta-project.org)](https://docs.siesta-project.org/projects/siesta/en/latest/how-to/conda.html)*
+
+### install netCDF4
+
+Try `conda install -c conda-forge netcdf4` first. If there is a conflict that requires siesta to be downgraded, try the following: 
+1. Use `pip debug --verbose` to check for compatible tags. 
+2. Download the appropriate whl files from the [cftime website](https://www.cnpython.com/pypi/cftime/download#) and the [netCDF4 website](https://pypi.org/project/netCDF4/#files). 
+3. Install the two files using `pip install <file_name>.whl` (numpy and wheel should be installed beforehand, which can be done directly with conda and should not result in errors).
+
+--------
 
 Main reference to [Centos6.6系统里安装SIESTA 4 | 知乎](https://zhuanlan.zhihu.com/p/22834848) 。  
 Related software and libraries are installed under `~/software` if not otherwise specified.
