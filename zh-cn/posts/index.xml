@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 明泽飞&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 22 May 2023 23:05:15 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 19 Jul 2023 21:07:33 +0800</lastBuildDate>
     
 	<atom:link href="https://mingzefei.github.io/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>music notes</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/music_note/</link>
+      <pubDate>Wed, 19 Jul 2023 21:07:33 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/music_note/</guid>
+      <description>作为一个没有任何音乐基础的人，在这里记录下自己听音乐时的感想，以及音乐的信息。 Spiegel im Spiegel 最初在 YouHwa Lee 的专辑《ARVO PÄRT PIANO MUSIC》中听到这</description>
+    </item>
     
     <item>
       <title>Latex2Word</title>
