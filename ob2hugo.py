@@ -18,7 +18,7 @@ def custom_filter(content: str, path: str) -> bool:
 def main():
 
     obsidian_to_hugo = ObsidianToHugo(
-        obsidian_vault_dir="/mnt/c/Users/Hua/win_workbench/my_note/5_Blog",
+        obsidian_vault_dir="/mnt/c/Users/30577/win_workbench/my_note/5_Blog",
         hugo_content_dir="./content/",
         # filters=[custom_filter],
     )
