@@ -44,7 +44,7 @@ pandoc input.tex -o output.docx\
 
 ## 遗留问题
 
-1. 可能出现转换后的 docx 文档无法打开。大概率是待转换的 tex 文件过于复杂导致，尝试减少图片数量、避免使用 tikz 等。
+1. 可能出现转换后的 docx 文档无法打开。大概率是待转换的 tex 文件过于复杂导致，尝试避免使用 tikz 、减少图片数量等。
 2. 对 subfigure 支持一般，特别是编号容易出错。如果 tex 文件没有涉及子图，可以使用 `-t docx+native_numbering` 对图片和表格的编号进行优化。
 3. 公式的引用会以 `[<label>]` 的形式出现。参考[Equation numbering in MS Word · Issue](https://github.com/lierdakil/pandoc-crossref/issues/221)，尚未找到解决方法；可以在 Word 中用全局替换命令进行替换。
 4. 在 tex 中设置的图片大小不对转换后的 docx 起作用；图片的 caption 样式尚未找到设置方法。
