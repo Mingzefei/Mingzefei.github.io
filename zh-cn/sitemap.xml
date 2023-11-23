@@ -153,21 +153,6 @@
   </url>
   
   <url>
-    <loc>https://mingzefei.github.io/zh-cn/tags/tree/</loc>
-    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/zh-cn/tree/</loc>
-    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/zh-cn/categories/tree/</loc>
-    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mingzefei.github.io/zh-cn/</loc>
     <lastmod>2022-10-26T23:16:16+08:00</lastmod>
     <xhtml:link
@@ -180,6 +165,21 @@
                 hreflang="zh-cn"
                 href="https://mingzefei.github.io/zh-cn/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/tree/</loc>
+    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/tree/</loc>
+    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mingzefei.github.io/zh-cn/categories/tree/</loc>
+    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
   </url>
   
   <url>
