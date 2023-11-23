@@ -11,7 +11,7 @@ DefaultContentLanguageInSubdir = true
 [Languages]
   [Languages.zh-cn]
     languageCode = 'zh-cn'
-    title = "明泽飞's Blog"
+    title = "Mingzf 的博客" # "明泽飞's Blog"
     subtitle = ''
     # subtitle = "泽飞's Blog"
     contentDir = 'content/zh-cn'
