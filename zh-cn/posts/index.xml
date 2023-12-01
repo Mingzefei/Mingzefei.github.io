@@ -111,6 +111,15 @@
     </item>
     
     <item>
+      <title>Latex 备忘录</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
+      <description>一些关于 Latex 的琐碎笔记，可以获得更好的编辑体验。 vscode 中查看正文字数 借助插件 LaTeX Workshop 在 COMMANDS 栏中的 Miscellaneous 下，点击 Count words in LaTeX project 形成 change marked 版本 需要 latexdiff latexdiff old.tex new.tex &amp;gt; changed.tex 跨文件交</description>
+    </item>
+    
+    <item>
       <title>ssh2win10</title>
       <link>https://mingzefei.github.io/zh-cn/posts/ssh2win10/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
