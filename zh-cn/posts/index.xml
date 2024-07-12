@@ -7,126 +7,104 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 19 Jul 2023 21:07:33 +0800</lastBuildDate>
-    
-	<atom:link href="https://mingzefei.github.io/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://mingzefei.github.io/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>music notes</title>
       <link>https://mingzefei.github.io/zh-cn/posts/music_note/</link>
       <pubDate>Wed, 19 Jul 2023 21:07:33 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/music_note/</guid>
       <description>作为一个没有任何音乐基础的人，在这里记录下自己听音乐时的感想，以及音乐的信息。 Spiegel im Spiegel 最初在 YouHwa Lee 的专辑《ARVO PÄRT PIANO MUSIC》中听到这</description>
     </item>
-    
     <item>
       <title>Latex2Word</title>
       <link>https://mingzefei.github.io/zh-cn/posts/latex2word/</link>
       <pubDate>Mon, 22 May 2023 23:05:15 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/latex2word/</guid>
       <description>世界上有两种人，一种人会用 Latex，另一种人不会用 Latex。 后者常常向前者要 Word 版本文件。 因此有了如下一行命令。 pandoc input.tex -o output.docx\ --filter pandoc-crossref \ --reference-doc=my_temp.docx \ --number-sections \ -M autoEqnLabels</description>
     </item>
-    
     <item>
       <title>项目组织</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</link>
       <pubDate>Tue, 16 May 2023 23:05:10 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</guid>
       <description>近期完成了一次 Python 项目作业，涉及代码和论文。 该项目尝试使用一种规范的方式进行组织。 受 Mario Krapp/semic-project启发，给出了自己的</description>
     </item>
-    
     <item>
       <title>一些抽象</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1/</link>
       <pubDate>Mon, 08 May 2023 23:05:32 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1/</guid>
       <description>花与生殖器崇拜 M：想到一个事儿。喜欢花的人是不是有生殖器崇拜？某种意义上。 L：6。还真是。那鲜花饼怎么说。 M：和烤牛欢喜差不多。 L：哈哈哈哈</description>
     </item>
-    
     <item>
       <title>Latex 中的复杂矩阵</title>
       <link>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</link>
       <pubDate>Fri, 24 Mar 2023 17:23:33 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</guid>
       <description>写 paper 时遇到一个矩阵，需要对块、行和列进行标记。 方法一 \begin{equation} \bordermatrix{ &amp;amp; e_\text{o} &amp;amp; &amp;amp; e_\text{b} &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp;e_\text{s} &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp;\cr v_1 &amp;amp;-1 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;1 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 \cr v_2 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;-1&amp;amp;1 &amp;amp;1 &amp;amp;1 &amp;amp;0 &amp;amp;0</description>
     </item>
-    
     <item>
       <title>池中蜻蜓</title>
       <link>https://mingzefei.github.io/zh-cn/posts/plot_and_setting_of_novel/</link>
       <pubDate>Sat, 04 Mar 2023 14:11:04 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/plot_and_setting_of_novel/</guid>
       <description>这里有一些本不该属于我的记忆，却又被我碰到。 像池塘中的蜻蜓，由池水、晨雾和日月星辰孕育，飞舞一个夏天，又消逝于池塘。 作为一个旁观者，我描录下</description>
     </item>
-    
     <item>
       <title>Mainroad 主题的 Hugo 相关修改</title>
       <link>https://mingzefei.github.io/zh-cn/posts/mainroad_beian/</link>
       <pubDate>Mon, 27 Feb 2023 22:35:46 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/mainroad_beian/</guid>
       <description>当前的个人网站使用 Hogo 生成，主题为 Mainroad，在客制化时遇到一些问题，解决过程记录如下。 备案号添加 在配置文件中添加备案信息。 # in config.toml # below [Params]</description>
     </item>
-    
     <item>
       <title>关于科研写作的一些感想</title>
       <link>https://mingzefei.github.io/zh-cn/posts/sci_writing/</link>
       <pubDate>Mon, 27 Feb 2023 19:38:10 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/sci_writing/</guid>
       <description>月初写了篇 paper 的初稿，虽然不再是第一次写了，但还是觉得离目标差得很远。 把 Joshua Schimel 的 Writing science: How to write papers that get cited and proposals that get funded打印下来， 看了前一两章，很</description>
     </item>
-    
     <item>
       <title>从系统方法论看苏轼徐州治水</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E4%BB%8E%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9C%8B%E8%8B%8F%E8%BD%BC%E5%BE%90%E5%B7%9E%E6%B2%BB%E6%B0%B4/</link>
       <pubDate>Mon, 28 Nov 2022 21:45:50 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/%E4%BB%8E%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9C%8B%E8%8B%8F%E8%BD%BC%E5%BE%90%E5%B7%9E%E6%B2%BB%E6%B0%B4/</guid>
       <description>说明：起因是《系统工程研究方法》的大作业，要求结合研究方向和课程内容撰写报告，后取消研究方向的限制，于是突发奇想便有本文。 引言 徐州地方，历代</description>
     </item>
-    
     <item>
       <title>IOP Latex 模板的部分报错问题</title>
       <link>https://mingzefei.github.io/zh-cn/posts/iop_latex/</link>
       <pubDate>Mon, 21 Nov 2022 09:51:05 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/iop_latex/</guid>
       <description>要在英国物理学会（Institute of Physics, IOP）上发文章，使用官方提供的 Latex 模板编写，期间遇到如下问题，记录如下。 amsmath 和 iopart 不兼容 同时使用两个宏包</description>
     </item>
-    
     <item>
       <title>测试</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Wed, 26 Oct 2022 20:39:26 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/%E6%B5%8B%E8%AF%95/</guid>
       <description>二级标题测试 这是一段中文文字。 公式测试 行间公式 $$ E = mc^2 $$ 行内公式 $v=at$ 代码片段测试 代码块 import sys print(&amp;#39;Hello!&amp;#39;) 行间 print(&#39;World!&#39;) 代码</description>
     </item>
-    
     <item>
       <title>Latex 备忘录</title>
       <link>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
-      <description>一些关于 Latex 的琐碎笔记，可以获得更好的编辑体验。 vscode 中查看正文字数 借助插件 LaTeX Workshop 在 COMMANDS 栏中的 Miscellaneous 下，点击 Count words in LaTeX project 形成 change marked 版本 需要 latexdiff latexdiff old.tex new.tex &amp;gt; changed.tex 跨文件交</description>
+      <description>一些关于 Latex 的琐碎笔记，可以获得更好的编辑体验。 vscode 中查看正文字数 借助插件 LaTeX Workshop 在 COMMANDS 栏中的 Miscellaneous 下，点击 Count words in LaTeX project 形成 change marked 版本 需要 latexdiff latexdiff old.tex new.tex &amp;gt; changed.tex 额外：配</description>
     </item>
-    
     <item>
       <title>ssh2win10</title>
       <link>https://mingzefei.github.io/zh-cn/posts/ssh2win10/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/posts/ssh2win10/</guid>
       <description>实验室的一台计算机是 Win10 系统，通过 ssh 连接并使用 git bash 的终端。 Win10服务启动 在开始-设置-应用-可选功能中安装 OpenSSH 客户端和服务端，cmd中输入s</description>
     </item>
-    
+    <item>
+      <title>科研绘图</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</guid>
+      <description>matplotlib 中的中文显示 一般情况下，matplotlib 无法直接显示中文，需要通过设置字体来实现。 可以使用Clarmy/mplfonts: Fonts manager for matplotlib (g</description>
+    </item>
   </channel>
 </rss>

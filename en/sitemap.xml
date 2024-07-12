@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://mingzefei.github.io/en/</loc>
     <lastmod>2023-03-20T23:03:47+08:00</lastmod>
@@ -12,12 +11,10 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mingzefei.github.io/en/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mingzefei.github.io/en/posts/</loc>
     <lastmod>2023-03-20T23:03:47+08:00</lastmod>
     <xhtml:link
@@ -27,22 +24,16 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mingzefei.github.io/en/posts/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mingzefei.github.io/en/posts/siesta_install/</loc>
     <lastmod>2023-03-20T23:03:47+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mingzefei.github.io/en/tags/simulation/</loc>
     <lastmod>2023-03-20T23:03:47+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mingzefei.github.io/en/tags/</loc>
     <lastmod>2023-03-20T23:03:47+08:00</lastmod>
     <xhtml:link
@@ -52,12 +43,10 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mingzefei.github.io/en/tags/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mingzefei.github.io/en/categories/</loc>
     <lastmod>2022-10-26T23:03:08+08:00</lastmod>
     <xhtml:link
@@ -67,32 +56,10 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mingzefei.github.io/en/categories/"
                 />
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/en/tags/test/</loc>
-    <lastmod>2022-10-26T23:03:08+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/tags/test/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mingzefei.github.io/en/tags/test/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://mingzefei.github.io/en/posts/test/</loc>
-    <lastmod>2022-10-26T23:03:08+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mingzefei.github.io/en/categories/test/</loc>
     <lastmod>2022-10-26T23:03:08+08:00</lastmod>
     <xhtml:link
@@ -102,12 +69,26 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mingzefei.github.io/en/categories/test/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://mingzefei.github.io/en/tags/test/</loc>
+    <lastmod>2022-10-26T23:03:08+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/tags/test/"
+                />
+  </url><url>
+    <loc>https://mingzefei.github.io/en/posts/test/</loc>
+    <lastmod>2022-10-26T23:03:08+08:00</lastmod>
+  </url><url>
     <loc>https://mingzefei.github.io/en/tags/latex/</loc>
     <xhtml:link
                 rel="alternate"
@@ -116,13 +97,10 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mingzefei.github.io/en/tags/latex/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mingzefei.github.io/en/posts/latex2word_en/</loc>
   </url>
-  
 </urlset>

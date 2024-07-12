@@ -87,7 +87,7 @@
 	<article class="post">
 		<header class="post__header">
 			<h1 class="post__title">Latex 备忘录</h1>
-			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/zh-cn/categories/" rel="category">Categories</a>
 	</span>
 </div></div>
 		</header>
@@ -105,6 +105,16 @@
     <li><a href="#公式引用">公式引用</a></li>
     <li><a href="#与-visio-配合使用">与 visio 配合使用</a></li>
     <li><a href="#图表占一页且空白较多">图表占一页且空白较多</a></li>
+    <li><a href="#biber-和-bibtex">biber 和 bibtex</a></li>
+    <li><a href="#tikzpgf-和-pdf-导入-matplotlib-绘图的比较">tikz、pgf 和 pdf 导入 matplotlib 绘图的比较</a></li>
+    <li><a href="#删除-bib-中未引用文献">删除 bib 中未引用文献</a></li>
+    <li><a href="#使用-cleveref-宏包自动确定交叉引用格式">使用 cleveref 宏包自动确定交叉引用格式</a>
+      <ul>
+        <li><a href="#加载宏包">加载宏包</a></li>
+        <li><a href="#基本用法">基本用法</a></li>
+        <li><a href="#自定义格式">自定义格式</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 	</div>
@@ -120,6 +130,8 @@
 <li>需要 <code>latexdiff</code></li>
 <li><code>latexdiff old.tex new.tex &gt; changed.tex</code></li>
 </ol>
+<p>额外：配合 git 使用
+参考 <a href="https://www.ctan.org/pkg/git-latexdiff">CTAN: Package git-latexdiff</a></p>
 <h2 id="跨文件交叉引用">跨文件交叉引用</h2>
 <ol>
 <li>使用 <code>xr</code> 宏包： <code>\usepackage{xr}</code></li>
@@ -160,10 +172,74 @@
 </li>
 </ol>
 <h2 id="图表占一页且空白较多">图表占一页且空白较多</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex"><span style="color:#66d9ef">\renewcommand</span>{<span style="color:#66d9ef">\floatpagefraction</span>}{.9}
-</code></pre></div><p>允许页面90%为图片，10%为文字。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\renewcommand</span>{<span style="color:#66d9ef">\floatpagefraction</span>}{.9}
+</span></span></code></pre></div><p>允许页面90%为图片，10%为文字。
 默认是50%是图片，50%是文字，因此占比超过50%的图片会单独一页。</p>
-
+<h2 id="biber-和-bibtex">biber 和 bibtex</h2>
+<p>biber 更为强大，使用 <code>biber</code> 命令进行编译。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\documentclass</span>{article}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">% \usepackage[backend=biber]{biblatex}  % 使用biber作为后端处理引用，可进行更精细的参考文献设置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">\usepackage</span><span style="color:#a6e22e">[backend=biber,style=mystyle]</span>{biblatex}  <span style="color:#75715e">% 使用biber作为后端处理引用，并使用mystyle.sty作为样式文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">\addbibresource</span>{sample.bib}  <span style="color:#75715e">% 引用的数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\begin</span>{document}
+</span></span><span style="display:flex;"><span>Hello world <span style="color:#66d9ef">\cite</span>{ref1}.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\printbibliography</span>  <span style="color:#75715e">% 打印参考文献列表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">\end</span>{document}
+</span></span></code></pre></div><p>bibtex 适配更好，使用 <code>bibtex</code> 命令进行编译。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\documentclass</span>{article}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\begin</span>{document}
+</span></span><span style="display:flex;"><span>Hello world <span style="color:#66d9ef">\cite</span>{ref1}.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\bibliography</span>{sample}  <span style="color:#75715e">% 引用的BibTeX数据库文件名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">\bibliographystyle</span>{mystyle}  <span style="color:#75715e">% mystyle是你的.sty文件名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">\end</span>{document}
+</span></span></code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20231201151516.png" alt="image.png">
+(图片来源：<a href="https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib">bibliographies - bibtex vs. biber and biblatex vs. natbib - TeX - LaTeX Stack Exchange</a>)</p>
+<h2 id="tikzpgf-和-pdf-导入-matplotlib-绘图的比较">tikz、pgf 和 pdf 导入 matplotlib 绘图的比较</h2>
+<ul>
+<li>使用 <a href="https://github.com/nschloe/tikzplotlib?tab=readme-ov-file">nschloe/tikzplotlib</a> 中的 <code>tikzplotlib.save(&quot;mytikz.tex&quot;)</code> 命令将 matplotlib 绘图转成 tikz 命令
+<ul>
+<li>写这段文字时，该项目已经一年多没有更新</li>
+<li>tex 中绘图结果 python 脚本绘图结果有差异</li>
+<li>可以完全保证图片字体与正文字体一致</li>
+</ul>
+</li>
+<li>使用 matplotlib 直接导出 pgf
+<ul>
+<li>生成的 pgf 文件为命令行</li>
+<li>tex 中绘图结果与 python 脚本绘图结果一致</li>
+</ul>
+</li>
+<li>使用 matplotlib 直接导出 pdf
+<ul>
+<li>生成的 pdf 文件常见，可用常用浏览器打开</li>
+<li>tex 中直接导入该文件，不涉及再次渲染</li>
+</ul>
+</li>
+</ul>
+<p>在 pgf 和 pdf 中，我更倾向后者。两者最终结果相同，而 pdf 更易查阅。</p>
+<p>matplotlib 中使用如下命令控制字体大小和图片尺寸：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>matplotlib<span style="color:#f92672">.</span>rcParams<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;font.size&#39;</span>: <span style="color:#ae81ff">8</span>})
+</span></span><span style="display:flex;"><span>matplotlib<span style="color:#f92672">.</span>rcParams<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;figure.figsize&#39;</span>: [<span style="color:#ae81ff">4.</span>, <span style="color:#ae81ff">2.5</span>]})
+</span></span></code></pre></div><h2 id="删除-bib-中未引用文献">删除 bib 中未引用文献</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bibexport -o clean_ref.bib main.aux
+</span></span></code></pre></div><p>该命令将从 <code>main.aux</code> 中生成仅在文中引用的 bib 文件。</p>
+<h2 id="使用-cleveref-宏包自动确定交叉引用格式">使用 cleveref 宏包自动确定交叉引用格式</h2>
+<p>官方文档：<a href="https://mirror.its.dal.ca/ctan/macros/latex/contrib/cleveref/cleveref.pdf">cleveref.pdf</a></p>
+<h3 id="加载宏包">加载宏包</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\usepackage</span>{cleveref}
+</span></span></code></pre></div><h3 id="基本用法">基本用法</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span>1. <span style="color:#66d9ef">\label</span>{eq:1}, ..., <span style="color:#66d9ef">\cref</span>{eq:1} <span style="color:#75715e">% 自动添加前缀 eq.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>2. <span style="color:#66d9ef">\Cref</span>{fig1} <span style="color:#75715e">% 自动添加大写的前缀 Fig. , 适用于句首
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>3. <span style="color:#66d9ef">\cref</span>{eq1,eq2,eq3,,eq4} <span style="color:#75715e">% 多重引用, eqs. (1) to (3) and (4)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>4. <span style="color:#66d9ef">\crefrange</span>{eq1}{eq3} <span style="color:#75715e">% 范围引用, eqs. (1) to (3)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>5. <span style="color:#66d9ef">\cpageref</span>{sec2} <span style="color:#75715e">% 页码引用, page 2
+</span></span></span></code></pre></div><h3 id="自定义格式">自定义格式</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\crefformat</span>{equation}{Eq.~(#2#1#3)} <span style="color:#75715e">% 自定义公式引用格式
+</span></span></span></code></pre></div>
 		</div>
 		<footer class="post__footer">
 			
@@ -209,6 +285,8 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
+				<a class="widget__link" href="/zh-cn/categories/">Categories</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/about/">about</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/test/">test</a></li>
@@ -223,7 +301,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2023 HUA Guangbin.
+			&copy; 2024 HUA Guangbin.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>

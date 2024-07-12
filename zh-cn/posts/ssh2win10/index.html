@@ -87,7 +87,7 @@
 	<article class="post">
 		<header class="post__header">
 			<h1 class="post__title">ssh2win10</h1>
-			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/zh-cn/categories/" rel="category">Categories</a>
 	</span>
 </div></div>
 		</header>
@@ -131,8 +131,8 @@
 <p><code>ssh &lt;username&gt;@&lt;IPv4&gt; -t &quot;bash&quot;</code>  使用 Git Bash 或 WSL</p>
 <h3 id="方法二">方法二</h3>
 <p>管理员权限运行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">New-ItemProperty -Path <span style="color:#e6db74">&#34;HKLM:\SOFTWARE\OpenSSH&#34;</span> -Name DefaultShell -Value <span style="color:#e6db74">&#34;&lt;git 的 bash.exe 文件位置&gt;&#34;</span> -PropertyType String -Force
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>New-ItemProperty -Path <span style="color:#e6db74">&#34;HKLM:\SOFTWARE\OpenSSH&#34;</span> -Name DefaultShell -Value <span style="color:#e6db74">&#34;&lt;git 的 bash.exe 文件位置&gt;&#34;</span> -PropertyType String -Force
+</span></span></code></pre></div>
 		</div>
 		<footer class="post__footer">
 			
@@ -178,6 +178,8 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
+				<a class="widget__link" href="/zh-cn/categories/">Categories</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/about/">about</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/test/">test</a></li>
@@ -192,7 +194,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2023 HUA Guangbin.
+			&copy; 2024 HUA Guangbin.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>

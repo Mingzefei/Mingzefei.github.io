@@ -7,37 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Mar 2023 23:03:47 +0800</lastBuildDate>
-    
-	<atom:link href="https://mingzefei.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://mingzefei.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Siesta Install</title>
       <link>https://mingzefei.github.io/en/posts/siesta_install/</link>
       <pubDate>Mon, 20 Mar 2023 23:03:47 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/en/posts/siesta_install/</guid>
       <description>the best way to install siesta (I think) We have prepared recipes to install Siesta with it. Setup is simple. You need at least to install the miniconda framework (provide more details) and then do: conda install -c conda-forge siesta to install a serial Siesta executable (current version is 4.1.5). To install a parallel version, you need to use, depending on your choice of parallel environment: conda install -c conda-forge</description>
     </item>
-    
     <item>
       <title>Test</title>
       <link>https://mingzefei.github.io/en/posts/test/</link>
       <pubDate>Wed, 26 Oct 2022 23:03:08 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/en/posts/test/</guid>
       <description>test level 2 test level 3 Hi~</description>
     </item>
-    
     <item>
       <title>Latex2Word_en</title>
       <link>https://mingzefei.github.io/en/posts/latex2word_en/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://mingzefei.github.io/en/posts/latex2word_en/</guid>
-      <description>There are two types of people in the world: those who use LaTeX and those who don&amp;rsquo;t. The latter often ask the former for Word versions of their files. Therefore, the following command line is created:
-pandoc input.tex -o output.docx\  --filter pandoc-crossref \  --reference-doc=my_temp.docx \  --number-sections \  -M autoEqnLabels -M tableEqns \  -M reference-section-title=Reference \  --bibliography=my_ref.bib \  --citeproc --csl ieee.csl The files used by this command can be found in the repository Mingzefei/latex2word.</description>
+      <description>There are two types of people in the world: those who use LaTeX and those who don&amp;rsquo;t. The latter often ask the former for Word versions of their files. Therefore, the following command line is created:&#xA;pandoc input.tex -o output.docx\ --filter pandoc-crossref \ --reference-doc=my_temp.docx \ --number-sections \ -M autoEqnLabels -M tableEqns \ -M reference-section-title=Reference \ --bibliography=my_ref.bib \ --citeproc --csl ieee.csl The files used by this command can be found in the repository Mingzefei/latex2word.</description>
     </item>
-    
   </channel>
 </rss>

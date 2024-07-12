@@ -89,7 +89,7 @@
 			<h1 class="post__title">IOP Latex 模板的部分报错问题</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-11-21T09:51:05&#43;08:00">November 21, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-11-21T09:51:05&#43;08:00">November 21, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/zh-cn/categories/" rel="category">Categories</a>
 	</span>
 </div></div>
 		</header>
@@ -107,11 +107,11 @@
 			<p>要在英国物理学会（Institute of Physics, IOP）上发文章，使用<a href="https://publishingsupport.iopscience.iop.org/questions/latex-template/">官方提供的 Latex 模板</a>编写，期间遇到如下问题，记录如下。</p>
 <h2 id="amsmath-和-iopart-不兼容"><code>amsmath</code> 和 <code>iopart</code> 不兼容</h2>
 <p>同时使用两个宏包会出现如下报错：</p>
-<pre><code>! LaTeX Error: Command \equation* already defined. 
+<pre tabindex="0"><code>! LaTeX Error: Command \equation* already defined. 
 Or name \end... illegal, see p.192 of the manual.
 </code></pre><p><a href="https://www.guanjihuan.com/archives/3598">Ji-Huan Guan 提到过</a>是不兼容问题，官网上也有类似说明。</p>
 <p><a href="https://zhuanlan.zhihu.com/p/41469740">妙脆角 提供了一种解决方法</a>：</p>
-<pre><code>\expandafter\let\csname equation*\endcsname\relax
+<pre tabindex="0"><code>\expandafter\let\csname equation*\endcsname\relax
 \expandafter\let\csname endequation*\endcsname\relax
 \usepackage{amsmath}
 </code></pre><p>不再产生报错。</p>
@@ -161,6 +161,8 @@ Or name \end... illegal, see p.192 of the manual.
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
+				<a class="widget__link" href="/zh-cn/categories/">Categories</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/about/">about</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/test/">test</a></li>
@@ -175,7 +177,7 @@ Or name \end... illegal, see p.192 of the manual.
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2023 HUA Guangbin.
+			&copy; 2024 HUA Guangbin.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>

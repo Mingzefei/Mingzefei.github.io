@@ -7,18 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 04 Nov 2022 10:18:18 +0800</lastBuildDate>
-    
-	<atom:link href="https://mingzefei.github.io/zh-cn/categories/about/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://mingzefei.github.io/zh-cn/categories/about/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://mingzefei.github.io/zh-cn/about/about/</link>
       <pubDate>Fri, 04 Nov 2022 09:55:57 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/zh-cn/about/about/</guid>
       <description>怎么称呼？ 明泽飞，是一个中学时的昵称，取自“春和景明，波澜不惊，上下天光，一碧万顷”。 在心高气傲时会改写成“明则非”。直接叫我“小明”或“明</description>
     </item>
-    
   </channel>
 </rss>

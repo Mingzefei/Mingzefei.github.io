@@ -87,7 +87,7 @@
 	<article class="post">
 		<header class="post__header">
 			<h1 class="post__title">Latex2Word_en</h1>
-			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/en/categories/" rel="category">Categories</a>
 	</span>
 </div></div>
 		</header>
@@ -105,15 +105,15 @@
 	</div>
 </div><div class="content post__content clearfix">
 			<p>There are two types of people in the world: those who use LaTeX and those who don&rsquo;t. The latter often ask the former for Word versions of their files. Therefore, the following command line is created:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pandoc input.tex -o output.docx<span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --filter pandoc-crossref <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --reference-doc<span style="color:#f92672">=</span>my_temp.docx <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --number-sections <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  -M autoEqnLabels -M tableEqns <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --bibliography<span style="color:#f92672">=</span>my_ref.bib <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --citeproc --csl ieee.csl
-</code></pre></div><p>The files used by this command can be found in the repository <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pandoc input.tex -o output.docx<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --filter pandoc-crossref <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --reference-doc<span style="color:#f92672">=</span>my_temp.docx <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --number-sections <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -M autoEqnLabels -M tableEqns <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bibliography<span style="color:#f92672">=</span>my_ref.bib <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --citeproc --csl ieee.csl
+</span></span></code></pre></div><p>The files used by this command can be found in the repository <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a>.</p>
 <h2 id="installation">Installation</h2>
 <ol>
 <li>pandoc: Refer to the <a href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">official documentation</a> for instruction and installation. It is recommended to download the latest deb installation package from <a href="https://github.com/jgm/pandoc/releases">Releases · jgm/pandoc (github.com)</a> and use <code>sudo dpkg -i /path/to/the/deb/file</code> to install it.</li>
@@ -192,7 +192,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2023 HUA Guangbin.
+			&copy; 2024 HUA Guangbin.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>

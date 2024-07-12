@@ -7,36 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Mar 2023 23:03:47 +0800</lastBuildDate>
-    
-	<atom:link href="https://mingzefei.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://mingzefei.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>simulation</title>
       <link>https://mingzefei.github.io/en/tags/simulation/</link>
       <pubDate>Mon, 20 Mar 2023 23:03:47 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/en/tags/simulation/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Test</title>
       <link>https://mingzefei.github.io/en/tags/test/</link>
       <pubDate>Wed, 26 Oct 2022 23:03:08 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/en/tags/test/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>latex</title>
       <link>https://mingzefei.github.io/en/tags/latex/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://mingzefei.github.io/en/tags/latex/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

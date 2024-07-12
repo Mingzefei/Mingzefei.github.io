@@ -7,18 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Oct 2022 23:03:08 +0800</lastBuildDate>
-    
-	<atom:link href="https://mingzefei.github.io/en/categories/test/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://mingzefei.github.io/en/categories/test/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test</title>
       <link>https://mingzefei.github.io/en/posts/test/</link>
       <pubDate>Wed, 26 Oct 2022 23:03:08 +0800</pubDate>
-      
       <guid>https://mingzefei.github.io/en/posts/test/</guid>
       <description>test level 2 test level 3 Hi~</description>
     </item>
-    
   </channel>
 </rss>

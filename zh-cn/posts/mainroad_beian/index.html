@@ -89,7 +89,7 @@
 			<h1 class="post__title">Mainroad 主题的 Hugo 相关修改</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-27T22:35:46&#43;08:00">February 27, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-27T22:35:46&#43;08:00">February 27, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/zh-cn/categories/" rel="category">Categories</a>
 	</span>
 </div></div>
 		</header>
@@ -111,21 +111,21 @@
 <ol>
 <li>在配置文件中添加备案信息。</li>
 </ol>
-<pre><code class="language-config" data-lang="config"># in config.toml
+<pre tabindex="0"><code class="language-config" data-lang="config"># in config.toml
 # below [Params]
-BeianURL = &quot;http://beian.miit.gov.cn&quot;
-BeianTXT = &quot;Your Bei An Hao&quot;
+BeianURL = &#34;http://beian.miit.gov.cn&#34;
+BeianTXT = &#34;Your Bei An Hao&#34;
 </code></pre><ol start="2">
 <li>创建样式文件 <code>themes/mainroad/layouts/partials/beian.html</code>。</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Site.Params.BeianURL }}&#34;</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> &gt;{{ .Site.Params.BeianTXT }}&lt;/<span style="color:#f92672">a</span>&gt;
-</code></pre></div><ol start="3">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Site.Params.BeianURL }}&#34;</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> &gt;{{ .Site.Params.BeianTXT }}&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div><ol start="3">
 <li>在<code>themes/mainroad/layouts/partials/footer.html</code> 中添加样式引用。</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"># below this line with same indentation : &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footer__copyright-credits&#34;</span>&gt;{{ T &#34;footer_credits&#34; | safeHTML }}&lt;/<span style="color:#f92672">span</span>&gt;
-&lt;/<span style="color:#f92672">div</span>&gt;
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-size: 10px&#34;</span>&gt;{{ partial &#34;beian.html&#34; $ }}&lt;/<span style="color:#f92672">div</span>&gt;   
-</code></pre></div><ol start="4">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span># below this line with same indentation : &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footer__copyright-credits&#34;</span>&gt;{{ T &#34;footer_credits&#34; | safeHTML }}&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-size: 10px&#34;</span>&gt;{{ partial &#34;beian.html&#34; $ }}&lt;/<span style="color:#f92672">div</span>&gt;   
+</span></span></code></pre></div><ol start="4">
 <li>更新，检查。</li>
 </ol>
 <h2 id="评论区搭建">评论区搭建</h2>
@@ -178,6 +178,8 @@ BeianTXT = &quot;Your Bei An Hao&quot;
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
+				<a class="widget__link" href="/zh-cn/categories/">Categories</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/about/">about</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/test/">test</a></li>
@@ -192,7 +194,7 @@ BeianTXT = &quot;Your Bei An Hao&quot;
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2023 HUA Guangbin.
+			&copy; 2024 HUA Guangbin.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>

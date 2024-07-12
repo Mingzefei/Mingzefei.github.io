@@ -89,7 +89,7 @@
 			<h1 class="post__title">Latex 中的复杂矩阵</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-24T17:23:33&#43;08:00">March 24, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-24T17:23:33&#43;08:00">March 24, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/zh-cn/categories/" rel="category">Categories</a>
 	</span>
 </div></div>
 		</header>
@@ -109,65 +109,65 @@
 </div><div class="content post__content clearfix">
 			<p>写 paper 时遇到一个矩阵，需要对块、行和列进行标记。</p>
 <h2 id="方法一">方法一</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex"><span style="color:#66d9ef">\begin</span>{equation}
-<span style="color:#66d9ef">\bordermatrix</span>{
-    &amp; e_<span style="color:#66d9ef">\text</span>{o} &amp; &amp; e_<span style="color:#66d9ef">\text</span>{b}  &amp; &amp; &amp; &amp; &amp; &amp;e_<span style="color:#66d9ef">\text</span>{s}  &amp; &amp; &amp; &amp; &amp;<span style="color:#66d9ef">\cr</span>
-v_1    &amp;-1  &amp;0 &amp;0 &amp;0   &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
-v_2    &amp;0   &amp;0 &amp;0 &amp;0   &amp;-1&amp;1 &amp;1 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
-v_3    &amp;0   &amp;1 &amp;0 &amp;0   &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
-v_4    &amp;0   &amp;0 &amp;1 &amp;0   &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
-v_5    &amp;0   &amp;0 &amp;0 &amp;1   &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
-v_6    &amp;0   &amp;-1&amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
-v_7    &amp;0   &amp;0 &amp;-1&amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
-v_8    &amp;0   &amp;0 &amp;0 &amp;-1  &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 <span style="color:#66d9ef">\cr</span>
-v_9    &amp;0   &amp;0 &amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;-1&amp;-1&amp;1 <span style="color:#66d9ef">\cr</span>
-},
-<span style="color:#66d9ef">\end</span>{equation}
-</code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img/latex-1.jpg" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span><span style="color:#66d9ef">\begin</span>{equation}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\bordermatrix</span>{
+</span></span><span style="display:flex;"><span>    &amp; e_<span style="color:#66d9ef">\text</span>{o} &amp; &amp; e_<span style="color:#66d9ef">\text</span>{b}  &amp; &amp; &amp; &amp; &amp; &amp;e_<span style="color:#66d9ef">\text</span>{s}  &amp; &amp; &amp; &amp; &amp;<span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_1    &amp;-1  &amp;0 &amp;0 &amp;0   &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_2    &amp;0   &amp;0 &amp;0 &amp;0   &amp;-1&amp;1 &amp;1 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_3    &amp;0   &amp;1 &amp;0 &amp;0   &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_4    &amp;0   &amp;0 &amp;1 &amp;0   &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_5    &amp;0   &amp;0 &amp;0 &amp;1   &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_6    &amp;0   &amp;-1&amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_7    &amp;0   &amp;0 &amp;-1&amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_8    &amp;0   &amp;0 &amp;0 &amp;-1  &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>v_9    &amp;0   &amp;0 &amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;-1&amp;-1&amp;1 <span style="color:#66d9ef">\cr</span>
+</span></span><span style="display:flex;"><span>},
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\end</span>{equation}
+</span></span></code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img/latex-1.jpg" alt=""></p>
 <p>最简单，但暂未找到划分块的方法。</p>
 <h2 id="方法二">方法二</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex"><span style="color:#66d9ef">\begin</span>{equation}
-    <span style="color:#66d9ef">\begin</span>{array}{cc}
-        &amp;  <span style="color:#66d9ef">\begin</span>{array}{c ccc ccccccccccc} e_o &amp;<span style="color:#66d9ef">\quad</span>  &amp;e_{b} &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; e_s &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> <span style="color:#66d9ef">\end</span>{array}<span style="color:#66d9ef">\\</span>
-    <span style="color:#66d9ef">\begin</span>{array}{c} v_1<span style="color:#66d9ef">\\</span>v_2<span style="color:#66d9ef">\\</span>v_3<span style="color:#66d9ef">\\</span>v_4<span style="color:#66d9ef">\\</span>v_5<span style="color:#66d9ef">\\</span>v_6<span style="color:#66d9ef">\\</span>v_7<span style="color:#66d9ef">\\</span>v_8<span style="color:#66d9ef">\\</span>v_9<span style="color:#66d9ef">\end</span>{array}&amp;
-    <span style="color:#66d9ef">\left</span>(
-    <span style="color:#66d9ef">\begin</span>{array}{c|ccc|cccccccccc}
-        -1  &amp;0 &amp;0 &amp;0   &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;0 &amp;0   &amp;-1&amp;1 &amp;1 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;1 &amp;0 &amp;0   &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;1 &amp;0   &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;0 &amp;1   &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;-1&amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;-1&amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;0 &amp;-1  &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;-1&amp;-1&amp;1<span style="color:#66d9ef">\\</span>
-    <span style="color:#66d9ef">\end</span>{array}
-    <span style="color:#66d9ef">\right</span>)
-        <span style="color:#66d9ef">\end</span>{array},
-<span style="color:#66d9ef">\end</span>{equation}
-</code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img/latex-2.jpg" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span><span style="color:#66d9ef">\begin</span>{equation}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\begin</span>{array}{cc}
+</span></span><span style="display:flex;"><span>        &amp;  <span style="color:#66d9ef">\begin</span>{array}{c ccc ccccccccccc} e_o &amp;<span style="color:#66d9ef">\quad</span>  &amp;e_{b} &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; e_s &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> &amp; <span style="color:#66d9ef">\quad</span> <span style="color:#66d9ef">\end</span>{array}<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\begin</span>{array}{c} v_1<span style="color:#66d9ef">\\</span>v_2<span style="color:#66d9ef">\\</span>v_3<span style="color:#66d9ef">\\</span>v_4<span style="color:#66d9ef">\\</span>v_5<span style="color:#66d9ef">\\</span>v_6<span style="color:#66d9ef">\\</span>v_7<span style="color:#66d9ef">\\</span>v_8<span style="color:#66d9ef">\\</span>v_9<span style="color:#66d9ef">\end</span>{array}&amp;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\left</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\begin</span>{array}{c|ccc|cccccccccc}
+</span></span><span style="display:flex;"><span>        -1  &amp;0 &amp;0 &amp;0   &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;0 &amp;0   &amp;-1&amp;1 &amp;1 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;1 &amp;0 &amp;0   &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;1 &amp;0   &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;0 &amp;1   &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;-1&amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;-1&amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;0 &amp;-1  &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;-1&amp;-1&amp;1<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\end</span>{array}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\right</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">\end</span>{array},
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\end</span>{equation}
+</span></span></code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img/latex-2.jpg" alt=""></p>
 <p>此处手动调整 第一行<code>array</code> 的列间距。</p>
 <h2 id="方法三">方法三</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex"><span style="color:#66d9ef">\begin</span>{equation}
-    <span style="color:#66d9ef">\begin</span>{array}{cc}
-        &amp;  <span style="color:#66d9ef">\begin</span>{array}{c c ccc cccccccccc} &amp; e_o &amp;e_{b1}  &amp;e_{b2} &amp; e_{b3} &amp; e_{s1} &amp; e_{s2} &amp; e_{s3} &amp; e_{s4} &amp; e_{s5} &amp; e_{s6} &amp; e_{s7} &amp; e_{s8} &amp; e_{s9} &amp; e_{s10} <span style="color:#66d9ef">\end</span>{array}<span style="color:#66d9ef">\\</span>
-    <span style="color:#66d9ef">\begin</span>{array}{c} v_1<span style="color:#66d9ef">\\</span>v_2<span style="color:#66d9ef">\\</span>v_3<span style="color:#66d9ef">\\</span>v_4<span style="color:#66d9ef">\\</span>v_5<span style="color:#66d9ef">\\</span>v_6<span style="color:#66d9ef">\\</span>v_7<span style="color:#66d9ef">\\</span>v_8<span style="color:#66d9ef">\\</span>v_9<span style="color:#66d9ef">\end</span>{array}&amp;
-        <span style="color:#66d9ef">\left</span>(
-    <span style="color:#66d9ef">\begin</span>{array}{c|ccc|cccccccccc}
-        -1  &amp;0 &amp;0 &amp;0   &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;0 &amp;0   &amp;-1&amp;1 &amp;1 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;1 &amp;0 &amp;0   &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;1 &amp;0   &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;0 &amp;1   &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;-1&amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;-1&amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;0 &amp;-1  &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0<span style="color:#66d9ef">\\</span>
-        0   &amp;0 &amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;-1&amp;-1&amp;1<span style="color:#66d9ef">\\</span>
-    <span style="color:#66d9ef">\end</span>{array}
-        <span style="color:#66d9ef">\right</span>)
-        <span style="color:#66d9ef">\end</span>{array},
-<span style="color:#66d9ef">\end</span>{equation}
-</code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img/latex-3.jpg" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span><span style="color:#66d9ef">\begin</span>{equation}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\begin</span>{array}{cc}
+</span></span><span style="display:flex;"><span>        &amp;  <span style="color:#66d9ef">\begin</span>{array}{c c ccc cccccccccc} &amp; e_o &amp;e_{b1}  &amp;e_{b2} &amp; e_{b3} &amp; e_{s1} &amp; e_{s2} &amp; e_{s3} &amp; e_{s4} &amp; e_{s5} &amp; e_{s6} &amp; e_{s7} &amp; e_{s8} &amp; e_{s9} &amp; e_{s10} <span style="color:#66d9ef">\end</span>{array}<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\begin</span>{array}{c} v_1<span style="color:#66d9ef">\\</span>v_2<span style="color:#66d9ef">\\</span>v_3<span style="color:#66d9ef">\\</span>v_4<span style="color:#66d9ef">\\</span>v_5<span style="color:#66d9ef">\\</span>v_6<span style="color:#66d9ef">\\</span>v_7<span style="color:#66d9ef">\\</span>v_8<span style="color:#66d9ef">\\</span>v_9<span style="color:#66d9ef">\end</span>{array}&amp;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">\left</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\begin</span>{array}{c|ccc|cccccccccc}
+</span></span><span style="display:flex;"><span>        -1  &amp;0 &amp;0 &amp;0   &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;0 &amp;0   &amp;-1&amp;1 &amp;1 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;1 &amp;0 &amp;0   &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;1 &amp;0   &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;0 &amp;1   &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;-1&amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;1 &amp;0 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;-1&amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;0 &amp;-1  &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;0 &amp;0 &amp;1 &amp;0<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>        0   &amp;0 &amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;-1&amp;-1&amp;-1&amp;1<span style="color:#66d9ef">\\</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\end</span>{array}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">\right</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">\end</span>{array},
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\end</span>{equation}
+</span></span></code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img/latex-3.jpg" alt=""></p>
 <h2 id="其他复杂矩阵">其他复杂矩阵</h2>
 <p>可参考：<a href="https://zhuanlan.zhihu.com/p/266267223">如何用latex编写矩阵（包括各类复杂、大型矩阵）？|知乎</a></p>
 
@@ -216,6 +216,8 @@ v_9    &amp;0   &amp;0 &amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
+				<a class="widget__link" href="/zh-cn/categories/">Categories</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/about/">about</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/zh-cn/categories/test/">test</a></li>
@@ -230,7 +232,7 @@ v_9    &amp;0   &amp;0 &amp;0 &amp;0   &amp;0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;0
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2023 HUA Guangbin.
+			&copy; 2024 HUA Guangbin.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
