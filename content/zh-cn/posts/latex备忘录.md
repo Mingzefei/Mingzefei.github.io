@@ -22,6 +22,9 @@ sidebar: true
 1. 需要 `latexdiff`
 2. `latexdiff old.tex new.tex > changed.tex`
 
+额外：配合 git 使用
+参考 [CTAN: Package git-latexdiff](https://www.ctan.org/pkg/git-latexdiff) 
+
 ## 跨文件交叉引用
 
 1. 使用 `xr` 宏包： `\usepackage{xr}`
@@ -62,3 +65,88 @@ sidebar: true
 
 允许页面90%为图片，10%为文字。
 默认是50%是图片，50%是文字，因此占比超过50%的图片会单独一页。
+
+## biber 和 bibtex
+
+biber 更为强大，使用 `biber` 命令进行编译。
+```tex
+\documentclass{article}
+% \usepackage[backend=biber]{biblatex}  % 使用biber作为后端处理引用，可进行更精细的参考文献设置
+\usepackage[backend=biber,style=mystyle]{biblatex}  % 使用biber作为后端处理引用，并使用mystyle.sty作为样式文件
+\addbibresource{sample.bib}  % 引用的数据库
+
+\begin{document}
+Hello world \cite{ref1}.
+
+\printbibliography  % 打印参考文献列表
+\end{document}
+```
+
+bibtex 适配更好，使用 `bibtex` 命令进行编译。
+```tex
+\documentclass{article}
+
+\begin{document}
+Hello world \cite{ref1}.
+
+\bibliography{sample}  % 引用的BibTeX数据库文件名
+\bibliographystyle{mystyle}  % mystyle是你的.sty文件名
+\end{document}
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20231201151516.png)
+(图片来源：[bibliographies - bibtex vs. biber and biblatex vs. natbib - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib))
+
+## tikz、pgf 和 pdf 导入 matplotlib 绘图的比较
+
+- 使用 [nschloe/tikzplotlib](https://github.com/nschloe/tikzplotlib?tab=readme-ov-file) 中的 `tikzplotlib.save("mytikz.tex")` 命令将 matplotlib 绘图转成 tikz 命令
+	- 写这段文字时，该项目已经一年多没有更新
+	- tex 中绘图结果 python 脚本绘图结果有差异
+	- 可以完全保证图片字体与正文字体一致
+- 使用 matplotlib 直接导出 pgf 
+	- 生成的 pgf 文件为命令行
+	- tex 中绘图结果与 python 脚本绘图结果一致
+- 使用 matplotlib 直接导出 pdf
+	- 生成的 pdf 文件常见，可用常用浏览器打开
+	- tex 中直接导入该文件，不涉及再次渲染
+
+在 pgf 和 pdf 中，我更倾向后者。两者最终结果相同，而 pdf 更易查阅。
+
+matplotlib 中使用如下命令控制字体大小和图片尺寸：
+```python
+matplotlib.rcParams.update({'font.size': 8})
+matplotlib.rcParams.update({'figure.figsize': [4., 2.5]})
+```
+
+## 删除 bib 中未引用文献
+
+```bash
+bibexport -o clean_ref.bib main.aux
+```
+该命令将从 `main.aux` 中生成仅在文中引用的 bib 文件。
+
+## 使用 cleveref 宏包自动确定交叉引用格式
+
+官方文档：[cleveref.pdf](https://mirror.its.dal.ca/ctan/macros/latex/contrib/cleveref/cleveref.pdf)
+
+### 加载宏包
+
+```tex
+\usepackage{cleveref}
+```
+
+### 基本用法
+
+```tex
+1. \label{eq:1}, ..., \cref{eq:1} % 自动添加前缀 eq.
+2. \Cref{fig1} % 自动添加大写的前缀 Fig. , 适用于句首
+3. \cref{eq1,eq2,eq3,,eq4} % 多重引用, eqs. (1) to (3) and (4)
+4. \crefrange{eq1}{eq3} % 范围引用, eqs. (1) to (3)
+5. \cpageref{sec2} % 页码引用, page 2
+```
+
+### 自定义格式
+
+```tex
+\crefformat{equation}{Eq.~(#2#1#3)} % 自定义公式引用格式
+```
