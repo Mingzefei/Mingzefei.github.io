@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Mingzf 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 19 Jul 2023 21:07:33 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Jun 2024 11:06:18 +0800</lastBuildDate>
     <atom:link href="https://mingzefei.github.io/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Word中选中文本后按Backspace键不能删除问题</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/word_backspace_failure/</link>
+      <pubDate>Mon, 03 Jun 2024 11:06:18 +0800</pubDate>
+      <guid>https://mingzefei.github.io/zh-cn/posts/word_backspace_failure/</guid>
+      <description>在使用Word过程中，选中文本后按Backspace键无法删除，而DEL键可以正常删除。 解决方法 打开Word文件。 点击左上角的“文件”菜单。</description>
+    </item>
     <item>
       <title>music notes</title>
       <link>https://mingzefei.github.io/zh-cn/posts/music_note/</link>
@@ -20,7 +27,7 @@
       <link>https://mingzefei.github.io/zh-cn/posts/latex2word/</link>
       <pubDate>Mon, 22 May 2023 23:05:15 +0800</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/posts/latex2word/</guid>
-      <description>世界上有两种人，一种人会用 Latex，另一种人不会用 Latex。 后者常常向前者要 Word 版本文件。 因此有了如下一行命令。 pandoc input.tex -o output.docx\ --filter pandoc-crossref \ --reference-doc=my_temp.docx \ --number-sections \ -M autoEqnLabels</description>
+      <description>从 LaTeX 到 Word：一个自动化转换工具 LaTeX 常用于学术和技术领域的文档排版，尤其适用于公式输入和交叉引用；并且，作为纯文本文件，tex 格式文件容易进</description>
     </item>
     <item>
       <title>项目组织</title>
@@ -90,7 +97,7 @@
       <link>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
-      <description>一些关于 Latex 的琐碎笔记，可以获得更好的编辑体验。 vscode 中查看正文字数 借助插件 LaTeX Workshop 在 COMMANDS 栏中的 Miscellaneous 下，点击 Count words in LaTeX project 形成 change marked 版本 需要 latexdiff latexdiff old.tex new.tex &amp;gt; changed.tex 额外：配</description>
+      <description>一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。 文本编辑 一些规范和习惯 括号前需要有1个空格 例如：This is a test (see Section 2.1). 公式结尾需要有1个句号或逗</description>
     </item>
     <item>
       <title>ssh2win10</title>
@@ -104,7 +111,7 @@
       <link>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</guid>
-      <description>matplotlib 中的中文显示 一般情况下，matplotlib 无法直接显示中文，需要通过设置字体来实现。 可以使用Clarmy/mplfonts: Fonts manager for matplotlib (g</description>
+      <description>Matplotlib 中的中文显示 一般情况下，matplotlib 无法直接显示中文，需要通过设置字体来实现。 可以使用Clarmy/mplfonts: Fonts manager for matplotlib (g</description>
     </item>
   </channel>
 </rss>

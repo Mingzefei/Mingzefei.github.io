@@ -97,12 +97,18 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
-    <li><a href="#matplotlib-中的中文显示">matplotlib 中的中文显示</a></li>
+    <li><a href="#matplotlib-中的中文显示">Matplotlib 中的中文显示</a></li>
+    <li><a href="#在-matplotlib-中匹配数据点和拟合线的颜色">在 Matplotlib 中匹配数据点和拟合线的颜色</a>
+      <ul>
+        <li><a href="#示例代码">示例代码</a></li>
+        <li><a href="#核心代码解释">核心代码解释</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 	</div>
 </div><div class="content post__content clearfix">
-			<h2 id="matplotlib-中的中文显示">matplotlib 中的中文显示</h2>
+			<h2 id="matplotlib-中的中文显示">Matplotlib 中的中文显示</h2>
 <p>一般情况下，matplotlib 无法直接显示中文，需要通过设置字体来实现。
 可以使用<a href="https://github.com/Clarmy/mplfonts">Clarmy/mplfonts: Fonts manager for matplotlib (github.com)</a>便捷地解决这个问题。</p>
 <p>首先，在命令行中进行安装和设置：</p>
@@ -123,6 +129,45 @@
 <li>Source Han Serif SC：思源宋体</li>
 <li>Source Han Mono SC：思源等宽宋体</li>
 </ul>
+<h2 id="在-matplotlib-中匹配数据点和拟合线的颜色">在 Matplotlib 中匹配数据点和拟合线的颜色</h2>
+<p>在使用 Matplotlib 绘制数据时，为了图表的清晰度和美观性，常常希望数据点和相应的拟合线使用相同的颜色。
+这里介绍一种简洁且高效的方法，利用 Matplotlib 的内置功能，实现颜色的自动匹配而无需硬编码。</p>
+<h3 id="示例代码">示例代码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> scienceplots
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;science&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成数据</span>
+</span></span><span style="display:flex;"><span>x1 <span style="color:#f92672">=</span> range(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>y1 <span style="color:#f92672">=</span> [x <span style="color:#f92672">+</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> x1]
+</span></span><span style="display:flex;"><span>y1_fit <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>polyfit(x1, y1, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x2 <span style="color:#f92672">=</span> range(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>y2 <span style="color:#f92672">=</span> [x <span style="color:#f92672">+</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> x2]
+</span></span><span style="display:flex;"><span>y2_fit <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>polyfit(x2, y2, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 绘制数据点</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x1, y1, <span style="color:#e6db74">&#39;o&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;data 1&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x2, y2, <span style="color:#e6db74">&#39;o&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;data 2&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 获取当前图形中所有线的颜色</span>
+</span></span><span style="display:flex;"><span>colors <span style="color:#f92672">=</span> [line<span style="color:#f92672">.</span>get_color() <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> plt<span style="color:#f92672">.</span>gca()<span style="color:#f92672">.</span>lines]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用相同的颜色绘制拟合线</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x1, np<span style="color:#f92672">.</span>polyval(y1_fit, x1), <span style="color:#e6db74">&#39;--&#39;</span>, color<span style="color:#f92672">=</span>colors[<span style="color:#ae81ff">0</span>], label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fit 1&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x2, np<span style="color:#f92672">.</span>polyval(y2_fit, x2), <span style="color:#e6db74">&#39;--&#39;</span>, color<span style="color:#f92672">=</span>colors[<span style="color:#ae81ff">1</span>], label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fit 2&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><h3 id="核心代码解释">核心代码解释</h3>
+<p>在这段代码中，关键部分是如何获取并使用颜色：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 获取当前图形中所有线的颜色 </span>
+</span></span><span style="display:flex;"><span>colors <span style="color:#f92672">=</span> [line<span style="color:#f92672">.</span>get_color() <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> plt<span style="color:#f92672">.</span>gca()<span style="color:#f92672">.</span>lines]
+</span></span></code></pre></div><p>这一行通过列表推导从当前轴（<code>gca()</code> 返回的对象）的 <code>lines</code> 属性中提取每条线的颜色。
+由于 <code>plt.plot</code> 默认按顺序使用颜色循环中的颜色，这种方法可以确保拟合线使用与相对应数据点相同的颜色。</p>
 
 		</div>
 	</article>

@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mingzefei.github.io/zh-cn/</loc>
-    <lastmod>2023-07-19T21:07:33+08:00</lastmod>
+    <lastmod>2024-06-03T11:06:18+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -15,11 +15,8 @@
                 href="https://mingzefei.github.io/zh-cn/"
                 />
   </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/music_note/</loc>
-    <lastmod>2023-07-19T21:07:33+08:00</lastmod>
-  </url><url>
     <loc>https://mingzefei.github.io/zh-cn/posts/</loc>
-    <lastmod>2023-07-19T21:07:33+08:00</lastmod>
+    <lastmod>2024-06-03T11:06:18+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -30,6 +27,28 @@
                 hreflang="zh-cn"
                 href="https://mingzefei.github.io/zh-cn/posts/"
                 />
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/</loc>
+    <lastmod>2024-06-03T11:06:18+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/"
+                />
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/tools/</loc>
+    <lastmod>2024-06-03T11:06:18+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/word_backspace_failure/</loc>
+    <lastmod>2024-06-03T11:06:18+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/music_note/</loc>
+    <lastmod>2023-07-19T21:07:33+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/latex/</loc>
     <lastmod>2023-05-22T23:05:15+08:00</lastmod>
@@ -46,19 +65,6 @@
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/posts/latex2word/</loc>
     <lastmod>2023-05-22T23:05:15+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/tags/</loc>
-    <lastmod>2023-05-22T23:05:15+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://mingzefei.github.io/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/tags/"
-                />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/code/</loc>
     <lastmod>2023-05-16T23:05:10+08:00</lastmod>

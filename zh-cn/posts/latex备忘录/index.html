@@ -97,69 +97,139 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
-    <li><a href="#vscode-中查看正文字数">vscode 中查看正文字数</a></li>
-    <li><a href="#形成-change-marked-版本">形成 change marked 版本</a></li>
-    <li><a href="#跨文件交叉引用">跨文件交叉引用</a></li>
-    <li><a href="#安装-standalone-宏包">安装 standalone 宏包</a></li>
-    <li><a href="#公式环境">公式环境</a></li>
-    <li><a href="#公式引用">公式引用</a></li>
-    <li><a href="#与-visio-配合使用">与 visio 配合使用</a></li>
-    <li><a href="#图表占一页且空白较多">图表占一页且空白较多</a></li>
-    <li><a href="#biber-和-bibtex">biber 和 bibtex</a></li>
-    <li><a href="#tikzpgf-和-pdf-导入-matplotlib-绘图的比较">tikz、pgf 和 pdf 导入 matplotlib 绘图的比较</a></li>
-    <li><a href="#删除-bib-中未引用文献">删除 bib 中未引用文献</a></li>
-    <li><a href="#使用-cleveref-宏包自动确定交叉引用格式">使用 cleveref 宏包自动确定交叉引用格式</a>
+    <li><a href="#文本编辑">文本编辑</a>
       <ul>
+        <li><a href="#一些规范和习惯">一些规范和习惯</a></li>
+      </ul>
+    </li>
+    <li><a href="#公式编辑">公式编辑</a>
+      <ul>
+        <li><a href="#几种公式环境的比较">几种公式环境的比较</a></li>
+      </ul>
+    </li>
+    <li><a href="#图片绘制">图片绘制</a>
+      <ul>
+        <li><a href="#几种-tex-matplotlib-配合使用比较">几种 tex-matplotlib 配合使用比较</a></li>
+        <li><a href="#tex-visio-配合使用">tex-visio 配合使用</a></li>
+        <li><a href="#图表占一页且空白较多">图表占一页且空白较多</a></li>
+      </ul>
+    </li>
+    <li><a href="#表格排版">表格排版</a>
+      <ul>
+        <li><a href="#表格组织示例">表格组织示例</a></li>
+      </ul>
+    </li>
+    <li><a href="#交叉引用">交叉引用</a>
+      <ul>
+        <li><a href="#跨文件交叉引用">跨文件交叉引用</a></li>
+        <li><a href="#公式引用">公式引用</a></li>
+        <li><a href="#使用-cleveref-宏包自动确定交叉引用格式">使用 cleveref 宏包自动确定交叉引用格式</a></li>
         <li><a href="#加载宏包">加载宏包</a></li>
         <li><a href="#基本用法">基本用法</a></li>
         <li><a href="#自定义格式">自定义格式</a></li>
+      </ul>
+    </li>
+    <li><a href="#文献引用">文献引用</a>
+      <ul>
+        <li><a href="#biber-和-bibtex">biber 和 bibtex</a></li>
+        <li><a href="#删除-bib-中未引用文献">删除 bib 中未引用文献</a></li>
+      </ul>
+    </li>
+    <li><a href="#辅助功能">辅助功能</a>
+      <ul>
+        <li><a href="#vscode-中查看正文字数">vscode 中查看正文字数</a></li>
+        <li><a href="#形成-change-marked-版本">形成 change marked 版本</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他">其他</a>
+      <ul>
+        <li><a href="#standalone-宏包安装">standalone 宏包安装</a></li>
       </ul>
     </li>
   </ul>
 </nav>
 	</div>
 </div><div class="content post__content clearfix">
-			<p>一些关于 Latex 的琐碎笔记，可以获得更好的编辑体验。</p>
-<h2 id="vscode-中查看正文字数">vscode 中查看正文字数</h2>
+			<p>一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。</p>
+<h2 id="文本编辑">文本编辑</h2>
+<h3 id="一些规范和习惯">一些规范和习惯</h3>
+<ul>
+<li>括号前需要有1个空格
+<ul>
+<li>例如：<code>This is a test (see Section 2.1).</code></li>
+</ul>
+</li>
+<li>公式结尾需要有1个句号或逗号
+<ul>
+<li>例如：<code>$$y = ax + b.$$</code></li>
+</ul>
+</li>
+<li>文献引用前需要有1个空格
+<ul>
+<li>例如：<code>This is a cite \cite{ref1}</code></li>
+</ul>
+</li>
+<li>对于经常出现的名称类词组（方法名、模型名），使用宏定义，以保证一致性、修改方便
+<ul>
+<li>例如：：<code>\newcommand{\greedy}{Greedy Algorithm}</code></li>
+</ul>
+</li>
+<li>使用 <code>\ie</code>  和 <code>\eg</code> 代替 <code>i.e.</code>（that is） 和 <code>e.g.</code> （for example）</li>
+<li>引用表格时，不用缩写
+<ul>
+<li>例如：<code>Table 1</code> 而非 <code>Tab. 1</code></li>
+</ul>
+</li>
+<li>引用图片时，句首处使用 <code>Figure</code>，其他地方使用 <code>Fig.</code>
+<ul>
+<li>例如：<code>Figure 1 shows ...</code> 和 <code>..., as shown in Fig. 1.</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="公式编辑">公式编辑</h2>
+<h3 id="几种公式环境的比较">几种公式环境的比较</h3>
 <ol>
-<li>借助插件 LaTeX Workshop</li>
-<li>在 <code>COMMANDS</code> 栏中的 <code>Miscellaneous</code> 下，点击 <code>Count words in LaTeX project</code></li>
+<li><code>gather*</code> 环境在设置全局左对齐后，适合写公式推导；</li>
+<li><code>align</code> 环境每行一个编号；</li>
+<li><code>gather</code> 居中对齐。</li>
 </ol>
-<h2 id="形成-change-marked-版本">形成 change marked 版本</h2>
+<h2 id="图片绘制">图片绘制</h2>
+<h3 id="几种-tex-matplotlib-配合使用比较">几种 tex-matplotlib 配合使用比较</h3>
+<p>总体而言，有tikz、pgf 和 pdf 三种导入方式。考虑到pdf更易查阅，个人更倾向pdf方式。</p>
+<ul>
+<li>使用 <a href="https://github.com/nschloe/tikzplotlib?tab=readme-ov-file">nschloe/tikzplotlib</a> 中的 <code>tikzplotlib.save(&quot;mytikz.tex&quot;)</code> 命令将 matplotlib 绘图转成 tikz 命令
+<ul>
+<li>写这段文字时，该项目已经一年多没有更新；</li>
+<li>tex 中绘图结果 python 脚本绘图结果有差异；</li>
+<li>可以完全保证图片字体与正文字体一致。</li>
+</ul>
+</li>
+<li>使用 matplotlib 直接导出 pgf
+<ul>
+<li>生成的 pgf 文件为命令行；</li>
+<li>tex 中绘图结果与 python 脚本绘图结果一致。</li>
+</ul>
+</li>
+<li>使用 matplotlib 直接导出 pdf
+<ul>
+<li>生成的 pdf 文件常见，可用常用浏览器打开；</li>
+<li>tex 中直接导入该文件，不涉及再次渲染。</li>
+</ul>
+</li>
+</ul>
+<p>matplotlib 中使用如下命令控制字体大小和图片尺寸：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>matplotlib<span style="color:#f92672">.</span>rcParams<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;font.size&#39;</span>: <span style="color:#ae81ff">8</span>})
+</span></span><span style="display:flex;"><span>matplotlib<span style="color:#f92672">.</span>rcParams<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;figure.figsize&#39;</span>: [<span style="color:#ae81ff">4.</span>, <span style="color:#ae81ff">2.5</span>]})
+</span></span></code></pre></div><h3 id="tex-visio-配合使用">tex-visio 配合使用</h3>
 <ol>
-<li>需要 <code>latexdiff</code></li>
-<li><code>latexdiff old.tex new.tex &gt; changed.tex</code></li>
-</ol>
-<p>额外：配合 git 使用
-参考 <a href="https://www.ctan.org/pkg/git-latexdiff">CTAN: Package git-latexdiff</a></p>
-<h2 id="跨文件交叉引用">跨文件交叉引用</h2>
+<li>visio 绘图时，注意统一大小
 <ol>
-<li>使用 <code>xr</code> 宏包： <code>\usepackage{xr}</code></li>
-<li>导入待引用标签的文件：<code>\externaldocument{texfile}</code></li>
-</ol>
-<h2 id="安装-standalone-宏包">安装 standalone 宏包</h2>
-<ol>
-<li>使用 <code>sudo apt-get install texlive-latex-extra</code> 命令安装</li>
-<li>使用 <code>sudo apt-file search standalone.sty</code> 命令查看是否存在</li>
-</ol>
-<h2 id="公式环境">公式环境</h2>
-<ol>
-<li><code>gather*</code> 环境在设置全局左对齐后，适合写公式推导</li>
-<li><code>align</code> 环境每行一个编号</li>
-<li><code>gather</code> 居中对齐</li>
-</ol>
-<h2 id="公式引用">公式引用</h2>
-<p>使用 <code>\eqref</code> 自带括号</p>
-<h2 id="与-visio-配合使用">与 visio 配合使用</h2>
-<ol>
-<li>visio 绘图时
-<ol>
-<li>统一页面大小：A4 paper</li>
-<li>统一缩放比例：100% 实际尺寸</li>
-<li>统一字体大小：小四号 12pt</li>
+<li>页面大小：A4 paper</li>
+<li>缩放比例：100% 实际尺寸</li>
+<li>字体大小：小四号 12pt</li>
 </ol>
 </li>
-<li>visio 导出时
+<li>visio 导出时，生成 pdf 矢量图
 <ol>
 <li><code>设计-&gt;大小-&gt;适应绘图</code> ：用于去掉白边</li>
 <li>导出 pdf：在 <code>选项</code> 栏，勾选 <code>当前页</code>，取消 <code>辅助功能文档结构标记</code>：用于去掉外边框</li>
@@ -171,11 +241,41 @@
 </ol>
 </li>
 </ol>
-<h2 id="图表占一页且空白较多">图表占一页且空白较多</h2>
+<h3 id="图表占一页且空白较多">图表占一页且空白较多</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\renewcommand</span>{<span style="color:#66d9ef">\floatpagefraction</span>}{.9}
 </span></span></code></pre></div><p>允许页面90%为图片，10%为文字。
 默认是50%是图片，50%是文字，因此占比超过50%的图片会单独一页。</p>
-<h2 id="biber-和-bibtex">biber 和 bibtex</h2>
+<h2 id="表格排版">表格排版</h2>
+<ol>
+<li>如果表格中某项内容较长，可以使用表格内换行，优化表格的显示效果。</li>
+<li>适当的进行加粗或加阴影，突出表格的重点内容。</li>
+<li>表格内可以放示意图，以更直观。</li>
+</ol>
+<h3 id="表格组织示例">表格组织示例</h3>
+<p>参考：<a href="https://www.overleaf.com/read/hypvpvnzjjwx">https://www.overleaf.com/read/hypvpvnzjjwx</a>
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240715115913.png" alt="image.png"></p>
+<h2 id="交叉引用">交叉引用</h2>
+<h3 id="跨文件交叉引用">跨文件交叉引用</h3>
+<ol>
+<li>使用 <code>xr</code> 宏包： <code>\usepackage{xr}</code>；</li>
+<li>导入待引用标签的文件：<code>\externaldocument{texfile}</code>。</li>
+</ol>
+<h3 id="公式引用">公式引用</h3>
+<p>使用 <code>\eqref</code> 自带括号。</p>
+<h3 id="使用-cleveref-宏包自动确定交叉引用格式">使用 cleveref 宏包自动确定交叉引用格式</h3>
+<p>官方文档：<a href="https://mirror.its.dal.ca/ctan/macros/latex/contrib/cleveref/cleveref.pdf">cleveref.pdf</a>。</p>
+<h3 id="加载宏包">加载宏包</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\usepackage</span>{cleveref}
+</span></span></code></pre></div><h3 id="基本用法">基本用法</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span>1. <span style="color:#66d9ef">\label</span>{eq:1}, ..., <span style="color:#66d9ef">\cref</span>{eq:1} <span style="color:#75715e">% 自动添加前缀 eq.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>2. <span style="color:#66d9ef">\Cref</span>{fig1} <span style="color:#75715e">% 自动添加大写的前缀 Fig. , 适用于句首
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>3. <span style="color:#66d9ef">\cref</span>{eq1,eq2,eq3,,eq4} <span style="color:#75715e">% 多重引用, eqs. (1) to (3) and (4)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>4. <span style="color:#66d9ef">\crefrange</span>{eq1}{eq3} <span style="color:#75715e">% 范围引用, eqs. (1) to (3)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>5. <span style="color:#66d9ef">\cpageref</span>{sec2} <span style="color:#75715e">% 页码引用, page 2
+</span></span></span></code></pre></div><h3 id="自定义格式">自定义格式</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\crefformat</span>{equation}{Eq.~(#2#1#3)} <span style="color:#75715e">% 自定义公式引用格式
+</span></span></span></code></pre></div><h2 id="文献引用">文献引用</h2>
+<h3 id="biber-和-bibtex">biber 和 bibtex</h3>
 <p>biber 更为强大，使用 <code>biber</code> 命令进行编译。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\documentclass</span>{article}
 </span></span><span style="display:flex;"><span><span style="color:#75715e">% \usepackage[backend=biber]{biblatex}  % 使用biber作为后端处理引用，可进行更精细的参考文献设置
@@ -196,50 +296,34 @@
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">\bibliography</span>{sample}  <span style="color:#75715e">% 引用的BibTeX数据库文件名
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">\bibliographystyle</span>{mystyle}  <span style="color:#75715e">% mystyle是你的.sty文件名
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">\end</span>{document}
-</span></span></code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20231201151516.png" alt="image.png">
-(图片来源：<a href="https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib">bibliographies - bibtex vs. biber and biblatex vs. natbib - TeX - LaTeX Stack Exchange</a>)</p>
-<h2 id="tikzpgf-和-pdf-导入-matplotlib-绘图的比较">tikz、pgf 和 pdf 导入 matplotlib 绘图的比较</h2>
-<ul>
-<li>使用 <a href="https://github.com/nschloe/tikzplotlib?tab=readme-ov-file">nschloe/tikzplotlib</a> 中的 <code>tikzplotlib.save(&quot;mytikz.tex&quot;)</code> 命令将 matplotlib 绘图转成 tikz 命令
-<ul>
-<li>写这段文字时，该项目已经一年多没有更新</li>
-<li>tex 中绘图结果 python 脚本绘图结果有差异</li>
-<li>可以完全保证图片字体与正文字体一致</li>
-</ul>
-</li>
-<li>使用 matplotlib 直接导出 pgf
-<ul>
-<li>生成的 pgf 文件为命令行</li>
-<li>tex 中绘图结果与 python 脚本绘图结果一致</li>
-</ul>
-</li>
-<li>使用 matplotlib 直接导出 pdf
-<ul>
-<li>生成的 pdf 文件常见，可用常用浏览器打开</li>
-<li>tex 中直接导入该文件，不涉及再次渲染</li>
-</ul>
-</li>
-</ul>
-<p>在 pgf 和 pdf 中，我更倾向后者。两者最终结果相同，而 pdf 更易查阅。</p>
-<p>matplotlib 中使用如下命令控制字体大小和图片尺寸：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>matplotlib<span style="color:#f92672">.</span>rcParams<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;font.size&#39;</span>: <span style="color:#ae81ff">8</span>})
-</span></span><span style="display:flex;"><span>matplotlib<span style="color:#f92672">.</span>rcParams<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;figure.figsize&#39;</span>: [<span style="color:#ae81ff">4.</span>, <span style="color:#ae81ff">2.5</span>]})
-</span></span></code></pre></div><h2 id="删除-bib-中未引用文献">删除 bib 中未引用文献</h2>
+</span></span></code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20231201151516.png" alt="image.png"></p>
+<blockquote>
+<p><a href="https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib">bibliographies - bibtex vs. biber and biblatex vs. natbib - TeX - LaTeX Stack Exchange</a></p>
+</blockquote>
+<h3 id="删除-bib-中未引用文献">删除 bib 中未引用文献</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bibexport -o clean_ref.bib main.aux
 </span></span></code></pre></div><p>该命令将从 <code>main.aux</code> 中生成仅在文中引用的 bib 文件。</p>
-<h2 id="使用-cleveref-宏包自动确定交叉引用格式">使用 cleveref 宏包自动确定交叉引用格式</h2>
-<p>官方文档：<a href="https://mirror.its.dal.ca/ctan/macros/latex/contrib/cleveref/cleveref.pdf">cleveref.pdf</a></p>
-<h3 id="加载宏包">加载宏包</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\usepackage</span>{cleveref}
-</span></span></code></pre></div><h3 id="基本用法">基本用法</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span>1. <span style="color:#66d9ef">\label</span>{eq:1}, ..., <span style="color:#66d9ef">\cref</span>{eq:1} <span style="color:#75715e">% 自动添加前缀 eq.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>2. <span style="color:#66d9ef">\Cref</span>{fig1} <span style="color:#75715e">% 自动添加大写的前缀 Fig. , 适用于句首
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>3. <span style="color:#66d9ef">\cref</span>{eq1,eq2,eq3,,eq4} <span style="color:#75715e">% 多重引用, eqs. (1) to (3) and (4)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>4. <span style="color:#66d9ef">\crefrange</span>{eq1}{eq3} <span style="color:#75715e">% 范围引用, eqs. (1) to (3)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>5. <span style="color:#66d9ef">\cpageref</span>{sec2} <span style="color:#75715e">% 页码引用, page 2
-</span></span></span></code></pre></div><h3 id="自定义格式">自定义格式</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span><span style="color:#66d9ef">\crefformat</span>{equation}{Eq.~(#2#1#3)} <span style="color:#75715e">% 自定义公式引用格式
-</span></span></span></code></pre></div>
+<h2 id="辅助功能">辅助功能</h2>
+<h3 id="vscode-中查看正文字数">vscode 中查看正文字数</h3>
+<ol>
+<li>借助插件 LaTeX Workshop</li>
+<li>在 <code>COMMANDS</code> 栏中的 <code>Miscellaneous</code> 下，点击 <code>Count words in LaTeX project</code></li>
+</ol>
+<h3 id="形成-change-marked-版本">形成 change marked 版本</h3>
+<ol>
+<li>需要 <code>latexdiff</code></li>
+<li><code>latexdiff old.tex new.tex &gt; changed.tex</code></li>
+</ol>
+<p>额外：配合 git 使用
+参考 <a href="https://www.ctan.org/pkg/git-latexdiff">CTAN: Package git-latexdiff</a></p>
+<h2 id="其他">其他</h2>
+<h3 id="standalone-宏包安装">standalone 宏包安装</h3>
+<p>该宏包用于单独编译图片、公式等子文件，可以在子文件中使用 <code>standalone</code> 宏包，然后在主文件中使用 <code>input</code> 或 <code>include</code> 命令引入。</p>
+<ol>
+<li>使用 <code>sudo apt-get install texlive-latex-extra</code> 命令安装</li>
+<li>使用 <code>sudo apt-file search standalone.sty</code> 命令查看是否存在</li>
+</ol>
+
 		</div>
 		<footer class="post__footer">
 			

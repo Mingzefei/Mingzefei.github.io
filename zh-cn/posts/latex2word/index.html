@@ -99,16 +99,67 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
-    <li><a href="#软件安装">软件安装</a></li>
-    <li><a href="#使用说明">使用说明</a></li>
-    <li><a href="#遗留问题">遗留问题</a></li>
+    <li><a href="#从-latex-到-word一个自动化转换工具">从 LaTeX 到 Word：一个自动化转换工具</a>
+      <ul>
+        <li><a href="#初衷挑战和解决方案">初衷、挑战和解决方案</a></li>
+        <li><a href="#案例">案例</a></li>
+        <li><a href="#附录">附录</a></li>
+      </ul>
+    </li>
+    <li><a href="#后记">后记</a></li>
   </ul>
 </nav>
 	</div>
 </div><div class="content post__content clearfix">
-			<p>世界上有两种人，一种人会用 Latex，另一种人不会用 Latex。
-后者常常向前者要 Word 版本文件。
-因此有了如下一行命令。</p>
+			<h2 id="从-latex-到-word一个自动化转换工具">从 LaTeX 到 Word：一个自动化转换工具</h2>
+<p>LaTeX 常用于学术和技术领域的文档排版，尤其适用于公式输入和交叉引用；并且，作为纯文本文件，tex 格式文件容易进行内容迁移和版本控制。然而，日常工作中，不熟悉 LaTeX 的上级或同事常会要求提供 Word 文件，以便共同审阅和修改。为此开发了一个从 LaTeX 转换到 Word 的工具，以自动化这一流程。</p>
+<p>仓库地址：<a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word (github.com)</a></p>
+<h3 id="初衷挑战和解决方案">初衷、挑战和解决方案</h3>
+<p>项目的初衷很简单：我需要一个能够将 LaTeX 文档转换为 Word 文件的工具，不需要对 Word 进行严格的格式排版，但是需要排版成易读的格式，以及正确的图片导入和交叉引用。Pandoc 工具可以实现将 tex 格式文件转换为 docx 格式文件，但转换结果十分粗糙，尤其无法正确处理公式编号、交叉引用和多子图等问题。这意味着在每次使用 Pandoc  进行转换后，都需要手动调整 Word 文件的格式和引用，十分不便。</p>
+<h4 id="公式和交叉引用的处理">公式和交叉引用的处理</h4>
+<p>Pandoc-Crossref 作为 Pandoc 的第三方过滤器，可以很好地处理交叉引用，但是无法处理公式的引用（<a href="https://github.com/lierdakil/pandoc-crossref/issues/221">Equation numbering in MS Word · Issue</a>）。
+解决这一问题的关键在于使用 Lua 过滤器，利用 Constantin Ahlmann-Eltze 提供的<a href="https://gist.githubusercontent.com/const-ae/752ad85c43d92b72865453ea3a77e2dd/raw/28c1815979e5d03cd9ab3638f9befd354797a72b/resolve_equation_labels.lua">脚本</a>，有效处理了公式的编号和交叉引用。</p>
+<h4 id="多子图的处理">多子图的处理</h4>
+<p>Pandoc 对 tex 文件中多子图的处理并不理想，一般无法正常导入多子图。为此，我在项目中先将 LaTeX 文件中的多子图代码转换成单个大图的 png 文件（提取成多个只有图片的 tex文件，并利用 LaTeX 自带的 <code>convert</code> 和 <code>pdftocairo</code> 进行编译），再用这些大图替换原始的多子图。从而实现了多子图的正常导入。</p>
+<h3 id="案例">案例</h3>
+<p>待转换的 LaTeX 文件编译结果如下：
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921232609.png" alt="image.png">
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921232625.png" alt="image.png"></p>
+<p>转换生成的 Word 文件如下：
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921232932.png" alt="image.png">
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921233103.png" alt="image.png">
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921233132.png" alt="image.png"></p>
+<h3 id="附录">附录</h3>
+<h4 id="核心的-pandoc-命令">核心的 pandoc 命令</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pandoc texfile -o docxfile <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --lua-filter resolve_equation_labels.lua <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --filter pandoc-crossref <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --reference-doc<span style="color:#f92672">=</span>temp.docx <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --number-sections <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M autoEqnLabels <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M tableEqns <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --bibliography<span style="color:#f92672">=</span>ref.bib <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --citeproc --csl ieee.csl
+</span></span></code></pre></div><p>其中，</p>
+<ol>
+<li><code>--lua-filter resolve_equation_labels.lua</code> 处理公式编号及公式交叉引用，受 Constantin Ahlmann-Eltze 的<a href="https://gist.githubusercontent.com/const-ae/752ad85c43d92b72865453ea3a77e2dd/raw/28c1815979e5d03cd9ab3638f9befd354797a72b/resolve_equation_labels.lua">脚本</a>启发；</li>
+<li><code>--filter pandoc-crossref</code> 处理除公式以外的交叉引用；</li>
+<li><code>--reference-doc=my_temp.docx</code> 依照 <code>my_temp.docx</code> 中的样式生成 Word 文件。仓库 <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a> 提供了两个模板文件 <code>TIE-temp.docx</code> 和 <code>my_temp.docx</code>，前者是 TIE 期刊的投稿 Word 模板（双栏），后者是个人调整出的 Word 模板（单栏，且便于批注）；</li>
+<li><code>--number-sections</code> 在（子）章节标题前添加数字编号；</li>
+<li><code>-M autoEqnLabels</code>， <code>-M tableEqns</code>设置公式、表格等的编号；</li>
+<li><code>-M reference-sction-title=Reference</code> 在参考文献部分添加章节标题 Reference；</li>
+<li><code>--biblipgraphy=my_ref.bib</code> 使用 <code>ref.bib</code> 生成参考文献；</li>
+<li><code>--citeproc --csl ieee.csl</code> 生成的参考文献格式为 <code>ieee</code> 。</li>
+</ol>
+<h4 id="参考资料">参考资料</h4>
+<ol>
+<li><a href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">Pandoc 官方文档</a></li>
+<li><a href="https://github.com/lierdakil/pandoc-crossref">Pandoc-crossref 官方文档</a></li>
+<li><a href="https://const-ae.name/post/2024-08-02-latex-to-word-conversion-with-pandoc/">Latex to Word conversion with pandoc | const-ae</a></li>
+</ol>
+<h2 id="后记">后记</h2>
+<p>世界上有两种人，一种人会用 Latex，另一种人不会用 Latex。 后者常常向前者要 Word 版本文件。 因此有了如下一行命令。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pandoc input.tex -o output.docx<span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --filter pandoc-crossref <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --reference-doc<span style="color:#f92672">=</span>my_temp.docx <span style="color:#ae81ff">\
@@ -117,30 +168,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bibliography<span style="color:#f92672">=</span>my_ref.bib <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --citeproc --csl ieee.csl
-</span></span></code></pre></div><p>该命令用到的文件可以在仓库 <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a>中找到。</p>
-<h2 id="软件安装">软件安装</h2>
-<ol>
-<li>pandoc ：介绍及安装参考<a href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">官方文档</a>。建议在<a href="https://github.com/jgm/pandoc/releases">Releases · jgm/pandoc (github.com)</a>上下载最新 deb 安装包，用<code>sudo dpkg -i /path/to/the/deb/file</code>。</li>
-<li>pandoc-crossref : 介绍及安装参考<a href="https://github.com/lierdakil/pandoc-crossref">官方文档</a>。下载与 pandoc 相<strong>匹配</strong>的版本，并将其中的可执行文件 <code>pandoc-crossref</code> 移入 <code>/usr/bin</code> ，或在转换时指定具体文件。</li>
-</ol>
-<h2 id="使用说明">使用说明</h2>
-<ol>
-<li><code>--filter pandoc-crossref</code> 处理交叉引用；</li>
-<li><code>--reference-doc=my_temp.docx</code> 依照 <code>my_temp.docx</code> 中的样式处理转换后的 <code>output.docx</code>。在仓库 <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a> 中有两个模板文件 <code>TIE-temp.docx</code> 和 <code>my_temp.docx</code>，前者是 TIE 期刊的投稿 Word 模板（双栏），后者是个人调整出的 Word 模板（单栏，字大，便于批注）；</li>
-<li><code>--number-sections</code> 在（子）章节标题前添加数字编号；</li>
-<li><code>-M autoEqnLabels</code>， <code>-M tableEqns</code>设置公式、表格等的编号；</li>
-<li><code>-M reference-sction-title=Reference</code> 在参考文献部分添加章节标题 Reference；</li>
-<li><code>--biblipgraphy=my_ref.bib</code> 使用 <code>my_ref.bib</code> 生成参考文献；</li>
-<li><code>--citeproc --csl ieee.csl</code> 生成的参考文献格式为 <code>ieee</code> 。</li>
-</ol>
-<h2 id="遗留问题">遗留问题</h2>
-<ol>
-<li>可能出现转换后的 docx 文档无法打开。大概率是待转换的 tex 文件过于复杂导致，尝试避免使用 tikz 、减少图片数量等。</li>
-<li>对 subfigure 支持一般，特别是编号容易出错。如果 tex 文件没有涉及子图，可以使用 <code>-t docx+native_numbering</code> 对图片和表格的编号进行优化。</li>
-<li>公式的引用会以 <code>[&lt;label&gt;]</code> 的形式出现。参考<a href="https://github.com/lierdakil/pandoc-crossref/issues/221">Equation numbering in MS Word · Issue</a>，尚未找到解决方法；可以在 Word 中用全局替换命令进行替换。</li>
-<li>在 tex 中设置的图片大小不对转换后的 docx 起作用；图片的 caption 样式尚未找到设置方法。</li>
-</ol>
-
+</span></span></code></pre></div>
 		</div>
 		<footer class="post__footer">
 			
