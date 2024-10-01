@@ -2,11 +2,9 @@
 title: "Latex2Word"
 description: ""
 date: "2023-05-22T23:05:15+08:00"
-thumbnail: ""
-categories:
-  - ""
 tags:
   - "latex"
+  - "tools"
 sidebar: true
 ---
 

@@ -2,11 +2,9 @@
 title: "Siesta Install"
 description: ""
 date: "2023-03-20T23:03:47+08:00"
-thumbnail: ""
-categories:
-  - ""
 tags:
-  - "simulation"
+  - "academic"
+  - "tool"
 sidebar: true
 ---
 

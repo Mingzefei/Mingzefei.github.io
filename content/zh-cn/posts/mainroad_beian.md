@@ -2,11 +2,8 @@
 title: "Mainroad 主题的 Hugo 相关修改"
 description: ""
 date: "2023-02-27T22:35:46+08:00"
-thumbnail: ""
-categories:
-  - ""
 tags:
-  - ""
+  - "tool"
 sidebar: true
 ---
 

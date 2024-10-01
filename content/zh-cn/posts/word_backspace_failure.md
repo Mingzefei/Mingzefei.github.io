@@ -2,11 +2,8 @@
 title: "Word中选中文本后按Backspace键不能删除问题"
 description: ""
 date: 2024-06-03T11:06:18+08:00
-thumbnail: ""
-categories:
-  - ""
 tags: 
-  - "tools"
+  - "tool"
 sidebar: true
 ---
 

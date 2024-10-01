@@ -2,11 +2,9 @@
 title: "IOP Latex 模板的部分报错问题"
 description: ""
 date: "2022-11-21T09:51:05+08:00"
-thumbnail: ""
-categories:
-  - ""
 tags:
   - "latex"
+  - "academic"
 sidebar: true
 ---
 
@@ -23,7 +21,7 @@ Or name \end... illegal, see p.192 of the manual.
 
 [Ji-Huan Guan 提到过](https://www.guanjihuan.com/archives/3598)是不兼容问题，官网上也有类似说明。
 
-[妙脆角 提供了一种解决方法](https://zhuanlan.zhihu.com/p/41469740)：
+妙脆角 提供了[一种解决方法](https://zhuanlan.zhihu.com/p/41469740)：
 
 ```
 \expandafter\let\csname equation*\endcsname\relax
