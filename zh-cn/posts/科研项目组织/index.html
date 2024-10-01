@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>科研项目组织 - Mingzf 的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/zh-cn" title="Mingzf 的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Mingzf 的博客</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/posts">
+				
+				<span class="menu__text">日志</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/about">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/my_cv">
+				
+				<span class="menu__text">简历</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en">
+				
+				<span class="menu__text">English</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">科研项目组织</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-05-16T23:05:10&#43;08:00">May 16, 2023</time></div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#项目结构搭建">项目结构搭建</a>
+      <ul>
+        <li><a href="#快速使用">快速使用</a></li>
+        <li><a href="#项目结构">项目结构</a></li>
+        <li><a href="#说明">说明</a></li>
+      </ul>
+    </li>
+    <li><a href="#版本管理">版本管理</a></li>
+    <li><a href="#虚拟环境管理">虚拟环境管理</a></li>
+    <li><a href="#核心代码开发">核心代码开发</a>
+      <ul>
+        <li><a href="#完善项目配置文件">完善项目配置文件</a></li>
+        <li><a href="#安装核心代码到本地">安装核心代码到本地</a></li>
+        <li><a href="#更新项目配置文件">更新项目配置文件</a></li>
+        <li><a href="#创建命令行模式可选">创建命令行模式（可选）</a></li>
+        <li><a href="#规范代码">规范代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#项目核心代码发布">项目核心代码发布</a>
+      <ul>
+        <li><a href="#声明">声明</a></li>
+        <li><a href="#生成发布文件">生成发布文件</a></li>
+        <li><a href="#上传至-pypi">上传至 PyPI</a></li>
+      </ul>
+    </li>
+    <li><a href="#项目文档生成">项目文档生成</a>
+      <ul>
+        <li><a href="#sphinx-使用">sphinx 使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#未来可能会添加的特性">未来可能会添加的特性</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<p>一个完整的科研项目涉及数据、代码和论文报告等多个方面，合理地组织这些内容有利于项目管理，便于复现、备份和留痕。  </p>
+<p>这里结合实践经验，给出一套项目组织方法，灵感来源于 <a href="https://gitlab.pik-potsdam.de/krapp/semic-project">Mario Krapp/semic-project</a> 和 <a href="https://joshuacook.netlify.app/posts/2024-07-27_python-data-analysis-org/">Joshua Cook</a> 的工作。</p>
+<p>该方法适用于以下类型的项目：</p>
+<ul>
+<li>核心代码以 Python 为主；</li>
+<li>论文报告主要使用 LaTeX 和 Markdown 编写；</li>
+<li>使用 Git 进行版本管理。</li>
+</ul>
+<p>此外，本文建议与以下工具配合使用：</p>
+<ul>
+<li><code>uv</code>：用于安装依赖；</li>
+<li><code>cookiecutter</code>：生成项目结构；</li>
+<li><code>Sphinx</code>：自动生成 API 文档。
+这些工具虽然不是必需的，也可以使用其他替代方案，选择自己熟悉的工具即可。本文使用这些工具来创建和组织项目。</li>
+</ul>
+<h2 id="项目结构搭建">项目结构搭建</h2>
+<p><a href="https://github.com/cookiecutter/cookiecutter">Cookiecutter</a> 是一个命令行工具，用于从预先制作的模板快速生成项目结构。</p>
+<h3 id="快速使用">快速使用</h3>
+<p>首先，使用如下命令安装该工具：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uv pip install cookiecutter
+</span></span></code></pre></div><p>之后，调用该工具安装 <a href="https://github.com/Mingzefei/cookiecutter-science">Mingzefei/cookiecutter-science</a> 所提供的项目结构模板：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cookiecutter https://github.com/Mingzefei/cookiecutter-science.git
+</span></span></code></pre></div><p>注：其他项目模板可参考 <a href="https://github.com/cookiecutter/cookiecutter#special-templates">special templates</a></p>
+<p>依据提示，填写相关内容，最终会在当前位置下生成项目结构。</p>
+<h3 id="项目结构">项目结构</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── AUTHORS.md                      &lt;- 项目作者信息
+</span></span><span style="display:flex;"><span>├── LICENSE                         &lt;- 项目使用的开源协议
+</span></span><span style="display:flex;"><span>├── README.md                       &lt;- 项目的说明文件，包含项目介绍、安装说明等信息
+</span></span><span style="display:flex;"><span>├── backup                          &lt;- 项目的备份文件夹，保存配置和结果等备份数据，不被版本控制追踪
+</span></span><span style="display:flex;"><span>├── config                          &lt;- 配置文件存放目录
+</span></span><span style="display:flex;"><span>│   └── config.yaml                 &lt;- 配置文件，包含计算参数和设置
+</span></span><span style="display:flex;"><span>├── data                            &lt;- 项目使用的数据，不被版本控制追踪
+</span></span><span style="display:flex;"><span>│   ├── external                    &lt;- 外部数据集，例如其他研究团队获取的验证或对比数据
+</span></span><span style="display:flex;"><span>│   ├── interim                     &lt;- 中间数据，经过清洗、分组等初步处理，用于探索和后续步骤
+</span></span><span style="display:flex;"><span>│   ├── processed                   &lt;- 最终处理后的数据集，用于建模和分析
+</span></span><span style="display:flex;"><span>│   └── raw                         &lt;- 原始数据，未经任何处理
+</span></span><span style="display:flex;"><span>├── docs                            &lt;- 项目的文档资料，包括技术文档和研究文献
+</span></span><span style="display:flex;"><span>├── notebooks                       &lt;- 包含 Jupyter Notebook 文件，用于前期探索、代码实验与展示
+</span></span><span style="display:flex;"><span>│   └── 00_draft_example.ipynb       &lt;- 示例 Notebook 文件，作为草稿
+</span></span><span style="display:flex;"><span>├── pyproject.toml                  &lt;- 项目的配置文件，用于定义项目依赖、打包等设置
+</span></span><span style="display:flex;"><span>├── reports                         &lt;- 学术报告和项目报告相关的内容
+</span></span><span style="display:flex;"><span>│   ├── Makefile                    &lt;- 用于编译 LaTeX 报告的 Makefile 文件
+</span></span><span style="display:flex;"><span>│   ├── archive                     &lt;- 归档的草稿
+</span></span><span style="display:flex;"><span>│   ├── figures                     &lt;- 报告中的图表和图片
+</span></span><span style="display:flex;"><span>│   ├── main.tex                    &lt;- 主报告的 LaTeX 源文件
+</span></span><span style="display:flex;"><span>│   └── si.tex                      &lt;- 附加材料或补充信息的 LaTeX 文件
+</span></span><span style="display:flex;"><span>├── results                         &lt;- 实验结果或分析结果的存储位置，不被版本控制追踪
+</span></span><span style="display:flex;"><span>├── scripts                         &lt;- 各种可执行脚本，完成数据下载、清洗、备份等操作
+</span></span><span style="display:flex;"><span>│   ├── __init__.py                 &lt;- 脚本模块初始化文件
+</span></span><span style="display:flex;"><span>│   ├── backup.py                   &lt;- 数据备份脚本
+</span></span><span style="display:flex;"><span>│   ├── clean.py                    &lt;- 数据清洗脚本
+</span></span><span style="display:flex;"><span>│   ├── config_loader.py            &lt;- 配置文件加载脚本
+</span></span><span style="display:flex;"><span>│   ├── data_downloader.py          &lt;- 数据下载脚本
+</span></span><span style="display:flex;"><span>│   └── paths.py                    &lt;- 项目路径配置脚本，定义各文件夹路径
+</span></span><span style="display:flex;"><span>└── {{cookiecutter.project_slug}}    &lt;- 项目核心代码（简称 src），可以独立打包成 Python package
+</span></span><span style="display:flex;"><span>    ├── __init__.py                 &lt;- 项目包初始化文件
+</span></span><span style="display:flex;"><span>    ├── cli.py                      &lt;- 命令行接口，用于调用项目核心功能
+</span></span><span style="display:flex;"><span>    ├── data                        &lt;- 数据处理的逻辑函数
+</span></span><span style="display:flex;"><span>    │   ├── __init__.py             
+</span></span><span style="display:flex;"><span>    │   └── clean_data.py           &lt;- 数据清洗的具体实现逻辑
+</span></span><span style="display:flex;"><span>    ├── external                    &lt;- 外部的代码或库，不被版本控制追踪
+</span></span><span style="display:flex;"><span>    ├── models                      &lt;- 模型构建和训练的代码
+</span></span><span style="display:flex;"><span>    │   └── __init__.py             
+</span></span><span style="display:flex;"><span>    ├── plot                        &lt;- 数据可视化的逻辑代码
+</span></span><span style="display:flex;"><span>    │   ├── __init__.py             
+</span></span><span style="display:flex;"><span>    │   └── plot_style.py           &lt;- 定义数据可视化风格和样式的脚本
+</span></span><span style="display:flex;"><span>    └── utils                       &lt;- 工具类函数，包括文件读写、日志记录等辅助功能
+</span></span><span style="display:flex;"><span>        ├── __init__.py             
+</span></span><span style="display:flex;"><span>        ├── file_io.py              &lt;- 文件输入输出处理逻辑
+</span></span><span style="display:flex;"><span>        └── logger.py               &lt;- 日志记录逻辑
+</span></span></code></pre></div><h3 id="说明">说明</h3>
+<p>（以下 <code>{{cookiecutter.project_slug}}</code> 简称为 <code>src</code>）</p>
+<ol>
+<li><code>src</code> 是核心代码，输入输出均为抽象的数据结构，不涉及具体的文件或路径；独立于项目其余内容，可以作为独立的 package 发布。
+<ul>
+<li><code>src/data</code>：数据处理的逻辑函数。</li>
+<li><code>src/utils</code>：工具函数和辅助类，如文件读写、日志记录等。</li>
+<li><code>src/models</code>：模型构建的逻辑函数和类。</li>
+<li><code>src/plot</code>：可视化的逻辑函数和类。</li>
+</ul>
+</li>
+<li><code>scripts</code> 主要包含可执行脚本，如数据下载、模型训练、结果备份等。这些脚本可以调用 <code>scripts/paths.py</code>、<code>scripts/config_loader.py</code> 和 <code>src</code>，以获取路径、配置和逻辑代码。
+<ul>
+<li><code>scripts/paths.py</code>：项目的文件夹路径定义，用于指定输入输出，通常固定不变。</li>
+<li><code>scripts/config_loader.py</code>：项目的配置文件加载器，用于指定实验参数等，可根据需要修改。</li>
+</ul>
+</li>
+<li><code>notebooks</code> 包含所有的 Jupyter Notebook 文件，早期用于快速构建代码和探索，后期用于执行和展示。
+<ul>
+<li>建议定期将 <code>notebooks</code> 中的代码封装进 <code>src</code> 和 <code>scripts</code> 中，保持 notebook 文件的整洁，并便于项目自动化操作。</li>
+<li>Jupyter Notebook 文件的命名格式为 <code>&lt;递增编号&gt;_&lt;描述性名称&gt;.ipynb</code>，如 <code>01_data_process.ipynb</code>。其中，<code>&lt;递增编号&gt;</code> 建议使用两位数字 <code>xy</code>，<code>y</code> 为递增数字，<code>x</code> 的取值含义如下：
+<ul>
+<li>0：草稿</li>
+<li>1：数据</li>
+<li>2：模型</li>
+<li>3：结果（如可视化）</li>
+<li>4：报告</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>docs</code> 用于存放项目的相关文献和技术文档。</li>
+<li><code>reports</code> 存放项目的最终学术报告（如 LaTeX 文件），以及归档的草稿文件（如 md、docx、pptx、pdf 等）。</li>
+<li><code>data</code> 存放项目使用的数据文件，通常体积较大，不受 git 版本控制管理。
+<ul>
+<li><code>data/raw</code>：原始数据，从数据源下载，不应手动修改。</li>
+<li><code>data/interim</code>：中间数据，经过初步处理，可用于后续步骤。</li>
+<li><code>data/processed</code>：最终处理后数据，用于建模和分析。</li>
+<li><code>data/external</code>：外部研究团队的数据集，用于验证和比较。</li>
+</ul>
+</li>
+</ol>
+<h2 id="版本管理">版本管理</h2>
+<p>使用 <code>git</code> 进行版本管理，将项目上传至 <code>github</code> 平台，方便团队协作和备份。</p>
+<p>相关内容请自行查阅 <code>git</code> 和 <code>github</code> 的文档。</p>
+<h2 id="虚拟环境管理">虚拟环境管理</h2>
+<p>也可以用 <code>conda</code> 创建虚拟环境，不过个人更推荐在项目文件夹内创建专用于项目的虚拟环境，避免 <code>conda</code> 的名称标识。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uv venv <span style="color:#75715e"># 创建虚拟环境</span>
+</span></span><span style="display:flex;"><span>source .venv/bin/activate <span style="color:#75715e"># 激活虚拟环境</span>
+</span></span></code></pre></div><p>之后可用如下命令安装依赖：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uv pip install &lt;library&gt; <span style="color:#75715e"># 安装依赖</span>
+</span></span></code></pre></div><h2 id="核心代码开发">核心代码开发</h2>
+<p>开发 <code>src</code> 中的逻辑函数和类，注意输入输出均为抽象的数据结构，不涉及具体的文件或路径。
+<code>src</code> 会被作为 package 安装入本地的虚拟环境。</p>
+<h3 id="完善项目配置文件">完善项目配置文件</h3>
+<p>项目配置文件 <code>pyproject.toml</code>用于构建和管理项目，按需修改其中的内容。</p>
+<p>以下是一个简单示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># 构建系统相关配置</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">build-system</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">requires</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;setuptools&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;setuptools_scm[toml]&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;wheel&#34;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">build-backend</span> = <span style="color:#e6db74">&#34;setuptools.build_meta&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 项目元数据</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;my_project&#34;</span>  <span style="color:#75715e"># 项目名称</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;project description&#34;</span>  <span style="color:#75715e"># 项目描述</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">authors</span> = [
+</span></span><span style="display:flex;"><span>    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Your Name&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;your.email@example.com&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dynamic</span> = [<span style="color:#e6db74">&#34;version&#34;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">requires-python</span> = <span style="color:#e6db74">&#34;&gt;=3.8&#34;</span>  <span style="color:#75715e"># 最低Python版本</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dependencies</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;numpy&#34;</span>,  <span style="color:#75715e"># 项目基础依赖，非全部</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pandas&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;jupyterlab&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;matplotlib&#34;</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">classifiers</span> = [<span style="color:#e6db74">&#34;Private :: Do Not Upload&#34;</span>] <span style="color:#75715e"># 如果为私有项目，不希望发布到PYPI</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 可选开发工具配置</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">optional-dependencies</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ruff&#34;</span>,   <span style="color:#75715e"># 代码规范工具</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pytest&#34;</span>  <span style="color:#75715e"># 单元测试工具</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">packages</span> = [<span style="color:#e6db74">&#34;src&#34;</span>] <span style="color:#75715e"># 项目代码所在路径 src</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools_scm</span>] <span style="color:#75715e"># 使用 github tag 作为版本号</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">version_scheme</span> = <span style="color:#e6db74">&#34;post-release&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">local_scheme</span> = <span style="color:#e6db74">&#34;no-local-version&#34;</span>
+</span></span></code></pre></div><p>完整版如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># 构建系统相关配置</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">build-system</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">requires</span> = [<span style="color:#e6db74">&#34;setuptools&gt;=42&#34;</span>, <span style="color:#e6db74">&#34;wheel&#34;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">build-backend</span> = <span style="color:#e6db74">&#34;setuptools.build_meta&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 项目元数据</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;example_project&gt;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;&lt;0.1.0&gt;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;&lt;An example Python project.&gt;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">readme</span> = <span style="color:#e6db74">&#34;README.md&#34;</span>  <span style="color:#75715e"># 项目的README文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">license</span> = {<span style="color:#a6e22e">file</span> = <span style="color:#e6db74">&#34;LICENSE&#34;</span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">authors</span> = [
+</span></span><span style="display:flex;"><span>    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;name&gt;&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;&lt;e-mail&gt;&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">maintainers</span> = [
+</span></span><span style="display:flex;"><span>    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;name&gt;&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;&lt;e-mail&gt;&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keywords</span> = [<span style="color:#e6db74">&#34;example&#34;</span>, <span style="color:#e6db74">&#34;sample&#34;</span>, <span style="color:#e6db74">&#34;project&#34;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">repository</span> = <span style="color:#e6db74">&#34;https://github.com/example/example_project&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">documentation</span> = <span style="color:#e6db74">&#34;https://docs.example.com&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">requires-python</span> = <span style="color:#e6db74">&#34;&gt;=3.8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">classifiers</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Development Status :: 4 - Beta&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;License :: OSI Approved :: MIT License&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Programming Language :: Python :: 3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Operating System :: OS Independent&#34;</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dependencies</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;jupyterlab&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;matplotlib&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;numpy&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pandas&#34;</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 可选依赖项配置</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">optional-dependencies</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ruff&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pytest&gt;=6.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;black&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;flake8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mypy&#34;</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">docs</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sphinx&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sphinx-rtd-theme&#34;</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 插件和工具的配置部分</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">black</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">line-length</span> = <span style="color:#ae81ff">88</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">target-version</span> = [<span style="color:#e6db74">&#39;py38&#39;</span>, <span style="color:#e6db74">&#39;py39&#39;</span>, <span style="color:#e6db74">&#39;py310&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">flake8</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">max-line-length</span> = <span style="color:#ae81ff">88</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">exclude</span> = [<span style="color:#e6db74">&#34;tests/*&#34;</span>, <span style="color:#e6db74">&#34;build/*&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">mypy</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">strict</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">packages</span> = [<span style="color:#e6db74">&#34;src&#34;</span>] <span style="color:#75715e"># 项目代码所在路径 src</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools_scm</span>] <span style="color:#75715e"># 使用 github tag 作为版本号</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">version_scheme</span> = <span style="color:#e6db74">&#34;post-release&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">local_scheme</span> = <span style="color:#e6db74">&#34;no-local-version&#34;</span>
+</span></span></code></pre></div><h3 id="安装核心代码到本地">安装核心代码到本地</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uv pip install -e .
+</span></span></code></pre></div><p>或者使用开发依赖：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pip install -e .<span style="color:#f92672">[</span>dev<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>NOTE: <code>-e</code> 或 <code>--editable</code>以可编辑的方式安装包。好处是<code>src</code>代码的更改会立即生效，而无需重新安装。</p>
+<p>例如在 <code>ipython</code> 或脚本中可以直接导入：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> my_project
+</span></span></code></pre></div><h3 id="更新项目配置文件">更新项目配置文件</h3>
+<p>项目开发过程中，会动态地增删新的依赖，需要更新项目配置文件中的依赖部分。<br>
+使用 <code>pipreqs</code> 自动生成具体的依赖列表，再手动更新到 <code>pyproject.toml</code> 中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uv pip install pipreqs
+</span></span><span style="display:flex;"><span>pipreqs &lt;project_path&gt;
+</span></span></code></pre></div><h3 id="创建命令行模式可选">创建命令行模式（可选）</h3>
+<p>利用 <code>Typer</code> 创建命令行界面，方便使用。</p>
+<p>在项目 package 中创建 <code>cli.py</code> 文件，编写命令行界面代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> typer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Typer()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.command</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello_world</span>(
+</span></span><span style="display:flex;"><span>    name: str <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#f92672">...</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;你的名字&#34;</span>),  <span style="color:#75715e"># 必需参数</span>
+</span></span><span style="display:flex;"><span>    shout: bool <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">False</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;是否大声问候&#34;</span>)  <span style="color:#75715e"># 可选参数，布尔值</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    向用户问候。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    greeting <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Hello, </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">!&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> shout:
+</span></span><span style="display:flex;"><span>        greeting <span style="color:#f92672">=</span> greeting<span style="color:#f92672">.</span>upper() 
+</span></span><span style="display:flex;"><span>    print(greeting) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.command</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">goodbye_world</span>(
+</span></span><span style="display:flex;"><span>    reason: str <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">None</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;离开的原因&#34;</span>),  <span style="color:#75715e"># 可选参数</span>
+</span></span><span style="display:flex;"><span>    formal: bool <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">True</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;是否使用正式告别&#34;</span>)  <span style="color:#75715e"># 可选参数，布尔值</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    向用户告别。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> formal:
+</span></span><span style="display:flex;"><span>        message <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Goodbye! Reason: </span><span style="color:#e6db74">{</span>reason <span style="color:#f92672">or</span> <span style="color:#e6db74">&#39;没有提供原因。&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Bye!&#34;</span> 
+</span></span><span style="display:flex;"><span>    print(message) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    app()
+</span></span></code></pre></div><p>将命令行入口点添加到<code>pyproject.toml</code>中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">scripts</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;proj&#34;</span> = <span style="color:#e6db74">&#34;my_project:cli.app&#34;</span>
+</span></span></code></pre></div><p>从而在命令行中使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>proj --help
+</span></span><span style="display:flex;"><span>proj hello-world --name Alice --shout
+</span></span><span style="display:flex;"><span>proj goodbye-world --resason <span style="color:#e6db74">&#34;I have to go&#34;</span>
+</span></span></code></pre></div><p>NOTE:<code>typer</code> 自动将选项名称中的下划线（<code>_</code>）转换为连字符（<code>-</code>）</p>
+<h3 id="规范代码">规范代码</h3>
+<p>使用 <code>ruff</code>、<code>black</code>、<code>flake8</code> 和 <code>mypy</code> 等工具规范代码。</p>
+<h2 id="项目核心代码发布">项目核心代码发布</h2>
+<h3 id="声明">声明</h3>
+<p>在<code>pyproject.toml</code>中做如下修改：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">classifiers</span> = [ 
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Development Status :: 4 - Beta&#34;</span>, 
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Programming Language :: Python :: 3&#34;</span>, 
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;License :: OSI Approved :: MIT License&#34;</span>, 
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Operating System :: OS Independent&#34;</span>, 
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><ul>
+<li><code>Development Status :: 4 - Beta</code>: 表明项目处于测试阶段（Beta），功能较为完整，但仍可能有较大的改进空间和错误。</li>
+<li><code>Programming Language :: Python :: 3</code>: 项目是用 Python 3 语言编写的，支持 Python 3 及以上版本。</li>
+<li><code>License :: OSI Approved :: MIT License</code>: 项目采用了 MIT 许可证，表示它是开源的并且可以自由使用、修改和分发。</li>
+<li><code>Operating System :: OS Independent</code>: 项目可以在任意操作系统上运行，与操作系统无关。</li>
+</ul>
+<h3 id="生成发布文件">生成发布文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>python -m build
+</span></span></code></pre></div><h3 id="上传至-pypi">上传至 PyPI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>twine upload dist/*
+</span></span></code></pre></div><p>NOTE: 可以借助 github 的 Action 自动发布。</p>
+<h2 id="项目文档生成">项目文档生成</h2>
+<p>使用 <code>Sphinx</code>自动生成 Python 项目的 API 文档，要求代码注释规范。</p>
+<h3 id="sphinx-使用">sphinx 使用</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 0. 安装</span>
+</span></span><span style="display:flex;"><span>pip install sphinx
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. 初始化</span>
+</span></span><span style="display:flex;"><span>cd docs
+</span></span><span style="display:flex;"><span>sphinx-quickstart
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 配置</span>
+</span></span><span style="display:flex;"><span>vi source/conf.py
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ---进入文件编辑</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1) 添加路径</span>
+</span></span><span style="display:flex;"><span>import os
+</span></span><span style="display:flex;"><span>import sys
+</span></span><span style="display:flex;"><span>sys.path.insert<span style="color:#f92672">(</span>0, os.path.abspath<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;../../src&#39;</span><span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2) 添加插件</span>
+</span></span><span style="display:flex;"><span>extensions <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.autodoc&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.napoleon&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.doctest&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.intersphinx&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.todo&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.coverage&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.mathjax&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3) 指定风格</span>
+</span></span><span style="display:flex;"><span>html_theme <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sphinx_rtd_theme&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ---退出文件编辑</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 编译</span>
+</span></span><span style="display:flex;"><span>sphinx-apidoc -o source ../src/
+</span></span><span style="display:flex;"><span>make html
+</span></span></code></pre></div><h2 id="未来可能会添加的特性">未来可能会添加的特性</h2>
+<ul>
+<li>code tests</li>
+<li>code format check</li>
+<li>continuous integration</li>
+</ul>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li>编写代码时的一些原则：<a href="https://nsls-ii.github.io/scientific-python-cookiecutter/guiding-design-principles.html#write-for-readability">Guiding Design Principles</a>（本项目的许多设计思路受此启发）</li>
+<li>一些值得借鉴的 cookiecutter 模板
+<ul>
+<li><a href="https://github.com/NSLS-II/scientific-python-cookiecutter">NSLS-II/scientific-python-cookiecutter</a></li>
+<li><a href="https://github.com/jbusecke/cookiecutter-science-project/tree/master">jbusecke/cookiecutter-science-project</a></li>
+</ul>
+</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/zh-cn/tags/code/" rel="tag">code</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/zh-cn/tags/academic/" rel="tag">academic</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			<aside class="sidebar">
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 HUA Guangbin.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

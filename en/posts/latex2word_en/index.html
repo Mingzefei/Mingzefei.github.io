@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Latex2Word_en - Ming zefei&#39;s Blog</title>
+	<title>Latex2Word Conversion Tool - Ming zefei&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,10 +86,8 @@
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Latex2Word_en</h1>
-			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/en/categories/" rel="category">Categories</a>
-	</span>
-</div></div>
+			<h1 class="post__title">Latex2Word Conversion Tool</h1>
+			
 		</header>
 		
 <div class="post__toc toc">
@@ -97,14 +95,66 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
-    <li><a href="#installation">Installation</a></li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#outstanding-issues">Outstanding Issues</a></li>
+    <li><a href="#from-latex-to-word-an-automated-conversion-tool">From LaTeX to Word: An Automated Conversion Tool</a>
+      <ul>
+        <li><a href="#motivation-challenges-and-solutions">Motivation, Challenges, and Solutions</a></li>
+        <li><a href="#case-study">Case Study</a></li>
+        <li><a href="#appendix">Appendix</a></li>
+      </ul>
+    </li>
+    <li><a href="#postscript">Postscript</a></li>
   </ul>
 </nav>
 	</div>
 </div><div class="content post__content clearfix">
-			<p>There are two types of people in the world: those who use LaTeX and those who don&rsquo;t. The latter often ask the former for Word versions of their files. Therefore, the following command line is created:</p>
+			<h2 id="from-latex-to-word-an-automated-conversion-tool">From LaTeX to Word: An Automated Conversion Tool</h2>
+<p>LaTeX is commonly used in academic and technical fields for document typesetting, especially for handling equations and cross-references. Since LaTeX files are plain text, they are easy to manage, migrate, and control via versioning systems. However, in day-to-day work, supervisors or colleagues who are unfamiliar with LaTeX often require Word documents for easier collaboration and review. To simplify this process, I developed a tool that automatically converts LaTeX documents into Word format.</p>
+<p>Repository: <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word (github.com)</a></p>
+<h3 id="motivation-challenges-and-solutions">Motivation, Challenges, and Solutions</h3>
+<p>The motivation for this project was simple: I needed a tool to convert LaTeX documents into Word format. While strict formatting was not required, the result needed to be readable, with correctly imported images and cross-references. The Pandoc tool can convert LaTeX (.tex) files to .docx format, but the output is often rough, particularly when handling equation numbering, cross-references, and subfigures. This meant that every conversion required significant manual formatting and reference adjustments, which was inconvenient.</p>
+<h4 id="handling-equations-and-cross-references">Handling Equations and Cross-References</h4>
+<p>Pandoc-Crossref, a third-party filter for Pandoc, handles cross-references well but does not support equation references (<a href="https://github.com/lierdakil/pandoc-crossref/issues/221">Equation numbering in MS Word · Issue</a>). The key to solving this was using Lua filters, with inspiration from a script provided by Constantin Ahlmann-Eltze <a href="https://gist.githubusercontent.com/const-ae/752ad85c43d92b72865453ea3a77e2dd/raw/28c1815979e5d03cd9ab3638f9befd354797a72b/resolve_equation_labels.lua">here</a>, which effectively managed equation numbering and cross-referencing.</p>
+<h4 id="handling-subfigures">Handling Subfigures</h4>
+<p>Pandoc struggles with importing subfigures from LaTeX files. To address this, I converted the LaTeX subfigure code into a single large PNG image (by extracting multiple image-only LaTeX files and using LaTeX’s built-in <code>convert</code> and <code>pdftocairo</code> tools for compilation). I then replaced the original subfigure code with these images, allowing proper import of subfigures into the Word document.</p>
+<h3 id="case-study">Case Study</h3>
+<p>The compiled LaTeX file looks like this:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921232609.png" alt="image.png">
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921232625.png" alt="image.png"></p>
+<p>The converted Word document looks like this:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921232932.png" alt="image.png">
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921233103.png" alt="image.png">
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921233132.png" alt="image.png"></p>
+<h3 id="appendix">Appendix</h3>
+<h4 id="key-pandoc-command">Key Pandoc Command</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pandoc texfile -o docxfile <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --lua-filter resolve_equation_labels.lua <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --filter pandoc-crossref <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --reference-doc<span style="color:#f92672">=</span>temp.docx <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --number-sections <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M autoEqnLabels <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M tableEqns <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --bibliography<span style="color:#f92672">=</span>ref.bib <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --citeproc --csl ieee.csl
+</span></span></code></pre></div><p>Explanation of key parameters:</p>
+<ol>
+<li><code>--lua-filter resolve_equation_labels.lua</code> processes equation numbering and cross-references, inspired by Constantin Ahlmann-Eltze’s <a href="https://gist.githubusercontent.com/const-ae/752ad85c43d92b72865453ea3a77e2dd/raw/28c1815979e5d03cd9ab3638f9befd354797a72b/resolve_equation_labels.lua">script</a>;</li>
+<li><code>--filter pandoc-crossref</code> handles non-equation cross-references;</li>
+<li><code>--reference-doc=my_temp.docx</code> generates a Word document based on the style defined in <code>my_temp.docx</code>. The <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a> repository provides two templates: <code>TIE-temp.docx</code>, which is the TIE journal&rsquo;s Word submission template (double-column), and <code>my_temp.docx</code>, which is a personal single-column template optimized for annotations;</li>
+<li><code>--number-sections</code> adds numbered headings to sections and subsections;</li>
+<li><code>-M autoEqnLabels</code> and <code>-M tableEqns</code> handle numbering for equations and tables;</li>
+<li><code>-M reference-section-title=Reference</code> adds a &ldquo;Reference&rdquo; title to the bibliography section;</li>
+<li><code>--bibliography=my_ref.bib</code> generates a bibliography from <code>ref.bib</code>;</li>
+<li><code>--citeproc --csl ieee.csl</code> ensures that the references are formatted according to the IEEE citation style.</li>
+</ol>
+<h4 id="references">References</h4>
+<ol>
+<li><a href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">Pandoc Official Documentation</a></li>
+<li><a href="https://github.com/lierdakil/pandoc-crossref">Pandoc-Crossref Official Documentation</a></li>
+<li><a href="https://const-ae.name/post/2024-08-02-latex-to-word-conversion-with-pandoc/">Latex to Word Conversion with Pandoc | const-ae</a></li>
+</ol>
+<h2 id="postscript">Postscript</h2>
+<p>There are two types of people in the world: those who use LaTeX and those who don’t. The latter often ask the former for Word documents. Thus, this one-line command was born:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pandoc input.tex -o output.docx<span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --filter pandoc-crossref <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --reference-doc<span style="color:#f92672">=</span>my_temp.docx <span style="color:#ae81ff">\
@@ -113,30 +163,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bibliography<span style="color:#f92672">=</span>my_ref.bib <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --citeproc --csl ieee.csl
-</span></span></code></pre></div><p>The files used by this command can be found in the repository <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a>.</p>
-<h2 id="installation">Installation</h2>
-<ol>
-<li>pandoc: Refer to the <a href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">official documentation</a> for instruction and installation. It is recommended to download the latest deb installation package from <a href="https://github.com/jgm/pandoc/releases">Releases · jgm/pandoc (github.com)</a> and use <code>sudo dpkg -i /path/to/the/deb/file</code> to install it.</li>
-<li>pandoc-crossref: Refer to the <a href="https://github.com/lierdakil/pandoc-crossref">official documentation</a> for instruction and installation. <strong>NOTE: Download the version that matches your pandoc version and move the executable file <code>pandoc-crossref</code> to <code>/usr/bin</code>, or specify the specific file when using the above command.</strong></li>
-</ol>
-<h2 id="usage">Usage</h2>
-<ol>
-<li><code>--filter pandoc-crossref</code> processes cross-references.</li>
-<li><code>--reference-doc=my_temp.docx</code> processes the converted <code>output.docx</code> according to the style in <code>my_temp.docx</code>. There are two template files, <code>TIE-temp.docx</code> and <code>my_temp.docx</code>, in the repository <a href="https://github.com/Mingzefei/latex2word">Mingzefei/latex2word</a>. The former is the Word template for TIE journal submissions (two columns), and the latter is a Word template adjusted by the author (single column, large font, suitable for annotations).</li>
-<li><code>--number-sections</code> adds numerical numbering before (sub)chapter titles.</li>
-<li><code>-M autoEqnLabels</code>, <code>-M tableEqns</code> sets the numbering of equations, tables, etc.</li>
-<li><code>-M reference-sction-title=Reference</code> adds the chapter title &ldquo;Reference&rdquo; to the reference section.</li>
-<li><code>--biblipgraphy=my_ref.bib</code> generates the reference list using <code>my_ref.bib</code>.</li>
-<li>The <code>--citeproc --csl ieee.csl</code> generates the references in the <code>ieee</code> format.</li>
-</ol>
-<h2 id="outstanding-issues">Outstanding Issues</h2>
-<ol>
-<li>&ldquo;Error&rdquo; may raise when opening the converted docx document. This is likely due to the complexity of the tex file being converted. Try reducing the number of images and avoiding the use of tikz, for example.</li>
-<li>Poor support for subfigures, particularly with regard to numbering. If the tex file does not involve subfigures, use the <code>-t docx+native_numbering</code> option to optimize numbering for images and tables.</li>
-<li>References to equations appear in the form <code>[&lt;label&gt;]</code>. See <a href="https://github.com/lierdakil/pandoc-crossref/issues/221">Equation numbering in MS Word · Issue</a> for more information. No solution has been found yet, but global replace commands can be used in Word to replace them.</li>
-<li>The image size set in tex does not work in the converted docx file. A method for setting the caption style for images has not been found yet.</li>
-</ol>
-
+</span></span></code></pre></div><pre tabindex="0"><code></code></pre>
 		</div>
 		<footer class="post__footer">
 			

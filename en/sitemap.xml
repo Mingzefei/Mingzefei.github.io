@@ -2,8 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mingzefei.github.io/en/tags/academic/</loc>
+    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/academic/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/tags/academic/"
+                />
+  </url><url>
+    <loc>https://mingzefei.github.io/en/tags/code/</loc>
+    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/code/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/tags/code/"
+                />
+  </url><url>
     <loc>https://mingzefei.github.io/en/</loc>
-    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
+    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -16,7 +42,7 @@
                 />
   </url><url>
     <loc>https://mingzefei.github.io/en/posts/</loc>
-    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
+    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -28,14 +54,11 @@
                 href="https://mingzefei.github.io/en/posts/"
                 />
   </url><url>
-    <loc>https://mingzefei.github.io/en/posts/siesta_install/</loc>
-    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/en/tags/simulation/</loc>
-    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
+    <loc>https://mingzefei.github.io/en/posts/sci_proj_organization/</loc>
+    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/en/tags/</loc>
-    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
+    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -45,6 +68,22 @@
                 rel="alternate"
                 hreflang="en-us"
                 href="https://mingzefei.github.io/en/tags/"
+                />
+  </url><url>
+    <loc>https://mingzefei.github.io/en/posts/siesta_install/</loc>
+    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/en/tags/tool/</loc>
+    <lastmod>2023-03-20T23:03:47+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/tool/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/tags/tool/"
                 />
   </url><url>
     <loc>https://mingzefei.github.io/en/categories/</loc>
@@ -62,16 +101,6 @@
   </url><url>
     <loc>https://mingzefei.github.io/en/categories/test/</loc>
     <lastmod>2022-10-26T23:03:08+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/categories/test/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://mingzefei.github.io/en/categories/test/"
-                />
   </url><url>
     <loc>https://mingzefei.github.io/en/tags/test/</loc>
     <lastmod>2022-10-26T23:03:08+08:00</lastmod>

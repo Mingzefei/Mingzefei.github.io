@@ -30,11 +30,11 @@
       <description>从 LaTeX 到 Word：一个自动化转换工具 LaTeX 常用于学术和技术领域的文档排版，尤其适用于公式输入和交叉引用；并且，作为纯文本文件，tex 格式文件容易进</description>
     </item>
     <item>
-      <title>项目组织</title>
-      <link>https://mingzefei.github.io/zh-cn/posts/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</link>
+      <title>科研项目组织</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</link>
       <pubDate>Tue, 16 May 2023 23:05:10 +0800</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/posts/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</guid>
-      <description>近期完成了一次 Python 项目作业，涉及代码和论文。 该项目尝试使用一种规范的方式进行组织。 受 Mario Krapp/semic-project启发，给出了自己的</description>
+      <guid>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</guid>
+      <description>一个完整的科研项目涉及数据、代码和论文报告等多个方面，合理地组织这些内容有利于项目管理，便于复现、备份和留痕。 这里结合实践经验，给出一套项目</description>
     </item>
     <item>
       <title>一些抽象</title>
@@ -42,20 +42,6 @@
       <pubDate>Mon, 08 May 2023 23:05:32 +0800</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/posts/%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1/</guid>
       <description>花与生殖器崇拜 M：想到一个事儿。喜欢花的人是不是有生殖器崇拜？某种意义上。 L：6。还真是。那鲜花饼怎么说。 M：和烤牛欢喜差不多。 L：哈哈哈哈</description>
-    </item>
-    <item>
-      <title>Latex 中的复杂矩阵</title>
-      <link>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</link>
-      <pubDate>Fri, 24 Mar 2023 17:23:33 +0800</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</guid>
-      <description>写 paper 时遇到一个矩阵，需要对块、行和列进行标记。 方法一 \begin{equation} \bordermatrix{ &amp;amp; e_\text{o} &amp;amp; &amp;amp; e_\text{b} &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp;e_\text{s} &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp;\cr v_1 &amp;amp;-1 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;1 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 \cr v_2 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;-1&amp;amp;1 &amp;amp;1 &amp;amp;1 &amp;amp;0 &amp;amp;0</description>
-    </item>
-    <item>
-      <title>池中蜻蜓</title>
-      <link>https://mingzefei.github.io/zh-cn/posts/plot_and_setting_of_novel/</link>
-      <pubDate>Sat, 04 Mar 2023 14:11:04 +0800</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/posts/plot_and_setting_of_novel/</guid>
-      <description>这里有一些本不该属于我的记忆，却又被我碰到。 像池塘中的蜻蜓，由池水、晨雾和日月星辰孕育，飞舞一个夏天，又消逝于池塘。 作为一个旁观者，我描录下</description>
     </item>
     <item>
       <title>Mainroad 主题的 Hugo 相关修改</title>
@@ -69,7 +55,7 @@
       <link>https://mingzefei.github.io/zh-cn/posts/sci_writing/</link>
       <pubDate>Mon, 27 Feb 2023 19:38:10 +0800</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/posts/sci_writing/</guid>
-      <description>月初写了篇 paper 的初稿，虽然不再是第一次写了，但还是觉得离目标差得很远。 把 Joshua Schimel 的 Writing science: How to write papers that get cited and proposals that get funded打印下来， 看了前一两章，很</description>
+      <description>月初我写了一篇 paper 初稿。尽管这不是第一次写，但我依然觉得离预期目标还有很大差距。于是我把 Joshua Schimel 的 Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded 打印出来，仔细读了前</description>
     </item>
     <item>
       <title>从系统方法论看苏轼徐州治水</title>
@@ -97,7 +83,7 @@
       <link>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
-      <description>一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。 文本编辑 一些规范和习惯 括号前需要有1个空格 例如：This is a test (see Section 2.1). 公式结尾需要有1个句号或逗</description>
+      <description>一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。 文本编辑 一些规范和习惯 括号前需要有 1 个空格 例如：This is a test (see Section 2.1). 公式结尾需要有 1 个句号或逗</description>
     </item>
     <item>
       <title>ssh2win10</title>

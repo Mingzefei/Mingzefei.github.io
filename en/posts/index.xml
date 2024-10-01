@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Ming zefei&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Mar 2023 23:03:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2024 21:10:13 +0800</lastBuildDate>
     <atom:link href="https://mingzefei.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scientific Project Organization</title>
+      <link>https://mingzefei.github.io/en/posts/sci_proj_organization/</link>
+      <pubDate>Tue, 01 Oct 2024 21:10:13 +0800</pubDate>
+      <guid>https://mingzefei.github.io/en/posts/sci_proj_organization/</guid>
+      <description>A complete scientific project involves multiple aspects, including data, code, and paper reports. Organizing these elements effectively contributes to project management, reproducibility, backups, and traceability.&#xA;Based on practical experience, here is a project organization method inspired by the work of Mario Krapp/semic-project and Joshua Cook.&#xA;This method is suitable for the following types of projects:&#xA;Core code written mainly in Python; Paper reports primarily written in LaTeX and Markdown; Version control using Git.</description>
+    </item>
     <item>
       <title>Siesta Install</title>
       <link>https://mingzefei.github.io/en/posts/siesta_install/</link>
@@ -23,11 +30,11 @@
       <description>test level 2 test level 3 Hi~</description>
     </item>
     <item>
-      <title>Latex2Word_en</title>
+      <title>Latex2Word Conversion Tool</title>
       <link>https://mingzefei.github.io/en/posts/latex2word_en/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mingzefei.github.io/en/posts/latex2word_en/</guid>
-      <description>There are two types of people in the world: those who use LaTeX and those who don&amp;rsquo;t. The latter often ask the former for Word versions of their files. Therefore, the following command line is created:&#xA;pandoc input.tex -o output.docx\ --filter pandoc-crossref \ --reference-doc=my_temp.docx \ --number-sections \ -M autoEqnLabels -M tableEqns \ -M reference-section-title=Reference \ --bibliography=my_ref.bib \ --citeproc --csl ieee.csl The files used by this command can be found in the repository Mingzefei/latex2word.</description>
+      <description>From LaTeX to Word: An Automated Conversion Tool LaTeX is commonly used in academic and technical fields for document typesetting, especially for handling equations and cross-references. Since LaTeX files are plain text, they are easy to manage, migrate, and control via versioning systems. However, in day-to-day work, supervisors or colleagues who are unfamiliar with LaTeX often require Word documents for easier collaboration and review. To simplify this process, I developed a tool that automatically converts LaTeX documents into Word format.</description>
     </item>
   </channel>
 </rss>

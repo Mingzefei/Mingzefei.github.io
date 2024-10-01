@@ -41,8 +41,18 @@
                 href="https://mingzefei.github.io/zh-cn/tags/"
                 />
   </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/tags/tools/</loc>
+    <loc>https://mingzefei.github.io/zh-cn/tags/tool/</loc>
     <lastmod>2024-06-03T11:06:18+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/tags/tool/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/tool/"
+                />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/posts/word_backspace_failure/</loc>
     <lastmod>2024-06-03T11:06:18+08:00</lastmod>
@@ -66,26 +76,43 @@
     <loc>https://mingzefei.github.io/zh-cn/posts/latex2word/</loc>
     <lastmod>2023-05-22T23:05:15+08:00</lastmod>
   </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/tools/</loc>
+    <lastmod>2023-05-22T23:05:15+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/academic/</loc>
+    <lastmod>2023-05-16T23:05:10+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/tags/academic/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/academic/"
+                />
+  </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/code/</loc>
     <lastmod>2023-05-16T23:05:10+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/tags/code/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/code/"
+                />
   </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</loc>
+    <loc>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</loc>
     <lastmod>2023-05-16T23:05:10+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/%E6%B0%91%E4%BF%97/</loc>
     <lastmod>2023-05-08T23:05:32+08:00</lastmod>
   </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/tags/%E6%96%87%E5%8C%96/</loc>
-    <lastmod>2023-05-08T23:05:32+08:00</lastmod>
-  </url><url>
     <loc>https://mingzefei.github.io/zh-cn/posts/%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1/</loc>
     <lastmod>2023-05-08T23:05:32+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</loc>
-    <lastmod>2023-03-24T17:23:33+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/plot_and_setting_of_novel/</loc>
-    <lastmod>2023-03-04T14:11:04+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/posts/mainroad_beian/</loc>
     <lastmod>2023-02-27T22:35:46+08:00</lastmod>
@@ -102,52 +129,14 @@
     <loc>https://mingzefei.github.io/zh-cn/tags/about/</loc>
     <lastmod>2022-11-04T10:18:18+08:00</lastmod>
   </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/categories/about/</loc>
-    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
-  </url><url>
     <loc>https://mingzefei.github.io/zh-cn/about/</loc>
     <lastmod>2022-11-04T10:18:18+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/categories/</loc>
-    <lastmod>2022-11-04T10:18:18+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://mingzefei.github.io/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/categories/"
-                />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/about/my_cv/</loc>
     <lastmod>2022-11-04T10:18:18+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/about/about/</loc>
     <lastmod>2022-11-04T09:55:57+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/categories/tree/</loc>
-    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/tags/tree/</loc>
-    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/tree/</loc>
-    <lastmod>2022-10-26T23:16:16+08:00</lastmod>
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/categories/test/</loc>
-    <lastmod>2022-10-26T20:39:26+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://mingzefei.github.io/en/categories/test/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/categories/test/"
-                />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/test/</loc>
     <lastmod>2022-10-26T20:39:26+08:00</lastmod>
@@ -164,6 +153,18 @@
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/posts/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2022-10-26T20:39:26+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mingzefei.github.io/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/categories/"
+                />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</loc>
   </url><url>

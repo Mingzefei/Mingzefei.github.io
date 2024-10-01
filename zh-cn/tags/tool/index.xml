@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tool on Mingzf 的博客</title>
+    <link>https://mingzefei.github.io/zh-cn/tags/tool/</link>
+    <description>Recent content in tool on Mingzf 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 03 Jun 2024 11:06:18 +0800</lastBuildDate>
+    <atom:link href="https://mingzefei.github.io/zh-cn/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Word中选中文本后按Backspace键不能删除问题</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/word_backspace_failure/</link>
+      <pubDate>Mon, 03 Jun 2024 11:06:18 +0800</pubDate>
+      <guid>https://mingzefei.github.io/zh-cn/posts/word_backspace_failure/</guid>
+      <description>在使用Word过程中，选中文本后按Backspace键无法删除，而DEL键可以正常删除。 解决方法 打开Word文件。 点击左上角的“文件”菜单。</description>
+    </item>
+    <item>
+      <title>Mainroad 主题的 Hugo 相关修改</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/mainroad_beian/</link>
+      <pubDate>Mon, 27 Feb 2023 22:35:46 +0800</pubDate>
+      <guid>https://mingzefei.github.io/zh-cn/posts/mainroad_beian/</guid>
+      <description>当前的个人网站使用 Hogo 生成，主题为 Mainroad，在客制化时遇到一些问题，解决过程记录如下。 备案号添加 在配置文件中添加备案信息。 # in config.toml # below [Params]</description>
+    </item>
+    <item>
+      <title>ssh2win10</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/ssh2win10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://mingzefei.github.io/zh-cn/posts/ssh2win10/</guid>
+      <description>实验室的一台计算机是 Win10 系统，通过 ssh 连接并使用 git bash 的终端。 Win10服务启动 在开始-设置-应用-可选功能中安装 OpenSSH 客户端和服务端，cmd中输入s</description>
+    </item>
+  </channel>
+</rss>

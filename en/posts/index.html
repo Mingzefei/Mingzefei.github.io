@@ -91,15 +91,31 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/en/posts/sci_proj_organization/" rel="bookmark">
+			Scientific Project Organization
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-10-01T21:10:13&#43;08:00">October 01, 2024</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		A complete scientific project involves multiple aspects, including data, code, and paper reports. Organizing these elements effectively contributes to project management, reproducibility, backups, and traceability.
+Based on practical experience, here is a project organization method inspired by the work of Mario Krapp/semic-project and Joshua Cook.
+This method is suitable for the following types of projects:
+Core code written mainly in Python; Paper reports primarily written in LaTeX and Markdown; Version control using Git.
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/en/posts/siesta_install/" rel="bookmark">
 			Siesta Install
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-20T23:03:47&#43;08:00">March 20, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/en/categories/" rel="category">Categories</a>
-	</span>
-</div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-20T23:03:47&#43;08:00">March 20, 2023</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		the best way to install siesta (I think) We have prepared recipes to install Siesta with it. Setup is simple. You need at least to install the miniconda framework (provide more details) and then do: conda install -c conda-forge siesta to install a serial Siesta executable (current version is 4.1.5). To install a parallel version, you need to use, depending on your choice of parallel environment: conda install -c conda-forge
@@ -126,16 +142,13 @@
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/en/posts/latex2word_en/" rel="bookmark">
-			Latex2Word_en
+			Latex2Word Conversion Tool
 			</a>
 		</h2>
-		<div class="list__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/en/categories/" rel="category">Categories</a>
-	</span>
-</div></div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		There are two types of people in the world: those who use LaTeX and those who don&rsquo;t. The latter often ask the former for Word versions of their files. Therefore, the following command line is created:
-pandoc input.tex -o output.docx\ --filter pandoc-crossref \ --reference-doc=my_temp.docx \ --number-sections \ -M autoEqnLabels -M tableEqns \ -M reference-section-title=Reference \ --bibliography=my_ref.bib \ --citeproc --csl ieee.csl The files used by this command can be found in the repository Mingzefei/latex2word.
+		From LaTeX to Word: An Automated Conversion Tool LaTeX is commonly used in academic and technical fields for document typesetting, especially for handling equations and cross-references. Since LaTeX files are plain text, they are easy to manage, migrate, and control via versioning systems. However, in day-to-day work, supervisors or colleagues who are unfamiliar with LaTeX often require Word documents for easier collaboration and review. To simplify this process, I developed a tool that automatically converts LaTeX documents into Word format.
 	</div>
 </article>
 </main>

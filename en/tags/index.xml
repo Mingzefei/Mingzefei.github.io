@@ -6,13 +6,27 @@
     <description>Recent content in Tags on Ming zefei&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Mar 2023 23:03:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2024 21:10:13 +0800</lastBuildDate>
     <atom:link href="https://mingzefei.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>simulation</title>
-      <link>https://mingzefei.github.io/en/tags/simulation/</link>
+      <title>academic</title>
+      <link>https://mingzefei.github.io/en/tags/academic/</link>
+      <pubDate>Tue, 01 Oct 2024 21:10:13 +0800</pubDate>
+      <guid>https://mingzefei.github.io/en/tags/academic/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>code</title>
+      <link>https://mingzefei.github.io/en/tags/code/</link>
+      <pubDate>Tue, 01 Oct 2024 21:10:13 +0800</pubDate>
+      <guid>https://mingzefei.github.io/en/tags/code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>tool</title>
+      <link>https://mingzefei.github.io/en/tags/tool/</link>
       <pubDate>Mon, 20 Mar 2023 23:03:47 +0800</pubDate>
-      <guid>https://mingzefei.github.io/en/tags/simulation/</guid>
+      <guid>https://mingzefei.github.io/en/tags/tool/</guid>
       <description></description>
     </item>
     <item>

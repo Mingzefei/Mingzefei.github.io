@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 03 Jun 2024 11:06:18 +0800</lastBuildDate>
     <atom:link href="https://mingzefei.github.io/zh-cn/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>tools</title>
-      <link>https://mingzefei.github.io/zh-cn/tags/tools/</link>
+      <title>tool</title>
+      <link>https://mingzefei.github.io/zh-cn/tags/tool/</link>
       <pubDate>Mon, 03 Jun 2024 11:06:18 +0800</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/tags/tools/</guid>
+      <guid>https://mingzefei.github.io/zh-cn/tags/tool/</guid>
       <description></description>
     </item>
     <item>
@@ -20,6 +20,20 @@
       <link>https://mingzefei.github.io/zh-cn/tags/latex/</link>
       <pubDate>Mon, 22 May 2023 23:05:15 +0800</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/tags/latex/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>tools</title>
+      <link>https://mingzefei.github.io/zh-cn/tags/tools/</link>
+      <pubDate>Mon, 22 May 2023 23:05:15 +0800</pubDate>
+      <guid>https://mingzefei.github.io/zh-cn/tags/tools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>academic</title>
+      <link>https://mingzefei.github.io/zh-cn/tags/academic/</link>
+      <pubDate>Tue, 16 May 2023 23:05:10 +0800</pubDate>
+      <guid>https://mingzefei.github.io/zh-cn/tags/academic/</guid>
       <description></description>
     </item>
     <item>
@@ -37,13 +51,6 @@
       <description></description>
     </item>
     <item>
-      <title>文化</title>
-      <link>https://mingzefei.github.io/zh-cn/tags/%E6%96%87%E5%8C%96/</link>
-      <pubDate>Mon, 08 May 2023 23:05:32 +0800</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/tags/%E6%96%87%E5%8C%96/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>about</title>
       <link>https://mingzefei.github.io/zh-cn/tags/about/</link>
       <pubDate>Fri, 04 Nov 2022 10:18:18 +0800</pubDate>
@@ -51,14 +58,7 @@
       <description></description>
     </item>
     <item>
-      <title>Tree</title>
-      <link>https://mingzefei.github.io/zh-cn/tags/tree/</link>
-      <pubDate>Wed, 26 Oct 2022 23:16:16 +0800</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/tags/tree/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Test</title>
+      <title>test</title>
       <link>https://mingzefei.github.io/zh-cn/tags/test/</link>
       <pubDate>Wed, 26 Oct 2022 20:39:26 +0800</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/tags/test/</guid>

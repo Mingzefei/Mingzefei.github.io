@@ -16,13 +16,6 @@
       <description>从 LaTeX 到 Word：一个自动化转换工具 LaTeX 常用于学术和技术领域的文档排版，尤其适用于公式输入和交叉引用；并且，作为纯文本文件，tex 格式文件容易进</description>
     </item>
     <item>
-      <title>Latex 中的复杂矩阵</title>
-      <link>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</link>
-      <pubDate>Fri, 24 Mar 2023 17:23:33 +0800</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/posts/latex_matrix/</guid>
-      <description>写 paper 时遇到一个矩阵，需要对块、行和列进行标记。 方法一 \begin{equation} \bordermatrix{ &amp;amp; e_\text{o} &amp;amp; &amp;amp; e_\text{b} &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp;e_\text{s} &amp;amp; &amp;amp; &amp;amp; &amp;amp; &amp;amp;\cr v_1 &amp;amp;-1 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;1 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 \cr v_2 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;0 &amp;amp;-1&amp;amp;1 &amp;amp;1 &amp;amp;1 &amp;amp;0 &amp;amp;0</description>
-    </item>
-    <item>
       <title>IOP Latex 模板的部分报错问题</title>
       <link>https://mingzefei.github.io/zh-cn/posts/iop_latex/</link>
       <pubDate>Mon, 21 Nov 2022 09:51:05 +0800</pubDate>
@@ -34,7 +27,7 @@
       <link>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
-      <description>一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。 文本编辑 一些规范和习惯 括号前需要有1个空格 例如：This is a test (see Section 2.1). 公式结尾需要有1个句号或逗</description>
+      <description>一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。 文本编辑 一些规范和习惯 括号前需要有 1 个空格 例如：This is a test (see Section 2.1). 公式结尾需要有 1 个句号或逗</description>
     </item>
   </channel>
 </rss>
