@@ -137,15 +137,45 @@
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/about/</loc>
     <lastmod>2022-11-04T10:18:18+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/tags/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/about/"
+                />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/about/</loc>
     <lastmod>2022-11-04T10:18:18+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/about/"
+                />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/about/my_cv/</loc>
     <lastmod>2022-11-04T10:18:18+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/about/about/</loc>
     <lastmod>2022-11-04T09:55:57+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/about/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/about/about/"
+                />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/test/</loc>
     <lastmod>2022-10-26T20:39:26+08:00</lastmod>
