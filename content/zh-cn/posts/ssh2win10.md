@@ -1,7 +1,7 @@
 ---
 title: "ssh2win10"
 description: ""
-date: "2023-06-13T23:06:70+08:00"
+date: "2023-06-13T23:06:00+08:00"
 tags:
   - "tool"
 sidebar: true

@@ -1,10 +1,10 @@
 ---
-title: "Scientific Project Organization"
-description: ""
+title: Scientific Project Organization
+description: 
 date: 2024-10-01T21:10:13+08:00
-tags: 
-  - "academic"
-  - "code"
+tags:
+  - academic
+  - code
 sidebar: true
 ---
 
