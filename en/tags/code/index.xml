@@ -6,14 +6,18 @@
     <description>Recent content in code on Ming zefei&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Oct 2024 21:10:13 +0800</lastBuildDate>
-    <atom:link href="https://mingzefei.github.io/en/tags/code/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Oct 2024 21:10:13 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/en/tags/code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Scientific Project Organization</title>
       <link>https://mingzefei.github.io/en/posts/sci_proj_organization/</link>
       <pubDate>Tue, 01 Oct 2024 21:10:13 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/en/posts/sci_proj_organization/</guid>
-      <description>A complete scientific project involves multiple aspects, including data, code, and paper reports. Organizing these elements effectively contributes to project management, reproducibility, backups, and traceability.&#xA;Based on practical experience, here is a project organization method inspired by the work of Mario Krapp/semic-project and Joshua Cook.&#xA;This method is suitable for the following types of projects:&#xA;Core code written mainly in Python; Paper reports primarily written in LaTeX and Markdown; Version control using Git.</description>
+      <description>A complete scientific project involves multiple aspects, including data, code, and paper reports. Organizing these elements effectively contributes to project management, reproducibility, backups, and traceability.
+Based on practical experience, here is a project organization method inspired by the work of Mario Krapp/semic-project and Joshua Cook.
+This method is suitable for the following types of projects:
+ Core code written mainly in Python; Paper reports primarily written in LaTeX and Markdown; Version control using Git.</description>
     </item>
+    
   </channel>
 </rss>

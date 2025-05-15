@@ -6,14 +6,15 @@
     <description>Recent content in test on Mingzf 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 26 Oct 2022 20:39:26 +0800</lastBuildDate>
-    <atom:link href="https://mingzefei.github.io/zh-cn/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Oct 2022 20:39:26 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/tags/test/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>测试</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Wed, 26 Oct 2022 20:39:26 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/zh-cn/posts/%E6%B5%8B%E8%AF%95/</guid>
       <description>二级标题测试 这是一段中文文字。 公式测试 行间公式 $$ E = mc^2 $$ 行内公式 $v=at$ 代码片段测试 代码块 import sys print(&amp;#39;Hello!&amp;#39;) 行间 print(&#39;World!&#39;) 代码</description>
     </item>
+    
   </channel>
 </rss>

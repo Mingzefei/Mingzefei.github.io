@@ -11,7 +11,7 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/tags/academic/"
                 />
   </url><url>
@@ -24,7 +24,7 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/tags/code/"
                 />
   </url><url>
@@ -37,7 +37,7 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/"
                 />
   </url><url>
@@ -50,7 +50,7 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/posts/"
                 />
   </url><url>
@@ -66,7 +66,7 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/tags/"
                 />
   </url><url>
@@ -82,7 +82,7 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/tags/tool/"
                 />
   </url><url>
@@ -95,12 +95,9 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/categories/"
                 />
-  </url><url>
-    <loc>https://mingzefei.github.io/en/categories/test/</loc>
-    <lastmod>2022-10-26T23:03:08+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/en/tags/test/</loc>
     <lastmod>2022-10-26T23:03:08+08:00</lastmod>
@@ -111,11 +108,14 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/tags/test/"
                 />
   </url><url>
     <loc>https://mingzefei.github.io/en/posts/test/</loc>
+    <lastmod>2022-10-26T23:03:08+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/en/categories/test/</loc>
     <lastmod>2022-10-26T23:03:08+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/en/tags/latex/</loc>
@@ -126,7 +126,7 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
+                hreflang="en"
                 href="https://mingzefei.github.io/en/tags/latex/"
                 />
   </url><url>

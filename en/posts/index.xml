@@ -6,35 +6,45 @@
     <description>Recent content in Posts on Ming zefei&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Oct 2024 21:10:13 +0800</lastBuildDate>
-    <atom:link href="https://mingzefei.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Oct 2024 21:10:13 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Scientific Project Organization</title>
       <link>https://mingzefei.github.io/en/posts/sci_proj_organization/</link>
       <pubDate>Tue, 01 Oct 2024 21:10:13 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/en/posts/sci_proj_organization/</guid>
-      <description>A complete scientific project involves multiple aspects, including data, code, and paper reports. Organizing these elements effectively contributes to project management, reproducibility, backups, and traceability.&#xA;Based on practical experience, here is a project organization method inspired by the work of Mario Krapp/semic-project and Joshua Cook.&#xA;This method is suitable for the following types of projects:&#xA;Core code written mainly in Python; Paper reports primarily written in LaTeX and Markdown; Version control using Git.</description>
+      <description>A complete scientific project involves multiple aspects, including data, code, and paper reports. Organizing these elements effectively contributes to project management, reproducibility, backups, and traceability.
+Based on practical experience, here is a project organization method inspired by the work of Mario Krapp/semic-project and Joshua Cook.
+This method is suitable for the following types of projects:
+ Core code written mainly in Python; Paper reports primarily written in LaTeX and Markdown; Version control using Git.</description>
     </item>
+    
     <item>
       <title>Siesta Install</title>
       <link>https://mingzefei.github.io/en/posts/siesta_install/</link>
       <pubDate>Mon, 20 Mar 2023 23:03:47 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/en/posts/siesta_install/</guid>
       <description>the best way to install siesta (I think) We have prepared recipes to install Siesta with it. Setup is simple. You need at least to install the miniconda framework (provide more details) and then do: conda install -c conda-forge siesta to install a serial Siesta executable (current version is 4.1.5). To install a parallel version, you need to use, depending on your choice of parallel environment: conda install -c conda-forge</description>
     </item>
+    
     <item>
       <title>Test</title>
       <link>https://mingzefei.github.io/en/posts/test/</link>
       <pubDate>Wed, 26 Oct 2022 23:03:08 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/en/posts/test/</guid>
       <description>test level 2 test level 3 Hi~</description>
     </item>
+    
     <item>
       <title>Latex2Word Conversion Tool</title>
       <link>https://mingzefei.github.io/en/posts/latex2word_en/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
       <guid>https://mingzefei.github.io/en/posts/latex2word_en/</guid>
       <description>From LaTeX to Word: An Automated Conversion Tool LaTeX is commonly used in academic and technical fields for document typesetting, especially for handling equations and cross-references. Since LaTeX files are plain text, they are easy to manage, migrate, and control via versioning systems. However, in day-to-day work, supervisors or colleagues who are unfamiliar with LaTeX often require Word documents for easier collaboration and review. To simplify this process, I developed a tool that automatically converts LaTeX documents into Word format.</description>
     </item>
+    
   </channel>
 </rss>

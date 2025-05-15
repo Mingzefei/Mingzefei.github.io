@@ -6,35 +6,42 @@
     <description>Recent content in academic on Mingzf 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 16 May 2023 23:05:10 +0800</lastBuildDate>
-    <atom:link href="https://mingzefei.github.io/zh-cn/tags/academic/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Jul 2024 16:07:07 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/tags/academic/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>科研绘图</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</link>
+      <pubDate>Fri, 12 Jul 2024 16:07:07 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</guid>
+      <description>一些原则 分为表示概念的示意图、表示结果的数据图表 数据图表 优先使用位置表示数量，其次是长度、面积 尽量不用饼图（除非必须表示占比） 颜色不是第一选</description>
+    </item>
+    
     <item>
       <title>科研项目组织</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</link>
       <pubDate>Tue, 16 May 2023 23:05:10 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87/</guid>
       <description>一个完整的科研项目涉及数据、代码和论文报告等多个方面，合理地组织这些内容有利于项目管理，便于复现、备份和留痕。 这里结合实践经验，给出一套项目</description>
     </item>
+    
     <item>
       <title>关于科研写作的一些感想</title>
       <link>https://mingzefei.github.io/zh-cn/posts/sci_writing/</link>
       <pubDate>Mon, 27 Feb 2023 19:38:10 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/zh-cn/posts/sci_writing/</guid>
       <description>月初我写了一篇 paper 初稿。尽管这不是第一次写，但我依然觉得离预期目标还有很大差距。于是我把 Joshua Schimel 的 Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded 打印出来，仔细读了前</description>
     </item>
+    
     <item>
       <title>IOP Latex 模板的部分报错问题</title>
       <link>https://mingzefei.github.io/zh-cn/posts/iop_latex/</link>
       <pubDate>Mon, 21 Nov 2022 09:51:05 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/zh-cn/posts/iop_latex/</guid>
       <description>要在英国物理学会（Institute of Physics, IOP）上发文章，使用官方提供的 Latex 模板编写，期间遇到如下问题，记录如下。 amsmath 和 iopart 不兼容 同时使用两个宏包</description>
     </item>
-    <item>
-      <title>科研绘图</title>
-      <link>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</guid>
-      <description>Matplotlib 中的中文显示 一般情况下，matplotlib 无法直接显示中文，需要通过设置字体来实现。 可以使用Clarmy/mplfonts: Fonts manager for matplotlib (g</description>
-    </item>
+    
   </channel>
 </rss>

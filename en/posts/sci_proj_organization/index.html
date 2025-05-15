@@ -152,59 +152,59 @@
 <p><a href="https://github.com/cookiecutter/cookiecutter">Cookiecutter</a> is a command-line tool used to quickly generate project structures from predefined templates.</p>
 <h3 id="quick-start">Quick Start</h3>
 <p>First, install the tool with the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uv pip install cookiecutter
-</span></span></code></pre></div><p>Next, use this tool to install the project structure template provided by <a href="https://github.com/Mingzefei/cookiecutter-science">Mingzefei/cookiecutter-science</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cookiecutter https://github.com/Mingzefei/cookiecutter-science.git
-</span></span></code></pre></div><p>Note: You can find other project templates at <a href="https://github.com/cookiecutter/cookiecutter#special-templates">special templates</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">uv pip install cookiecutter
+</code></pre></div><p>Next, use this tool to install the project structure template provided by <a href="https://github.com/Mingzefei/cookiecutter-science">Mingzefei/cookiecutter-science</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cookiecutter https://github.com/Mingzefei/cookiecutter-science.git
+</code></pre></div><p>Note: You can find other project templates at <a href="https://github.com/cookiecutter/cookiecutter#special-templates">special templates</a>.</p>
 <p>Follow the prompts to fill in the required information, and the project structure will be generated at the current location.</p>
 <h3 id="project-structure">Project Structure</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>.
-</span></span><span style="display:flex;"><span>├── AUTHORS.md                      &lt;- Information about project authors
-</span></span><span style="display:flex;"><span>├── LICENSE                         &lt;- Open source license for the project
-</span></span><span style="display:flex;"><span>├── README.md                       &lt;- Project documentation, including description and installation instructions
-</span></span><span style="display:flex;"><span>├── backup                          &lt;- Backup folder for configurations, results, etc., not tracked by version control
-</span></span><span style="display:flex;"><span>├── config                          &lt;- Configuration files directory
-</span></span><span style="display:flex;"><span>│   └── config.yaml                 &lt;- Configuration file with calculation parameters and settings
-</span></span><span style="display:flex;"><span>├── data                            &lt;- Project data, not tracked by version control
-</span></span><span style="display:flex;"><span>│   ├── external                    &lt;- External datasets from other research teams for validation or comparison
-</span></span><span style="display:flex;"><span>│   ├── interim                     &lt;- Intermediate data, processed for exploration and further steps
-</span></span><span style="display:flex;"><span>│   ├── processed                   &lt;- Final processed datasets for modeling and analysis
-</span></span><span style="display:flex;"><span>│   └── raw                         &lt;- Raw, unprocessed data
-</span></span><span style="display:flex;"><span>├── docs                            &lt;- Documentation and research literature related to the project
-</span></span><span style="display:flex;"><span>├── notebooks                       &lt;- Jupyter Notebook files for initial exploration, code experiments, and demonstrations
-</span></span><span style="display:flex;"><span>│   └── 00_draft_example.ipynb       &lt;- Example Notebook as a draft
-</span></span><span style="display:flex;"><span>├── pyproject.toml                  &lt;- Project configuration file for dependencies and packaging
-</span></span><span style="display:flex;"><span>├── reports                         &lt;- Academic reports and project reports
-</span></span><span style="display:flex;"><span>│   ├── Makefile                    &lt;- Makefile for compiling LaTeX reports
-</span></span><span style="display:flex;"><span>│   ├── archive                     &lt;- Archived drafts
-</span></span><span style="display:flex;"><span>│   ├── figures                     &lt;- Figures and charts used in reports
-</span></span><span style="display:flex;"><span>│   ├── main.tex                    &lt;- Main LaTeX source file for the report
-</span></span><span style="display:flex;"><span>│   └── si.tex                      &lt;- Supplemental information or materials in LaTeX
-</span></span><span style="display:flex;"><span>├── results                         &lt;- Storage location for experimental or analysis results, not tracked by version control
-</span></span><span style="display:flex;"><span>├── scripts                         &lt;- Executable scripts for data download, cleaning, backups, etc.
-</span></span><span style="display:flex;"><span>│   ├── __init__.py                 &lt;- Initialization file for script modules
-</span></span><span style="display:flex;"><span>│   ├── backup.py                   &lt;- Data backup script
-</span></span><span style="display:flex;"><span>│   ├── clean.py                    &lt;- Data cleaning script
-</span></span><span style="display:flex;"><span>│   ├── config_loader.py            &lt;- Configuration file loader
-</span></span><span style="display:flex;"><span>│   ├── data_downloader.py          &lt;- Data download script
-</span></span><span style="display:flex;"><span>│   └── paths.py                    &lt;- Project paths configuration script, defining folder paths
-</span></span><span style="display:flex;"><span>└── {{cookiecutter.project_slug}}    &lt;- Core project code (referred to as `src`), which can be packaged as a Python package
-</span></span><span style="display:flex;"><span>    ├── __init__.py                 &lt;- Project package initialization file
-</span></span><span style="display:flex;"><span>    ├── cli.py                      &lt;- Command-line interface for core project functionalities
-</span></span><span style="display:flex;"><span>    ├── data                        &lt;- Data processing logic functions
-</span></span><span style="display:flex;"><span>    │   ├── __init__.py             
-</span></span><span style="display:flex;"><span>    │   └── clean_data.py           &lt;- Data cleaning implementation logic
-</span></span><span style="display:flex;"><span>    ├── external                    &lt;- External libraries or code, not tracked by version control
-</span></span><span style="display:flex;"><span>    ├── models                      &lt;- Code for model building and training
-</span></span><span style="display:flex;"><span>    │   └── __init__.py             
-</span></span><span style="display:flex;"><span>    ├── plot                        &lt;- Data visualization logic
-</span></span><span style="display:flex;"><span>    │   ├── __init__.py             
-</span></span><span style="display:flex;"><span>    │   └── plot_style.py           &lt;- Script for defining data visualization styles and themes
-</span></span><span style="display:flex;"><span>    └── utils                       &lt;- Utility functions, including file I/O, logging, etc.
-</span></span><span style="display:flex;"><span>        ├── __init__.py             
-</span></span><span style="display:flex;"><span>        ├── file_io.py              &lt;- File input/output logic
-</span></span><span style="display:flex;"><span>        └── logger.py               &lt;- Logging logic
-</span></span></code></pre></div><h3 id="explanation">Explanation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">.
+├── AUTHORS.md                      &lt;- Information about project authors
+├── LICENSE                         &lt;- Open source license for the project
+├── README.md                       &lt;- Project documentation, including description and installation instructions
+├── backup                          &lt;- Backup folder for configurations, results, etc., not tracked by version control
+├── config                          &lt;- Configuration files directory
+│   └── config.yaml                 &lt;- Configuration file with calculation parameters and settings
+├── data                            &lt;- Project data, not tracked by version control
+│   ├── external                    &lt;- External datasets from other research teams for validation or comparison
+│   ├── interim                     &lt;- Intermediate data, processed for exploration and further steps
+│   ├── processed                   &lt;- Final processed datasets for modeling and analysis
+│   └── raw                         &lt;- Raw, unprocessed data
+├── docs                            &lt;- Documentation and research literature related to the project
+├── notebooks                       &lt;- Jupyter Notebook files for initial exploration, code experiments, and demonstrations
+│   └── 00_draft_example.ipynb       &lt;- Example Notebook as a draft
+├── pyproject.toml                  &lt;- Project configuration file for dependencies and packaging
+├── reports                         &lt;- Academic reports and project reports
+│   ├── Makefile                    &lt;- Makefile for compiling LaTeX reports
+│   ├── archive                     &lt;- Archived drafts
+│   ├── figures                     &lt;- Figures and charts used in reports
+│   ├── main.tex                    &lt;- Main LaTeX source file for the report
+│   └── si.tex                      &lt;- Supplemental information or materials in LaTeX
+├── results                         &lt;- Storage location for experimental or analysis results, not tracked by version control
+├── scripts                         &lt;- Executable scripts for data download, cleaning, backups, etc.
+│   ├── __init__.py                 &lt;- Initialization file for script modules
+│   ├── backup.py                   &lt;- Data backup script
+│   ├── clean.py                    &lt;- Data cleaning script
+│   ├── config_loader.py            &lt;- Configuration file loader
+│   ├── data_downloader.py          &lt;- Data download script
+│   └── paths.py                    &lt;- Project paths configuration script, defining folder paths
+└── {{cookiecutter.project_slug}}    &lt;- Core project code (referred to as `src`), which can be packaged as a Python package
+    ├── __init__.py                 &lt;- Project package initialization file
+    ├── cli.py                      &lt;- Command-line interface for core project functionalities
+    ├── data                        &lt;- Data processing logic functions
+    │   ├── __init__.py             
+    │   └── clean_data.py           &lt;- Data cleaning implementation logic
+    ├── external                    &lt;- External libraries or code, not tracked by version control
+    ├── models                      &lt;- Code for model building and training
+    │   └── __init__.py             
+    ├── plot                        &lt;- Data visualization logic
+    │   ├── __init__.py             
+    │   └── plot_style.py           &lt;- Script for defining data visualization styles and themes
+    └── utils                       &lt;- Utility functions, including file I/O, logging, etc.
+        ├── __init__.py             
+        ├── file_io.py              &lt;- File input/output logic
+        └── logger.py               &lt;- Logging logic
+</code></pre></div><h3 id="explanation">Explanation</h3>
 <p>(The <code>{{cookiecutter.project_slug}}</code> is referred to as <code>src</code> below.)</p>
 <ol>
 <li><code>src</code> is the core code where input/output are abstract data structures and do not involve specific files or paths. It can be packaged as a standalone Python package.
@@ -251,234 +251,234 @@
 <p>You can find more information about <code>git</code> and <code>GitHub</code> from their respective documentation.</p>
 <h2 id="virtual-environment-management">Virtual Environment Management</h2>
 <p>You can use <code>conda</code> to create a virtual environment, but I recommend creating a virtual environment within the project folder to avoid <code>conda</code> name conflicts.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uv venv <span style="color:#75715e"># Create a virtual environment</span>
-</span></span><span style="display:flex;"><span>source .venv/bin/activate <span style="color:#75715e"># Activate the virtual environment</span>
-</span></span></code></pre></div><p>You can install dependencies with the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uv pip install &lt;library&gt; <span style="color:#75715e"># Install dependencies</span>
-</span></span></code></pre></div><h2 id="core-code-development">Core Code Development</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">uv venv <span style="color:#75715e"># Create a virtual environment</span>
+source .venv/bin/activate <span style="color:#75715e"># Activate the virtual environment</span>
+</code></pre></div><p>You can install dependencies with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">uv pip install &lt;library&gt; <span style="color:#75715e"># Install dependencies</span>
+</code></pre></div><h2 id="core-code-development">Core Code Development</h2>
 <p>Develop logic functions and classes within <code>src</code>, ensuring that inputs and outputs are abstract data structures without specific files or paths involved.
 <code>src</code> can be installed as a package in the local virtual environment.</p>
 <h3 id="completing-the-project-configuration-file">Completing the Project Configuration File</h3>
 <p>The <code>pyproject.toml</code> file is used to configure and manage the project. Modify the contents as needed.</p>
 <p>Here is a simple example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># Build system configuration</span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">build-system</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">requires</span> = [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;setuptools&#34;</span>, 
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;setuptools_scm[toml]&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;wheel&#34;</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">build-backend</span> = <span style="color:#e6db74">&#34;setuptools.build_meta&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Project metadata</span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;my_project&#34;</span>  <span style="color:#75715e"># Project name</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;project description&#34;</span>  <span style="color:#75715e"># Project description</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">authors</span> = [
-</span></span><span style="display:flex;"><span>    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Your Name&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;your.email@example.com&#34;</span>}
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dynamic</span> = [<span style="color:#e6db74">&#34;version&#34;</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">requires-python</span> = <span style="color:#e6db74">&#34;&gt;=3.8&#34;</span>  <span style="color:#75715e"># Minimum Python version</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dependencies</span> = [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;numpy&#34;</span>,  <span style="color:#75715e"># Project dependencies, not exhaustive</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pandas&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;jupyterlab&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;matplotlib&#34;</span>
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">classifiers</span> = [<span style="color:#e6db74">&#34;Private :: Do Not Upload&#34;</span>] <span style="color:#75715e"># If it&#39;s a private project, avoid uploading to PYPI</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional development tools</span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">optional-dependencies</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev</span> = [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ruff&#34;</span>,   <span style="color:#75715e"># Code linter</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pytest&#34;</span>  <span style="color:#75715e"># Unit testing tool</span>
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">packages</span> = [<span style="color:#e6db74">&#34;src&#34;</span>] <span style="color:#75715e"># Path to the project code (src)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools_scm</span>] <span style="color:#75715e"># Use GitHub tags as the version</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">number</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">version_scheme</span> = <span style="color:#e6db74">&#34;post-release&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">local_scheme</span> = <span style="color:#e6db74">&#34;no-local-version&#34;</span>
-</span></span></code></pre></div><p>A more complete version would look like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># Build system configuration</span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">build-system</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">requires</span> = [<span style="color:#e6db74">&#34;setuptools&gt;=42&#34;</span>, <span style="color:#e6db74">&#34;wheel&#34;</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">build-backend</span> = <span style="color:#e6db74">&#34;setuptools.build_meta&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Project metadata</span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;example_project&gt;&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;&lt;0.1.0&gt;&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;&lt;An example Python project.&gt;&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">readme</span> = <span style="color:#e6db74">&#34;README.md&#34;</span>  <span style="color:#75715e"># README file for the project</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">license</span> = {<span style="color:#a6e22e">file</span> = <span style="color:#e6db74">&#34;LICENSE&#34;</span>}
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">authors</span> = [
-</span></span><span style="display:flex;"><span>    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;name&gt;&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;&lt;e-mail&gt;&#34;</span>}
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">maintainers</span> = [
-</span></span><span style="display:flex;"><span>    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;name&gt;&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;&lt;e-mail&gt;&#34;</span>}
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keywords</span> = [<span style="color:#e6db74">&#34;example&#34;</span>, <span style="color:#e6db74">&#34;sample&#34;</span>, <span style="color:#e6db74">&#34;project&#34;</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">repository</span> = <span style="color:#e6db74">&#34;https://github.com/example/example_project&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">documentation</span> = <span style="color:#e6db74">&#34;https://docs.example.com&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">requires-python</span> = <span style="color:#e6db74">&#34;&gt;=3.8&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">classifiers</span> = [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Development Status :: 4 - Beta&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;License :: OSI Approved :: MIT License&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Programming Language :: Python :: 3&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Operating System :: OS Independent&#34;</span>
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dependencies</span> = [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;jupyterlab&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;matplotlib&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;numpy&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pandas&#34;</span>
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional dependencies configuration</span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">optional-dependencies</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev</span> = [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ruff&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pytest&gt;=6.0&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;black&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;flake8&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mypy&#34;</span>
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">docs</span> = [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sphinx&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sphinx-rtd-theme&#34;</span>
-</span></span><span style="display:flex;"><span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plugin and tool configurations</span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">black</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">line-length</span> = <span style="color:#ae81ff">88</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">target-version</span> = [<span style="color:#e6db74">&#39;py38&#39;</span>, <span style="color:#e6db74">&#39;py39&#39;</span>, <span style="color:#e6db74">&#39;py310&#39;</span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">flake8</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">max-line-length</span> = <span style="color:#ae81ff">88</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">exclude</span> = [<span style="color:#e6db74">&#34;tests/*&#34;</span>, <span style="color:#e6db74">&#34;build/*&#34;</span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">mypy</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">strict</span> = <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">packages</span> = [<span style="color:#e6db74">&#34;src&#34;</span>] <span style="color:#75715e"># Path to the project code (src)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools_scm</span>] <span style="color:#75715e"># Use GitHub tags as the version number</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">version_scheme</span> = <span style="color:#e6db74">&#34;post-release&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">local_scheme</span> = <span style="color:#e6db74">&#34;no-local-version&#34;</span>
-</span></span></code></pre></div><h3 id="install-core-code-locally">Install Core Code Locally</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uv pip install -e .
-</span></span></code></pre></div><p>Alternatively, use the development dependencies:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pip install -e .<span style="color:#f92672">[</span>dev<span style="color:#f92672">]</span>
-</span></span></code></pre></div><p>NOTE: The <code>-e</code> or <code>--editable</code> flag installs the package in editable mode, meaning changes to the <code>src</code> code will take effect immediately without needing reinstallation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#75715e"># Build system configuration</span>
+[<span style="color:#a6e22e">build-system</span>]
+<span style="color:#a6e22e">requires</span> = [
+    <span style="color:#e6db74">&#34;setuptools&#34;</span>, 
+    <span style="color:#e6db74">&#34;setuptools_scm[toml]&#34;</span>,
+    <span style="color:#e6db74">&#34;wheel&#34;</span>]
+<span style="color:#a6e22e">build-backend</span> = <span style="color:#e6db74">&#34;setuptools.build_meta&#34;</span>
+
+<span style="color:#75715e"># Project metadata</span>
+[<span style="color:#a6e22e">project</span>]
+<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;my_project&#34;</span>  <span style="color:#75715e"># Project name</span>
+<span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;project description&#34;</span>  <span style="color:#75715e"># Project description</span>
+<span style="color:#a6e22e">authors</span> = [
+    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Your Name&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;your.email@example.com&#34;</span>}
+]
+<span style="color:#a6e22e">dynamic</span> = [<span style="color:#e6db74">&#34;version&#34;</span>]
+<span style="color:#a6e22e">requires-python</span> = <span style="color:#e6db74">&#34;&gt;=3.8&#34;</span>  <span style="color:#75715e"># Minimum Python version</span>
+<span style="color:#a6e22e">dependencies</span> = [
+    <span style="color:#e6db74">&#34;numpy&#34;</span>,  <span style="color:#75715e"># Project dependencies, not exhaustive</span>
+    <span style="color:#e6db74">&#34;pandas&#34;</span>,
+    <span style="color:#e6db74">&#34;jupyterlab&#34;</span>,
+    <span style="color:#e6db74">&#34;matplotlib&#34;</span>
+]
+<span style="color:#a6e22e">classifiers</span> = [<span style="color:#e6db74">&#34;Private :: Do Not Upload&#34;</span>] <span style="color:#75715e"># If it&#39;s a private project, avoid uploading to PYPI</span>
+
+<span style="color:#75715e"># Optional development tools</span>
+[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">optional-dependencies</span>]
+<span style="color:#a6e22e">dev</span> = [
+    <span style="color:#e6db74">&#34;ruff&#34;</span>,   <span style="color:#75715e"># Code linter</span>
+    <span style="color:#e6db74">&#34;pytest&#34;</span>  <span style="color:#75715e"># Unit testing tool</span>
+]
+
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools</span>]
+<span style="color:#a6e22e">packages</span> = [<span style="color:#e6db74">&#34;src&#34;</span>] <span style="color:#75715e"># Path to the project code (src)</span>
+
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools_scm</span>] <span style="color:#75715e"># Use GitHub tags as the version</span>
+
+ <span style="color:#a6e22e">number</span>
+<span style="color:#a6e22e">version_scheme</span> = <span style="color:#e6db74">&#34;post-release&#34;</span>
+<span style="color:#a6e22e">local_scheme</span> = <span style="color:#e6db74">&#34;no-local-version&#34;</span>
+</code></pre></div><p>A more complete version would look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#75715e"># Build system configuration</span>
+[<span style="color:#a6e22e">build-system</span>]
+<span style="color:#a6e22e">requires</span> = [<span style="color:#e6db74">&#34;setuptools&gt;=42&#34;</span>, <span style="color:#e6db74">&#34;wheel&#34;</span>]
+<span style="color:#a6e22e">build-backend</span> = <span style="color:#e6db74">&#34;setuptools.build_meta&#34;</span>
+
+<span style="color:#75715e"># Project metadata</span>
+[<span style="color:#a6e22e">project</span>]
+<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;example_project&gt;&#34;</span>
+<span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;&lt;0.1.0&gt;&#34;</span>
+<span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;&lt;An example Python project.&gt;&#34;</span>
+<span style="color:#a6e22e">readme</span> = <span style="color:#e6db74">&#34;README.md&#34;</span>  <span style="color:#75715e"># README file for the project</span>
+<span style="color:#a6e22e">license</span> = {<span style="color:#a6e22e">file</span> = <span style="color:#e6db74">&#34;LICENSE&#34;</span>}
+<span style="color:#a6e22e">authors</span> = [
+    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;name&gt;&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;&lt;e-mail&gt;&#34;</span>}
+]
+<span style="color:#a6e22e">maintainers</span> = [
+    {<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;&lt;name&gt;&#34;</span>, <span style="color:#a6e22e">email</span> = <span style="color:#e6db74">&#34;&lt;e-mail&gt;&#34;</span>}
+]
+<span style="color:#a6e22e">keywords</span> = [<span style="color:#e6db74">&#34;example&#34;</span>, <span style="color:#e6db74">&#34;sample&#34;</span>, <span style="color:#e6db74">&#34;project&#34;</span>]
+<span style="color:#a6e22e">repository</span> = <span style="color:#e6db74">&#34;https://github.com/example/example_project&#34;</span>
+<span style="color:#a6e22e">documentation</span> = <span style="color:#e6db74">&#34;https://docs.example.com&#34;</span>
+<span style="color:#a6e22e">requires-python</span> = <span style="color:#e6db74">&#34;&gt;=3.8&#34;</span>
+<span style="color:#a6e22e">classifiers</span> = [
+    <span style="color:#e6db74">&#34;Development Status :: 4 - Beta&#34;</span>,
+    <span style="color:#e6db74">&#34;License :: OSI Approved :: MIT License&#34;</span>,
+    <span style="color:#e6db74">&#34;Programming Language :: Python :: 3&#34;</span>,
+    <span style="color:#e6db74">&#34;Operating System :: OS Independent&#34;</span>
+]
+<span style="color:#a6e22e">dependencies</span> = [
+    <span style="color:#e6db74">&#34;jupyterlab&#34;</span>,
+    <span style="color:#e6db74">&#34;matplotlib&#34;</span>,
+    <span style="color:#e6db74">&#34;numpy&#34;</span>,
+    <span style="color:#e6db74">&#34;pandas&#34;</span>
+]
+
+<span style="color:#75715e"># Optional dependencies configuration</span>
+[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">optional-dependencies</span>]
+<span style="color:#a6e22e">dev</span> = [
+    <span style="color:#e6db74">&#34;ruff&#34;</span>,
+    <span style="color:#e6db74">&#34;pytest&gt;=6.0&#34;</span>,
+    <span style="color:#e6db74">&#34;black&#34;</span>,
+    <span style="color:#e6db74">&#34;flake8&#34;</span>,
+    <span style="color:#e6db74">&#34;mypy&#34;</span>
+]
+<span style="color:#a6e22e">docs</span> = [
+    <span style="color:#e6db74">&#34;sphinx&#34;</span>,
+    <span style="color:#e6db74">&#34;sphinx-rtd-theme&#34;</span>
+]
+
+<span style="color:#75715e"># Plugin and tool configurations</span>
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">black</span>]
+<span style="color:#a6e22e">line-length</span> = <span style="color:#ae81ff">88</span>
+<span style="color:#a6e22e">target-version</span> = [<span style="color:#e6db74">&#39;py38&#39;</span>, <span style="color:#e6db74">&#39;py39&#39;</span>, <span style="color:#e6db74">&#39;py310&#39;</span>]
+
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">flake8</span>]
+<span style="color:#a6e22e">max-line-length</span> = <span style="color:#ae81ff">88</span>
+<span style="color:#a6e22e">exclude</span> = [<span style="color:#e6db74">&#34;tests/*&#34;</span>, <span style="color:#e6db74">&#34;build/*&#34;</span>]
+
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">mypy</span>]
+<span style="color:#a6e22e">strict</span> = <span style="color:#66d9ef">true</span>
+
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools</span>]
+<span style="color:#a6e22e">packages</span> = [<span style="color:#e6db74">&#34;src&#34;</span>] <span style="color:#75715e"># Path to the project code (src)</span>
+
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">setuptools_scm</span>] <span style="color:#75715e"># Use GitHub tags as the version number</span>
+<span style="color:#a6e22e">version_scheme</span> = <span style="color:#e6db74">&#34;post-release&#34;</span>
+<span style="color:#a6e22e">local_scheme</span> = <span style="color:#e6db74">&#34;no-local-version&#34;</span>
+</code></pre></div><h3 id="install-core-code-locally">Install Core Code Locally</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">uv pip install -e .
+</code></pre></div><p>Alternatively, use the development dependencies:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip install -e .<span style="color:#f92672">[</span>dev<span style="color:#f92672">]</span>
+</code></pre></div><p>NOTE: The <code>-e</code> or <code>--editable</code> flag installs the package in editable mode, meaning changes to the <code>src</code> code will take effect immediately without needing reinstallation.</p>
 <p>For example, you can directly import it in <code>ipython</code> or scripts:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> my_project
-</span></span></code></pre></div><h3 id="update-the-project-configuration-file">Update the Project Configuration File</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> my_project
+</code></pre></div><h3 id="update-the-project-configuration-file">Update the Project Configuration File</h3>
 <p>During the project, new dependencies may be added or removed, requiring updates to the dependencies section in the project configuration file.<br>
 Use <code>pipreqs</code> to automatically generate a specific list of dependencies and manually update <code>pyproject.toml</code> accordingly.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uv pip install pipreqs
-</span></span><span style="display:flex;"><span>pipreqs &lt;project_path&gt;
-</span></span></code></pre></div><h3 id="create-command-line-mode-optional">Create Command-Line Mode (Optional)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">uv pip install pipreqs
+pipreqs &lt;project_path&gt;
+</code></pre></div><h3 id="create-command-line-mode-optional">Create Command-Line Mode (Optional)</h3>
 <p>Use <code>Typer</code> to create a command-line interface (CLI) for easier usage.</p>
 <p>Create a <code>cli.py</code> file in the project package and write the CLI code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> typer
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Typer()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.command</span>()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello_world</span>(
-</span></span><span style="display:flex;"><span>    name: str <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#f92672">...</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Your name&#34;</span>),  <span style="color:#75715e"># Required parameter</span>
-</span></span><span style="display:flex;"><span>    shout: bool <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">False</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Whether to shout&#34;</span>)  <span style="color:#75715e"># Optional boolean parameter</span>
-</span></span><span style="display:flex;"><span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Greet the user.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    greeting <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Hello, </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">!&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> shout:
-</span></span><span style="display:flex;"><span>        greeting <span style="color:#f92672">=</span> greeting<span style="color:#f92672">.</span>upper() 
-</span></span><span style="display:flex;"><span>    print(greeting) 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.command</span>()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">goodbye_world</span>(
-</span></span><span style="display:flex;"><span>    reason: str <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">None</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Reason for leaving&#34;</span>),  <span style="color:#75715e"># Optional parameter</span>
-</span></span><span style="display:flex;"><span>    formal: bool <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">True</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Use formal goodbye&#34;</span>)  <span style="color:#75715e"># Optional boolean parameter</span>
-</span></span><span style="display:flex;"><span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Say goodbye to the user.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> formal:
-</span></span><span style="display:flex;"><span>        message <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Goodbye! Reason: </span><span style="color:#e6db74">{</span>reason <span style="color:#f92672">or</span> <span style="color:#e6db74">&#39;No reason provided.&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
-</span></span><span style="display:flex;"><span>        message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Bye!&#34;</span> 
-</span></span><span style="display:flex;"><span>    print(message) 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-</span></span><span style="display:flex;"><span>    app()
-</span></span></code></pre></div><p>Add the command-line entry point to <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">scripts</span>]
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;proj&#34;</span> = <span style="color:#e6db74">&#34;my_project:cli.app&#34;</span>
-</span></span></code></pre></div><p>Then use it from the command line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>proj --help
-</span></span><span style="display:flex;"><span>proj hello-world --name Alice --shout
-</span></span><span style="display:flex;"><span>proj goodbye-world --resason <span style="color:#e6db74">&#34;I have to go&#34;</span>
-</span></span></code></pre></div><p>NOTE: <code>Typer</code> automatically converts underscores (<code>_</code>) in option names to hyphens (<code>-</code>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> typer
+
+app <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Typer()
+
+<span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>command()
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello_world</span>(
+    name: str <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#f92672">...</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Your name&#34;</span>),  <span style="color:#75715e"># Required parameter</span>
+    shout: bool <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">False</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Whether to shout&#34;</span>)  <span style="color:#75715e"># Optional boolean parameter</span>
+) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Greet the user.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    greeting <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Hello, </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">!&#34;</span>
+    <span style="color:#66d9ef">if</span> shout:
+        greeting <span style="color:#f92672">=</span> greeting<span style="color:#f92672">.</span>upper() 
+    print(greeting) 
+
+<span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>command()
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">goodbye_world</span>(
+    reason: str <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">None</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Reason for leaving&#34;</span>),  <span style="color:#75715e"># Optional parameter</span>
+    formal: bool <span style="color:#f92672">=</span> typer<span style="color:#f92672">.</span>Option(<span style="color:#66d9ef">True</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Use formal goodbye&#34;</span>)  <span style="color:#75715e"># Optional boolean parameter</span>
+) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Say goodbye to the user.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> formal:
+        message <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Goodbye! Reason: </span><span style="color:#e6db74">{</span>reason <span style="color:#f92672">or</span> <span style="color:#e6db74">&#39;No reason provided.&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 
+    <span style="color:#66d9ef">else</span>:
+        message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Bye!&#34;</span> 
+    print(message) 
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    app()
+</code></pre></div><p>Add the command-line entry point to <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">scripts</span>]
+<span style="color:#e6db74">&#34;proj&#34;</span> = <span style="color:#e6db74">&#34;my_project:cli.app&#34;</span>
+</code></pre></div><p>Then use it from the command line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">proj --help
+proj hello-world --name Alice --shout
+proj goodbye-world --resason <span style="color:#e6db74">&#34;I have to go&#34;</span>
+</code></pre></div><p>NOTE: <code>Typer</code> automatically converts underscores (<code>_</code>) in option names to hyphens (<code>-</code>).</p>
 <h3 id="code-linting">Code Linting</h3>
 <p>Use <code>ruff</code>, <code>black</code>, <code>flake8</code>, and <code>mypy</code> to enforce code quality and consistency.</p>
 <h2 id="project-release">Project Release</h2>
 <h3 id="metadata">Metadata</h3>
 <p>Make the following modifications in <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">classifiers</span> = [ 
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Development Status :: 4 - Beta&#34;</span>, 
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Programming Language :: Python :: 3&#34;</span>, 
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;License :: OSI Approved :: MIT License&#34;</span>, 
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Operating System :: OS Independent&#34;</span>, 
-</span></span><span style="display:flex;"><span>]
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#a6e22e">classifiers</span> = [ 
+	<span style="color:#e6db74">&#34;Development Status :: 4 - Beta&#34;</span>, 
+	<span style="color:#e6db74">&#34;Programming Language :: Python :: 3&#34;</span>, 
+	<span style="color:#e6db74">&#34;License :: OSI Approved :: MIT License&#34;</span>, 
+	<span style="color:#e6db74">&#34;Operating System :: OS Independent&#34;</span>, 
+]
+</code></pre></div><ul>
 <li><code>Development Status :: 4 - Beta</code>: Indicates that the project is in the Beta phase, where it&rsquo;s mostly functional but may have significant improvements or bugs.</li>
 <li><code>Programming Language :: Python :: 3</code>: Specifies that the project is written in Python 3.</li>
 <li><code>License :: OSI Approved :: MIT License</code>: Indicates that the project is open source under the MIT license.</li>
 <li><code>Operating System :: OS Independent</code>: Means the project can run on any operating system.</li>
 </ul>
 <h3 id="generate-release-files">Generate Release Files</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>python -m build
-</span></span></code></pre></div><h3 id="upload-to-pypi">Upload to PyPI</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>twine upload dist/*
-</span></span></code></pre></div><p>NOTE: You can automate releases using GitHub Actions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">python -m build
+</code></pre></div><h3 id="upload-to-pypi">Upload to PyPI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">twine upload dist/*
+</code></pre></div><p>NOTE: You can automate releases using GitHub Actions.</p>
 <h2 id="project-documentation">Project Documentation</h2>
 <p>Use <code>Sphinx</code> to automatically generate API documentation for the Python project, ensuring code is well-documented.</p>
 <h3 id="using-sphinx">Using Sphinx</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 0. Install</span>
-</span></span><span style="display:flex;"><span>pip install sphinx
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. Initialize</span>
-</span></span><span style="display:flex;"><span>cd docs
-</span></span><span style="display:flex;"><span>sphinx-quickstart
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Configure</span>
-</span></span><span style="display:flex;"><span>vi source/conf.py
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- Enter editing mode</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1) Add path</span>
-</span></span><span style="display:flex;"><span>import os
-</span></span><span style="display:flex;"><span>import sys
-</span></span><span style="display:flex;"><span>sys.path.insert<span style="color:#f92672">(</span>0, os.path.abspath<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;../../src&#39;</span><span style="color:#f92672">))</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2) Add extensions</span>
-</span></span><span style="display:flex;"><span>extensions <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.autodoc&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.napoleon&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.doctest&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.intersphinx&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.todo&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.coverage&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;sphinx.ext.mathjax&#39;</span>,
-</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3) Set theme</span>
-</span></span><span style="display:flex;"><span>html_theme <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sphinx_rtd_theme&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- Exit editing mode</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Compile</span>
-</span></span><span style="display:flex;"><span>sphinx-apidoc -o source ../src/
-</span></span><span style="display:flex;"><span>make html
-</span></span></code></pre></div><h2 id="future-features">Future Features</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 0. Install</span>
+pip install sphinx
+<span style="color:#75715e"># 1. Initialize</span>
+cd docs
+sphinx-quickstart
+<span style="color:#75715e"># 2. Configure</span>
+vi source/conf.py
+<span style="color:#75715e"># --- Enter editing mode</span>
+<span style="color:#75715e"># 1) Add path</span>
+import os
+import sys
+sys.path.insert<span style="color:#f92672">(</span>0, os.path.abspath<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;../../src&#39;</span><span style="color:#f92672">))</span>
+<span style="color:#75715e"># 2) Add extensions</span>
+extensions <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
+    <span style="color:#e6db74">&#39;sphinx.ext.autodoc&#39;</span>,
+    <span style="color:#e6db74">&#39;sphinx.ext.napoleon&#39;</span>,
+    <span style="color:#e6db74">&#39;sphinx.ext.doctest&#39;</span>,
+    <span style="color:#e6db74">&#39;sphinx.ext.intersphinx&#39;</span>,
+    <span style="color:#e6db74">&#39;sphinx.ext.todo&#39;</span>,
+    <span style="color:#e6db74">&#39;sphinx.ext.coverage&#39;</span>,
+    <span style="color:#e6db74">&#39;sphinx.ext.mathjax&#39;</span>,
+<span style="color:#f92672">]</span>
+<span style="color:#75715e"># 3) Set theme</span>
+html_theme <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sphinx_rtd_theme&#39;</span>
+<span style="color:#75715e"># --- Exit editing mode</span>
+<span style="color:#75715e"># 3. Compile</span>
+sphinx-apidoc -o source ../src/
+make html
+</code></pre></div><h2 id="future-features">Future Features</h2>
 <ul>
 <li>Code tests</li>
 <li>Code formatting checks</li>
@@ -553,7 +553,7 @@ Use <code>pipreqs</code> to automatically generate a specific list of dependenci
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2024 HUA Guangbin.
+			&copy; 2025 HUA Guangbin.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>

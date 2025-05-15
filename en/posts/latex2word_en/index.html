@@ -126,17 +126,17 @@
 <img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/img20240921233132.png" alt="image.png"></p>
 <h3 id="appendix">Appendix</h3>
 <h4 id="key-pandoc-command">Key Pandoc Command</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pandoc texfile -o docxfile <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --lua-filter resolve_equation_labels.lua <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --filter pandoc-crossref <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --reference-doc<span style="color:#f92672">=</span>temp.docx <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --number-sections <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M autoEqnLabels <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M tableEqns <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --bibliography<span style="color:#f92672">=</span>ref.bib <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --citeproc --csl ieee.csl
-</span></span></code></pre></div><p>Explanation of key parameters:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pandoc texfile -o docxfile <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --lua-filter resolve_equation_labels.lua <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --filter pandoc-crossref <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --reference-doc<span style="color:#f92672">=</span>temp.docx <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --number-sections <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -M autoEqnLabels <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -M tableEqns <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --bibliography<span style="color:#f92672">=</span>ref.bib <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --citeproc --csl ieee.csl
+</code></pre></div><p>Explanation of key parameters:</p>
 <ol>
 <li><code>--lua-filter resolve_equation_labels.lua</code> processes equation numbering and cross-references, inspired by Constantin Ahlmann-Eltze’s <a href="https://gist.githubusercontent.com/const-ae/752ad85c43d92b72865453ea3a77e2dd/raw/28c1815979e5d03cd9ab3638f9befd354797a72b/resolve_equation_labels.lua">script</a>;</li>
 <li><code>--filter pandoc-crossref</code> handles non-equation cross-references;</li>
@@ -155,15 +155,15 @@
 </ol>
 <h2 id="postscript">Postscript</h2>
 <p>There are two types of people in the world: those who use LaTeX and those who don’t. The latter often ask the former for Word documents. Thus, this one-line command was born:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pandoc input.tex -o output.docx<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --filter pandoc-crossref <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --reference-doc<span style="color:#f92672">=</span>my_temp.docx <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --number-sections <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -M autoEqnLabels -M tableEqns <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bibliography<span style="color:#f92672">=</span>my_ref.bib <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --citeproc --csl ieee.csl
-</span></span></code></pre></div><pre tabindex="0"><code></code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pandoc input.tex -o output.docx<span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --filter pandoc-crossref <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --reference-doc<span style="color:#f92672">=</span>my_temp.docx <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --number-sections <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -M autoEqnLabels -M tableEqns <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -M reference-section-title<span style="color:#f92672">=</span>Reference <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bibliography<span style="color:#f92672">=</span>my_ref.bib <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --citeproc --csl ieee.csl
+</code></pre></div><pre tabindex="0"><code></code></pre>
 		</div>
 		<footer class="post__footer">
 			
@@ -219,7 +219,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2024 HUA Guangbin.
+			&copy; 2025 HUA Guangbin.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>

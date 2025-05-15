@@ -6,28 +6,33 @@
     <description>Recent content in latex on Mingzf 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 22 May 2023 23:05:15 +0800</lastBuildDate>
-    <atom:link href="https://mingzefei.github.io/zh-cn/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Dec 2023 14:12:03 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Latex 备忘录</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</link>
+      <pubDate>Fri, 01 Dec 2023 14:12:03 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
+      <description>一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。 文本编辑 一些规范和习惯 括号前需要有 1 个空格 例如：This is a test (see Section 2.1). 公式结尾需要有 1 个句号或逗</description>
+    </item>
+    
     <item>
       <title>Latex2Word</title>
       <link>https://mingzefei.github.io/zh-cn/posts/latex2word/</link>
       <pubDate>Mon, 22 May 2023 23:05:15 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/zh-cn/posts/latex2word/</guid>
       <description>从 LaTeX 到 Word：一个自动化转换工具 LaTeX 常用于学术和技术领域的文档排版，尤其适用于公式输入和交叉引用；并且，作为纯文本文件，tex 格式文件容易进</description>
     </item>
+    
     <item>
       <title>IOP Latex 模板的部分报错问题</title>
       <link>https://mingzefei.github.io/zh-cn/posts/iop_latex/</link>
       <pubDate>Mon, 21 Nov 2022 09:51:05 +0800</pubDate>
+      
       <guid>https://mingzefei.github.io/zh-cn/posts/iop_latex/</guid>
       <description>要在英国物理学会（Institute of Physics, IOP）上发文章，使用官方提供的 Latex 模板编写，期间遇到如下问题，记录如下。 amsmath 和 iopart 不兼容 同时使用两个宏包</description>
     </item>
-    <item>
-      <title>Latex 备忘录</title>
-      <link>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://mingzefei.github.io/zh-cn/posts/latex%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
-      <description>一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。 文本编辑 一些规范和习惯 括号前需要有 1 个空格 例如：This is a test (see Section 2.1). 公式结尾需要有 1 个句号或逗</description>
-    </item>
+    
   </channel>
 </rss>

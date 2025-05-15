@@ -87,7 +87,9 @@
 	<article class="post">
 		<header class="post__header">
 			<h1 class="post__title">ssh2win10</h1>
-			
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-06-13T23:06:00&#43;08:00">June 13, 2023</time></div></div>
 		</header>
 		
 <div class="post__toc toc">
@@ -129,8 +131,8 @@
 <p><code>ssh &lt;username&gt;@&lt;IPv4&gt; -t &quot;bash&quot;</code>  使用 Git Bash 或 WSL</p>
 <h3 id="方法二">方法二</h3>
 <p>管理员权限运行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>New-ItemProperty -Path <span style="color:#e6db74">&#34;HKLM:\SOFTWARE\OpenSSH&#34;</span> -Name DefaultShell -Value <span style="color:#e6db74">&#34;&lt;git 的 bash.exe 文件位置&gt;&#34;</span> -PropertyType String -Force
-</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">New-ItemProperty -Path <span style="color:#e6db74">&#34;HKLM:\SOFTWARE\OpenSSH&#34;</span> -Name DefaultShell -Value <span style="color:#e6db74">&#34;&lt;git 的 bash.exe 文件位置&gt;&#34;</span> -PropertyType String -Force
+</code></pre></div>
 		</div>
 		<footer class="post__footer">
 			
@@ -177,7 +179,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2024 HUA Guangbin.
+			&copy; 2025 HUA Guangbin.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
             </div>
             <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
