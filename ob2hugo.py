@@ -28,7 +28,7 @@ def main():
     os.system("chmod -R 744 ./content")
     os.system("find content/ -type f -exec chmod 644 {} +")
 
-    os.system("hugo server")
+    os.system("hugo server --disableFastRender")
 
 if __name__ == '__main__':
     main()
