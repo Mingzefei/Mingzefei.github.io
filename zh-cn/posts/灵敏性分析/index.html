@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>利用灵敏性分析确定模型参数的敏感性 - Mingzf 的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/zh-cn" title="Mingzf 的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Mingzf 的博客</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/posts">
+				
+				<span class="menu__text">日志</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/about">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/my_cv">
+				
+				<span class="menu__text">简历</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en">
+				
+				<span class="menu__text">English</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">利用灵敏性分析确定模型参数的敏感性</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-05-17T19:22:06&#43;08:00">May 17, 2025</time></div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#主要的灵敏性分析方法">主要的灵敏性分析方法</a>
+      <ul>
+        <li><a href="#局部灵敏性分析local-sensitivity-analysis">局部灵敏性分析（Local Sensitivity Analysis）</a></li>
+        <li><a href="#全局灵敏性分析global-sensitivity-analysis">全局灵敏性分析（Global Sensitivity Analysis）</a></li>
+      </ul>
+    </li>
+    <li><a href="#案例用-sobol-法分析锂电池-spme-的几何参数敏感性">案例：用 Sobol 法分析锂电池 SPMe 的几何参数敏感性</a>
+      <ul>
+        <li><a href="#核心库">核心库</a></li>
+        <li><a href="#代码实现">代码实现</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<p>灵敏性分析能够量化各因素对模型输出的影响程度。当模型存在多个待定参数时，可以将这些参数作为分析对象，通过灵敏性分析识别出对模型结果影响较大的关键参数。对这些高敏感参数进行针对性识别，能有效提升模型的精度和可靠性，尤其适用于参数众多的复杂模型。</p>
+<h2 id="主要的灵敏性分析方法">主要的灵敏性分析方法</h2>
+<h3 id="局部灵敏性分析local-sensitivity-analysis">局部灵敏性分析（Local Sensitivity Analysis）</h3>
+<p>局部灵敏性分析关注输入参数在<strong>某一特定点附近</strong>的微小变化对模型输出的影响，通常通过计算偏导数或在参数值附近做小幅度扰动来实现。例如，单变量变化法（One-At-a-Time, OAT）、微分法（计算偏导数）。这类方法计算简单，适合快速了解模型对单个参数的局部响应特性。</p>
+<p>$$
+S_i^{\text{OAT}} \approx \frac{y(x_1, &hellip;, x_i+\Delta x_i, &hellip;, x_n) - y(x_1, &hellip;, x_i, &hellip;, x_n)}{\Delta x_i}
+$$</p>
+<ul>
+<li><strong>优点</strong>：计算量小，易于实现。</li>
+<li><strong>缺点</strong>：只反映参数在特定点的局部影响，无法揭示参数在全范围内的变化效应，且忽略参数间的相互作用。</li>
+<li>适用于模型简单、参数变化范围有限的情况，快速了解模型对单个参数的局部响应特性。</li>
+</ul>
+<h3 id="全局灵敏性分析global-sensitivity-analysis">全局灵敏性分析（Global Sensitivity Analysis）</h3>
+<p>全局灵敏性分析考察输入参数在其<strong>整个取值范围内</strong>变化对模型输出的影响，能够捕捉<strong>参数间的非线性关系和相互作用</strong>，提供更全面的敏感性评估。</p>
+<h4 id="morris-方法">Morris 方法</h4>
+<p>Morris 方法通过在参数空间内进行一系列有设计的“基本步长”扰动，计算每个参数的平均效应和标准差，从而区分参数的总体影响与非线性或交互作用。</p>
+<ul>
+<li><strong>优点</strong>：计算量与参数数量呈线性关系，计算效率较高，适合高维参数空间，能够快速筛选出重要参数。</li>
+<li><strong>缺点</strong>：结果主要用于定性排序，通常不适用于精确定量分析。</li>
+</ul>
+<p>具体步骤如下：</p>
+<p>首先，计算基本效应（elementary effect）：</p>
+<p>$$
+EE_i = \frac{y(x_1, &hellip;, x_i + \Delta, &hellip;, x_k) - y(x_1, &hellip;, x_i, &hellip;, x_k)}{\Delta}
+$$</p>
+<p>其中，$\Delta$ 是参数的扰动步长，$i=1,2,\ldots,k$ 表示第 $i$ 个参数。对于每个参数 $i$，在 $R$ 条不同采样路径上计算多个基本效应 $EE_i^{(r)}$，$r=1,2,\ldots,R$。</p>
+<p>接着，计算均值，衡量参数的平均效应：</p>
+<p>$$
+\mu_i = \frac{1}{R} \sum_{r=1}^R EE_i^{(r)}
+$$</p>
+<p>由于非单调函数中基本效应可能正负抵消，通常采用绝对值的均值：</p>
+<p>$$
+\mu_i^* = \frac{1}{R} \sum_{r=1}^R |EE_i^{(r)}|
+$$</p>
+<p>同时计算标准差，反映参数效应的非线性和交互作用：</p>
+<p>$$
+\sigma_i = \sqrt{\frac{1}{R-1} \sum_{r=1}^R \left(EE_i^{(r)} - \mu_i\right)^2}
+$$</p>
+<p>其中，$\mu_i^*$ 越大表示参数 $x_i$ 对模型输出影响越显著，$\sigma_i$ 越大则表明该参数的效应存在较强的非线性或与其他参数的交互作用。</p>
+<p>具体方法和实现细节可参考<a href="https://gsa-module.readthedocs.io/en/stable/implementation/morris_screening_method.html">该文档</a>，需注意：</p>
+<ol>
+<li>对模型输入和输出进行无量纲标准化，以保证灵敏性结果的可比性；</li>
+<li>Morris 方法依赖特殊的采样设计，常见的有轨迹设计（Trajectory Design）和径向单因素扰动设计（Radial OAT Design）；</li>
+<li>可通过在 $\sigma_i$ - $\mu_i^*$ 平面绘制散点图，直观区分重要参数与非重要参数。</li>
+</ol>
+<h4 id="sobol-方法">Sobol 方法</h4>
+<p>Sobol 方法基于方差分解原理，将模型输出的总方差分解为各输入参数及其交互作用对方差的贡献份额，从而定量评估每个参数的主效应和总效应灵敏度指数。</p>
+<ul>
+<li><strong>优点</strong>：理论基础严谨，能够全面捕捉参数的线性、非线性以及多参数间的交互效应，提供精确的定量灵敏度指标。</li>
+<li><strong>缺点</strong>：计算量较大，通常需要大量的模型运行和采样，计算成本较高。</li>
+</ul>
+<p>模型输出的总方差为：</p>
+<p>$$
+V = \mathrm{Var}[Y(\mathbf{X})]
+$$</p>
+<p>其中，$\mathbf{X} = (X_1, X_2, …, X_k)$ 是输入参数向量，$Y$ 是模型输出。</p>
+<p>主效应灵敏度指数（First-order Sobol index）定义为：</p>
+<p>$$
+S_i = \frac{V_i}{V} = \frac{\mathrm{Var}<em>{X_i} \left( \mathbb{E}</em>{\mathbf{X}_{\sim i}}[Y | X_i] \right)}{V}
+$$</p>
+<p>其中，$V_i$ 是参数 $X_i$ 单独对输出方差的贡献，$\mathbf{X}_{\sim i}$ 表示除 $X_i$ 外的所有参数。</p>
+<p>总效应灵敏度指数（Total Sobol index）定义为：</p>
+<p>$$
+S_{T_i} = 1 - \frac{V_{\sim i}}{V} = \frac{\mathbb{E}<em>{\mathbf{X}</em>{\sim i}} \left( \mathrm{Var}<em>{X_i}[Y | \mathbf{X}</em>{\sim i}] \right)}{V}
+$$</p>
+<p>其中，$V_{\sim i}$ 是除参数 $X_i$ 外所有参数的方差贡献，$S_{T_i}$ 衡量参数 $X_i$ 及其与其他参数所有交互作用对输出的总贡献。</p>
+<p>Sobol 指数的计算通常基于蒙特卡洛采样，通过设计合理的样本矩阵估计上述方差分量。</p>
+<h4 id="fast-方法fourier-amplitude-sensitivity-test">FAST 方法（Fourier Amplitude Sensitivity Test）</h4>
+<p>FAST 方法利用傅里叶变换的思想，将多维参数空间映射到一维频率空间，通过分析模型输出的频谱成分来计算参数的灵敏度，从而提高灵敏度计算的效率。</p>
+<ul>
+<li><strong>优点</strong>：计算效率较高，适合中等维度参数空间，能够较快地估计参数的灵敏度指数。</li>
+<li><strong>缺点</strong>：对高度非线性和高阶参数交互的捕捉能力有限，灵敏度结果可能不够精确。</li>
+<li>适合输入输出关系较为平滑或近似线性的模型。</li>
+</ul>
+<p>将每个输入参数 $X_i$ 以不同的频率 $w_i$ 作为正弦函数的参数，构造参数空间的单一变量函数：</p>
+<p>$$
+X_i = G_i(\omega s) = \frac{1}{2} + \frac{1}{\pi} \arcsin(\sin(\omega_i s))
+$$</p>
+<p>其中，$s$ 是一维的频率参数，$\omega_i$ 是为参数 $X_i$ 选定的频率。</p>
+<p>模型输出 $Y$ 随着 $s$ 变化，形成一维函数：</p>
+<p>$$
+Y(s) = f(X_1(s), X_2(s), &hellip;, X_k(s))
+$$</p>
+<p>通过对 $Y(s)$ 进行傅里叶变换，计算不同频率成分的幅值，参数 $X_i$ 的灵敏度指数 $S_i$ 由对应频率成分的方差贡献计算得出：</p>
+<p>$$
+S_i = \frac{\sum_{m=1}^\infty \left( A_{im}^2 + B_{im}^2 \right)}{\mathrm{Var}[Y]}
+$$</p>
+<p>其中，$A_{im}$ 和 $B_{im}$ 是傅里叶级数中对应频率 $m \omega_i$ 的余弦和正弦系数。</p>
+<h2 id="案例用-sobol-法分析锂电池-spme-的几何参数敏感性">案例：用 Sobol 法分析锂电池 SPMe 的几何参数敏感性</h2>
+<p>已有一些项目和讨论提及了 PyBaMM 中的参数敏感性分析，例如 <a href="https://github.com/Mrzhang-hub/pybamm-param-sensitivities">Mrzhang-hub/pybamm-param-sensitivities</a> 和 <a href="https://pybamm.discourse.group/t/questions-on-checking-sensitivities/103">Questions on checking sensitivities</a> 。但是，这些工作主要集中在电化学和材料参数的敏感性分析；而很少涉及几何参数（如电极厚度、隔膜厚度、颗粒半径等）的敏感性分析。这主要是因为几何参数的敏感性分析涉及网格划分和求解器的变化。本案例使用 Sobol 方法，分析锂离子电池单粒子模型（SPMe）中几何参数的敏感性；主要工具为 <code>pybamm</code>（电池建模与仿真）和 <code>salib</code>（敏感性分析）；项目仓库为 <a href="https://github.com/Mingzefei/battery_model_sensitivity_analysis">Mingzefei/battery_model_sensitivity_analysis</a>。</p>
+<h3 id="核心库">核心库</h3>
+<ul>
+<li>  <strong>PyBaMM (Python Battery Mathematical Modelling)</strong>：一个开源 Python 电池建模包，支持 DFN、SPM、SPMe 等多种模型。PyBaMM 提供灵活框架，用于电池行为仿真、参数估计和实验设计，能快速构建并求解复杂的电化学与热物理模型。</li>
+<li>  <strong>SALib (Sensitivity Analysis Library in Python)</strong>：一个 Python 敏感性分析库，提供 Sobol、Morris、FAST 等方法。SALib 帮助理解模型输出对输入参数变化的敏感度，识别关键参数及交互作用，可用于模型参数不确定性量化和重要性排序。</li>
+</ul>
+<h3 id="代码实现">代码实现</h3>
+<p>本项目基于 PyBaMM 的 SPMe（Single Particle Model with Electrolyte）模型，选取了正极厚度、负极厚度、隔膜厚度等典型几何参数，采用 SALib 的 Sobol 方法进行全局灵敏性分析。具体实现见 <a href="https://github.com/Mingzefei/battery_model_sensitivity_analysis/blob/main/notebooks/spme_geometric_sobol_analysis.ipynb">battery_model_sensitivity_analysis/notebooks/spme_geometric_sobol_analysis.ipynb</a>。</p>
+<h4 id="量化时间序列差异">量化时间序列差异</h4>
+<p>SPMe 模型输出（如电压）是时间序列数据。敏感性分析需量化参数变化后输出曲线 $Y(t)$ 与基准曲线 $Y_b(t)$ 间的差异，从如下角度考虑：</p>
+<ol>
+<li><strong>位置差异 ($\delta_p$)</strong>: 衡量整体位置偏移。</li>
+</ol>
+<p>$$\delta_p[Y(t), Y_b(t)] = \text{mean}[Y(t)] - \text{mean}[Y_b(t)]$$</p>
+<ol start="2">
+<li><strong>尺度差异 ($\delta_s$)</strong>: 衡量幅度差异。</li>
+</ol>
+<p>$$\delta_s[Y(t), Y_b(t)] = (\max[Y(t)] - \min[Y(t)]) - (\max[Y_b(t)] - \min[Y_b(t)])$$</p>
+<ol start="3">
+<li><strong>形状差异 ($\delta_r$)</strong>: 衡量校正位置和尺度后的形状差异。在本研究中，我们使用均方根误差 (RMSE) 来量化形状差异：</li>
+</ol>
+<p>$$\delta_r[Y(t), Y_b(t)] = \text{RMSE}(Y(t), Y_b(t)) = \sqrt{\frac{1}{M} \sum_{i=1}^{M} (Y(t_i) - Y_b(t_i))^2}$$</p>
+<p>其中 $M$ 是评估时间点的数量。</p>
+<p>本项目将采用综合差异指标 $\Delta_i = \delta_p + \delta_s + \delta_r$ 作为量化电压曲线 $V(t)$ 与基准电压曲线 $V_b(t)$ 之间综合差异的单一度量指标，并作为 Sobol 分析的目标函数输出。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+
+   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate_combined_difference</span>(Y, Y_b):
+      <span style="color:#75715e"># 位置差异 (Position difference)</span>
+      delta_p <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(Y) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>mean(Y_b)
+      
+      <span style="color:#75715e"># 尺度差异 (Scale difference)</span>
+      delta_s <span style="color:#f92672">=</span> (np<span style="color:#f92672">.</span>max(Y) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(Y)) <span style="color:#f92672">-</span> (np<span style="color:#f92672">.</span>max(Y_b) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(Y_b))
+      
+      <span style="color:#75715e"># 形状差异 (Shape difference - RMSE)</span>
+      delta_r <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>mean((np<span style="color:#f92672">.</span>array(Y) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>array(Y_b))<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)) <span style="color:#75715e"># 确保Y, Y_b为numpy数组</span>
+      
+      <span style="color:#75715e"># 综合差异 (Combined difference)</span>
+      Delta_i <span style="color:#f92672">=</span> delta_p <span style="color:#f92672">+</span> delta_s <span style="color:#f92672">+</span> delta_r
+      <span style="color:#66d9ef">return</span> Delta_i
+</code></pre></div><h4 id="参数选取与范围设定">参数选取与范围设定</h4>
+<p>选定 SPMe 模型中的关键几何参数（如正极厚度、负极厚度、隔膜厚度），为每个参数设定合理的物理取值范围。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   param_definitions <span style="color:#f92672">=</span> {
+      <span style="color:#e6db74">&#34;Negative electrode thickness [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Negative electrode thickness [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,  <span style="color:#75715e"># 变动 +/- 20%</span>
+      },
+      <span style="color:#e6db74">&#34;Positive electrode thickness [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Positive electrode thickness [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+      },
+      <span style="color:#e6db74">&#34;Separator thickness [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Separator thickness [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+      },
+      <span style="color:#e6db74">&#34;Negative particle radius [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Negative particle radius [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+      },
+      <span style="color:#e6db74">&#34;Positive particle radius [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Positive particle radius [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+      },
+   }
+
+   problem <span style="color:#f92672">=</span> {
+      <span style="color:#e6db74">&#34;num_vars&#34;</span>: len(param_definitions),
+      <span style="color:#e6db74">&#34;names&#34;</span>: list(param_definitions<span style="color:#f92672">.</span>keys()),
+      <span style="color:#e6db74">&#34;bounds&#34;</span>: [],
+   }
+
+   <span style="color:#66d9ef">for</span> name, props <span style="color:#f92672">in</span> param_definitions<span style="color:#f92672">.</span>items():
+      lower_bound <span style="color:#f92672">=</span> props[<span style="color:#e6db74">&#34;default&#34;</span>] <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> props[<span style="color:#e6db74">&#34;bounds_factor&#34;</span>])
+      upper_bound <span style="color:#f92672">=</span> props[<span style="color:#e6db74">&#34;default&#34;</span>] <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> props[<span style="color:#e6db74">&#34;bounds_factor&#34;</span>])
+      problem[<span style="color:#e6db74">&#34;bounds&#34;</span>]<span style="color:#f92672">.</span>append([lower_bound, upper_bound])
+      print(
+         <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Parameter: </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">, Default: </span><span style="color:#e6db74">{</span>props[<span style="color:#e6db74">&#39;default&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2e</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, Bounds: [</span><span style="color:#e6db74">{</span>lower_bound<span style="color:#e6db74">:</span><span style="color:#e6db74">.2e</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, </span><span style="color:#e6db74">{</span>upper_bound<span style="color:#e6db74">:</span><span style="color:#e6db74">.2e</span><span style="color:#e6db74">}</span><span style="color:#e6db74">]&#34;</span>
+      )
+</code></pre></div><h4 id="采样与仿真求解">采样与仿真求解</h4>
+<p>利用 SALib 的采样工具（如 Saltelli 采样），在参数空间内生成大量参数组合。每组参数下，调用 PyBaMM 运行 SPMe 仿真，记录输出指标（如 1C 恒流充放电过程的终止电压、容量等）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#f92672">from</span> SALib.sample <span style="color:#f92672">import</span> saltelli
+   <span style="color:#75715e"># import pybamm # 假设pybamm已安装</span>
+   <span style="color:#75715e"># import numpy as np # 假设numpy已安装</span>
+
+   <span style="color:#75715e"># 生成参数样本</span>
+   <span style="color:#75715e"># N 通常取2的幂次，例如1024。样本总数将是 N * (D + 2) 或 N * (2D + 2)</span>
+   <span style="color:#75715e"># D 是参数数量 (problem[&#39;num_vars&#39;])</span>
+   param_values <span style="color:#f92672">=</span> saltelli<span style="color:#f92672">.</span>sample(problem, <span style="color:#ae81ff">1024</span>) 
+
+   <span style="color:#75715e"># 运行一次基线仿真</span>
+   model_baseline <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>lithium_ion<span style="color:#f92672">.</span>SPMe()  
+   param_baseline <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>ParameterValues(<span style="color:#e6db74">&#34;Chen2020&#34;</span>)  
+   experiment_baseline <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Experiment([<span style="color:#e6db74">&#34;Discharge at 1C until 2.5 V&#34;</span>])  
+   sim_baseline <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Simulation(  
+      model_baseline, experiment<span style="color:#f92672">=</span>experiment_baseline, parameter_values<span style="color:#f92672">=</span>param_baseline  
+   )  
+   sol_baseline <span style="color:#f92672">=</span> sim_baseline<span style="color:#f92672">.</span>solve()  
+   t_eval_baseline <span style="color:#f92672">=</span> sol_baseline[<span style="color:#e6db74">&#34;Time [s]&#34;</span>]<span style="color:#f92672">.</span>entries  
+   voltage_baseline <span style="color:#f92672">=</span> sol_baseline[<span style="color:#e6db74">&#34;Terminal voltage [V]&#34;</span>]<span style="color:#f92672">.</span>entries
+
+   <span style="color:#75715e"># 为了确保所有仿真都在相同的时间点上进行比较，定义一个固定的时间向量 t_eval_common</span>
+   <span style="color:#75715e"># 使用基线仿真的最大时间，并插值到 200 个点</span>
+   max_time_baseline <span style="color:#f92672">=</span> t_eval_baseline[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+   t_eval_common <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>, max_time_baseline, <span style="color:#ae81ff">200</span>) <span style="color:#75715e"># 200 个评估点</span>
+
+   <span style="color:#75715e"># 对基线解在 t_eval_common 上进行插值</span>
+   voltage_baseline_interp <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>interp(t_eval_common, t_eval_baseline, voltage_baseline)
+
+   print(  
+      <span style="color:#e6db74">&#34;Baseline simulation complete and common evaluation time points (t_eval_common) prepared.&#34;</span>  
+   )  
+   print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Baseline simulation ran for </span><span style="color:#e6db74">{</span>max_time_baseline<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> seconds.&#34;</span>)  
+   print(  
+      <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Common evaluation time points range from </span><span style="color:#e6db74">{</span>t_eval_common[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s to </span><span style="color:#e6db74">{</span>t_eval_common[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s with </span><span style="color:#e6db74">{</span>len(t_eval_common)<span style="color:#e6db74">}</span><span style="color:#e6db74"> points.&#34;</span>  
+   )
+
+   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">evaluate_model_delta_i</span>(parameter_sample):  
+      <span style="color:#e6db74">&#34;&#34;&#34;  
+</span><span style="color:#e6db74">      运行 PyBaMM SPMe 模型并计算与基线电压曲线的综合差异指标 Delta_i.  
+</span><span style="color:#e6db74">      Delta_i = delta_p + delta_s + delta_r  
+</span><span style="color:#e6db74">      其中:  
+</span><span style="color:#e6db74">         delta_p: 位置差异 (mean_run - mean_baseline)  
+</span><span style="color:#e6db74">         delta_s: 尺度差异 ((max_run - min_run) - (max_baseline - min_baseline))  
+</span><span style="color:#e6db74">         delta_r: 形状差异 (RMSE(run, baseline))  
+</span><span style="color:#e6db74">      参数:  
+</span><span style="color:#e6db74">         parameter_sample (np.array): SALib 生成的参数样本。  
+</span><span style="color:#e6db74">      返回:  
+</span><span style="color:#e6db74">         float: 电压曲线的综合差异指标 Delta_i。  
+</span><span style="color:#e6db74">      &#34;&#34;&#34;</span>  
+      model_run <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>lithium_ion<span style="color:#f92672">.</span>SPMe()  
+      param_run <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>ParameterValues(<span style="color:#e6db74">&#34;Chen2020&#34;</span>) <span style="color:#75715e"># 每次都从新的默认参数开始</span>
+
+      current_params <span style="color:#f92672">=</span> {}
+      <span style="color:#66d9ef">for</span> i, name <span style="color:#f92672">in</span> enumerate(problem[<span style="color:#e6db74">&#34;names&#34;</span>]):
+         current_params[name] <span style="color:#f92672">=</span> parameter_sample[i]
+
+      <span style="color:#66d9ef">try</span>:
+         param_run<span style="color:#f92672">.</span>update(current_params)
+         sim_run <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Simulation(
+               model_run, experiment<span style="color:#f92672">=</span>experiment_baseline, parameter_values<span style="color:#f92672">=</span>param_run
+         )
+         sol_run <span style="color:#f92672">=</span> sim_run<span style="color:#f92672">.</span>solve(t_eval<span style="color:#f92672">=</span>t_eval_common)
+         voltage_run <span style="color:#f92672">=</span> sol_run[<span style="color:#e6db74">&#34;Terminal voltage [V]&#34;</span>]<span style="color:#f92672">.</span>entries
+
+         <span style="color:#66d9ef">if</span> len(voltage_run) <span style="color:#f92672">&lt;</span> len(t_eval_common):
+               padding_value <span style="color:#f92672">=</span> (
+                  voltage_run[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+                  <span style="color:#66d9ef">if</span> len(voltage_run) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+                  <span style="color:#66d9ef">else</span> param_run[<span style="color:#e6db74">&#34;Lower voltage cut-off [V]&#34;</span>]
+               )
+               voltage_run_padded <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>full_like(t_eval_common, padding_value)
+               voltage_run_padded[: len(voltage_run)] <span style="color:#f92672">=</span> voltage_run
+               voltage_run <span style="color:#f92672">=</span> voltage_run_padded
+
+         <span style="color:#75715e"># 计算 delta_p (位置差异)</span>
+         delta_p <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(voltage_run) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>mean(voltage_baseline_interp)
+
+         <span style="color:#75715e"># 计算 delta_s (尺度差异)</span>
+         range_run <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(voltage_run) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(voltage_run)
+         range_baseline <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(voltage_baseline_interp) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(voltage_baseline_interp)
+         delta_s <span style="color:#f92672">=</span> range_run <span style="color:#f92672">-</span> range_baseline
+
+         <span style="color:#75715e"># 计算 delta_r (形状差异 - RMSE)</span>
+         delta_r <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>mean((voltage_run <span style="color:#f92672">-</span> voltage_baseline_interp) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>))
+
+         <span style="color:#75715e"># 计算综合差异指标 Delta_i</span>
+         <span style="color:#75715e"># 注意：直接相加可能会因为各项尺度不同导致某一项主导。可以考虑加权或归一化，但按当前要求直接相加。</span>
+         delta_i <span style="color:#f92672">=</span> delta_p <span style="color:#f92672">+</span> delta_s <span style="color:#f92672">+</span> delta_r
+
+         <span style="color:#75715e"># print(f&#34;Run with {current_params}, d_p={delta_p:.3f}, d_s={delta_s:.3f}, d_r={delta_r:.3f}, Delta_i={delta_i:.3f}&#34;)</span>
+         <span style="color:#66d9ef">return</span> delta_i
+
+      <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+         <span style="color:#75715e"># print(f&#34;Error during simulation with params {current_params}: {e}&#34;)</span>
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1e6</span>  <span style="color:#75715e"># 一个较大的惩罚值</span>
+</code></pre></div><h4 id="灵敏性分析">灵敏性分析</h4>
+<p>将仿真结果输入 SALib 的 Sobol 分析模块，计算各参数的主效应指数（First-order Sobol index）、总效应指数（Total Sobol index）等灵敏度指标。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#f92672">from</span> SALib.analyze <span style="color:#f92672">import</span> sobol
+
+   <span style="color:#75715e"># 执行 Sobol 分析</span>
+   <span style="color:#75715e"># Y_outputs 应为上一步仿真得到的实际输出结果数组</span>
+   <span style="color:#75715e"># 注意处理Y_outputs中的NaN值（如果仿真中可能出现）</span>
+   <span style="color:#75715e"># Y_outputs_cleaned = Y_outputs[~np.isnan(Y_outputs)]</span>
+   <span style="color:#75715e"># param_values_cleaned = param_values[~np.isnan(Y_outputs)] </span>
+   <span style="color:#75715e"># 如果清理了Y_outputs，对应的param_values也需要清理，但这会破坏Saltelli样本结构</span>
+   <span style="color:#75715e"># 更好的做法是在仿真失败时赋一个合理的惩罚值，而不是NaN，以保持样本完整性</span>
+   Si <span style="color:#f92672">=</span> sobol<span style="color:#f92672">.</span>analyze(problem, Y_outputs, calc_second_order<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, print_to_console<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+
+   <span style="color:#75715e"># 提取一阶和总效应指数</span>
+   S1_indices <span style="color:#f92672">=</span> Si[<span style="color:#e6db74">&#39;S1&#39;</span>]
+   ST_indices <span style="color:#f92672">=</span> Si[<span style="color:#e6db74">&#39;ST&#39;</span>]
+   
+   print(<span style="color:#e6db74">&#34;一阶 Sobol 指数 (S1):&#34;</span>)
+   <span style="color:#66d9ef">for</span> name, s1_val <span style="color:#f92672">in</span> zip(problem[<span style="color:#e6db74">&#39;names&#39;</span>], S1_indices):
+      print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;- </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>s1_val<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+
+   print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">n总 Sobol 指数 (ST):&#34;</span>)
+   <span style="color:#66d9ef">for</span> name, st_val <span style="color:#f92672">in</span> zip(problem[<span style="color:#e6db74">&#39;names&#39;</span>], ST_indices):
+      print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;- </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>st_val<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+
+   <span style="color:#75715e"># 如果 calc_second_order=True, 还可以获取二阶指数 Si[&#39;S2&#39;] 和对应的参数对 Si[&#39;S2_conf&#39;]</span>
+</code></pre></div><h4 id="结果可视化">结果可视化</h4>
+<p>最终计算结果下图所示：<br>
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/imgsobol_s1_st_indices_delta_i.png" alt="sobol_s1_st_indices_delta_i.png"><br>
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/imgsobol_s2_heatmap_delta_i.png" alt="sobol_s2_heatmap_delta_i.png"></p>
+<ol>
+<li>关键参数敏感性：部分参数（如 <code>正极厚度</code>、<code>负极厚度</code>）表现出最高的 S1 和 ST 值，它们对模型输出影响最为显著，是设计和制造中需精密控制的核心因素。</li>
+<li>参数交互效应：S2 热力图显示特定参数对（如 <code>正极厚度</code> 与 <code>负极厚度</code>）之间存在较强 S2 值，这些参数间存在显著的交互作用。</li>
+</ol>
+<p>相关文献同样指出，电池几何参数（尤其是电极厚度）对容量、功率密度等关键性能有重要影响。</p>
+<ul>
+<li><a href="http://arxiv.org/pdf/2504.05924.pdf">A Control-Oriented Simplified Single Particle Model with Grouped Parameter and Sensitivity Analysis for Lithium-Ion Batteries (2025)</a> 通过 Sobol 灵敏性分析，将 SPM/ SPMe 的参数集从 9 个降至 6 个高敏感参数，电极厚度等几何参数位列其中。</li>
+<li><a href="https://arxiv.org/abs/2004.09668">Global Sensitivity Methods for Design of Experiments in Lithium-ion Battery Context (2020)</a> 也证实了几何参数在电池性能建模与实验设计中的重要性。</li>
+</ul>
+<p>上述示例后续可以从增加分析的参数数量、精细化参数的采样范围、增加样本数量以及优化差异量化方法等进一步改进。</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/zh-cn/tags/%E5%8F%82%E6%95%B0%E8%AF%86%E5%88%AB/" rel="tag">参数识别</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/zh-cn/tags/%E7%81%B5%E6%95%8F%E6%80%A7%E5%88%86%E6%9E%90/" rel="tag">灵敏性分析</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 HUA Guangbin.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

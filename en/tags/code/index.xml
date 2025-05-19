@@ -19,5 +19,14 @@ This method is suitable for the following types of projects:
  Core code written mainly in Python; Paper reports primarily written in LaTeX and Markdown; Version control using Git.</description>
     </item>
     
+    <item>
+      <title>Scientific Plotting</title>
+      <link>https://mingzefei.github.io/en/posts/scientific_plotting/</link>
+      <pubDate>Fri, 12 Jul 2024 16:07:07 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/en/posts/scientific_plotting/</guid>
+      <description>Some Principles  Divided into schematic diagrams representing concepts and data charts representing results. Data Charts  Prioritize using position to represent quantity, followed by length and area. Try to avoid pie charts (unless it&amp;rsquo;s essential to show proportions). Color is not the first choice (gray is very misleading; viridis is recommended). Use three-line tables.   Schematic Diagrams  Illustrations are better than engineering drawings or photographs.   Image Formats  Bitmaps are safer.</description>
+    </item>
+    
   </channel>
 </rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sensitivity Analysis on Ming zefei&#39;s Blog</title>
+    <link>https://mingzefei.github.io/en/tags/sensitivity-analysis/</link>
+    <description>Recent content in Sensitivity Analysis on Ming zefei&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 May 2025 19:22:06 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/en/tags/sensitivity-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Determining Model Parameter Sensitivity Using Sensitivity Analysis</title>
+      <link>https://mingzefei.github.io/en/posts/sensitivity_analysis/</link>
+      <pubDate>Sat, 17 May 2025 19:22:06 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/en/posts/sensitivity_analysis/</guid>
+      <description>Sensitivity analysis quantifies the impact of various factors on a model&amp;rsquo;s output. When a model has multiple undetermined parameters, these parameters can be analyzed to identify key parameters that significantly affect the model&amp;rsquo;s results. Targeting these highly sensitive parameters for identification can effectively improve the model&amp;rsquo;s accuracy and reliability, especially for complex models with numerous parameters.
+Main Sensitivity Analysis Methods Local Sensitivity Analysis Local sensitivity analysis focuses on the impact of small changes in input parameters around a specific point on the model output.</description>
+    </item>
+    
+  </channel>
+</rss>

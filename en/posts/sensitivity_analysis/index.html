@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Determining Model Parameter Sensitivity Using Sensitivity Analysis - Ming zefei&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/en" title="Ming zefei&#39;s Blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Ming zefei&#39;s Blog</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/en/posts">
+				
+				<span class="menu__text">blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en/about/about">
+				
+				<span class="menu__text">about</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en/about/my_cv">
+				
+				<span class="menu__text">vitae</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn">
+				
+				<span class="menu__text">中文</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Determining Model Parameter Sensitivity Using Sensitivity Analysis</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-05-17T19:22:06&#43;08:00">May 17, 2025</time></div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#main-sensitivity-analysis-methods">Main Sensitivity Analysis Methods</a>
+      <ul>
+        <li><a href="#local-sensitivity-analysis">Local Sensitivity Analysis</a></li>
+        <li><a href="#global-sensitivity-analysis">Global Sensitivity Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#case-study-analyzing-geometric-parameter-sensitivity-of-lithium-ion-battery-spme-model-using-sobol-method">Case Study: Analyzing Geometric Parameter Sensitivity of Lithium-Ion Battery SPMe Model using Sobol Method</a>
+      <ul>
+        <li><a href="#core-libraries">Core Libraries</a></li>
+        <li><a href="#code-implementation">Code Implementation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<p>Sensitivity analysis quantifies the impact of various factors on a model&rsquo;s output. When a model has multiple undetermined parameters, these parameters can be analyzed to identify key parameters that significantly affect the model&rsquo;s results. Targeting these highly sensitive parameters for identification can effectively improve the model&rsquo;s accuracy and reliability, especially for complex models with numerous parameters.</p>
+<h2 id="main-sensitivity-analysis-methods">Main Sensitivity Analysis Methods</h2>
+<h3 id="local-sensitivity-analysis">Local Sensitivity Analysis</h3>
+<p>Local sensitivity analysis focuses on the impact of small changes in input parameters <strong>around a specific point</strong> on the model output. It is usually achieved by calculating partial derivatives or making small perturbations near the parameter values. Examples include the One-At-a-Time (OAT) method and the differential method (calculating partial derivatives). These methods are computationally simple and suitable for quickly understanding the local response characteristics of the model to individual parameters.</p>
+<p>$$
+S_i^{\text{OAT}} \approx \frac{y(x_1, &hellip;, x_i+\Delta x_i, &hellip;, x_n) - y(x_1, &hellip;, x_i, &hellip;, x_n)}{\Delta x_i}
+$$</p>
+<ul>
+<li><strong>Advantages</strong>: Low computational cost, easy to implement.</li>
+<li><strong>Disadvantages</strong>: Only reflects the local impact of parameters at a specific point, cannot reveal the effect of parameter changes over their entire range, and ignores interactions between parameters.</li>
+<li>Suitable for simple models with limited parameter variation ranges, to quickly understand the local response characteristics of the model to individual parameters.</li>
+</ul>
+<h3 id="global-sensitivity-analysis">Global Sensitivity Analysis</h3>
+<p>Global sensitivity analysis examines the impact of input parameters varying <strong>over their entire range of values</strong> on the model output. It can capture <strong>non-linear relationships and interactions between parameters</strong>, providing a more comprehensive sensitivity assessment.</p>
+<h4 id="morris-method">Morris Method</h4>
+<p>The Morris method involves a series of designed &ldquo;elementary effects&rdquo; perturbations in the parameter space. It calculates the mean effect and standard deviation for each parameter, thereby distinguishing the overall impact of parameters from non-linear or interaction effects.</p>
+<ul>
+<li><strong>Advantages</strong>: Computational cost is linearly related to the number of parameters, making it relatively efficient and suitable for high-dimensional parameter spaces. It can quickly screen out important parameters.</li>
+<li><strong>Disadvantages</strong>: Results are mainly used for qualitative ranking and are generally not suitable for precise quantitative analysis.</li>
+</ul>
+<p>The specific steps are as follows:</p>
+<p>First, calculate the elementary effect:</p>
+<p>$$
+EE_i = \frac{y(x_1, &hellip;, x_i + \Delta, &hellip;, x_k) - y(x_1, &hellip;, x_i, &hellip;, x_k)}{\Delta}
+$$</p>
+<p>where $\Delta$ is the perturbation step size for the parameter, and $i=1,2,\ldots,k$ denotes the $i$ -th parameter. For each parameter $i$, multiple elementary effects $EE_i^{(r)}$ are calculated along $R$ different sampling paths, $r=1,2,\ldots,R$.</p>
+<p>Next, calculate the mean, which measures the average effect of the parameter:</p>
+<p>$$
+\mu_i = \frac{1}{R} \sum_{r=1}^R EE_i^{(r)}
+$$</p>
+<p>Since elementary effects in non-monotonic functions can cancel each other out (positive and negative values), the mean of absolute values is often used:</p>
+<p>$$
+\mu_i^* = \frac{1}{R} \sum_{r=1}^R |EE_i^{(r)}|
+$$</p>
+<p>Simultaneously, calculate the standard deviation, which reflects the non-linearity and interaction effects of the parameter:</p>
+<p>$$
+\sigma_i = \sqrt{\frac{1}{R-1} \sum_{r=1}^R \left(EE_i^{(r)} - \mu_i\right)^2}
+$$</p>
+<p>A larger $\mu_i^*$ indicates that parameter $x_i$ has a more significant impact on the model output. A larger $\sigma_i$ suggests that the effect of this parameter has strong non-linearity or interacts significantly with other parameters.</p>
+<p>For specific methods and implementation details, refer to <a href="https://gsa-module.readthedocs.io/en/stable/implementation/morris_screening_method.html">this documentation</a>. Note the following:</p>
+<ol>
+<li>Standardize the model inputs and outputs to be dimensionless to ensure the comparability of sensitivity results.</li>
+<li>The Morris method relies on special sampling designs, common ones being Trajectory Design and Radial OAT Design.</li>
+<li>Scatter plots in the $\sigma_i$ - $\mu_i^*$ plane can be used to visually distinguish important parameters from non-important ones.</li>
+</ol>
+<h4 id="sobol-method">Sobol Method</h4>
+<p>The Sobol method is based on variance decomposition. It decomposes the total variance of the model output into contributions from individual input parameters and their interactions. This allows for the quantitative assessment of the main effect and total effect sensitivity indices for each parameter.</p>
+<ul>
+<li><strong>Advantages</strong>: Rigorous theoretical basis, capable of comprehensively capturing linear, non-linear, and multi-parameter interaction effects, providing precise quantitative sensitivity indicators.</li>
+<li><strong>Disadvantages</strong>: Computationally intensive, usually requiring a large number of model runs and samples, leading to high computational costs.</li>
+</ul>
+<p>The total variance of the model output is:</p>
+<p>$$
+V = \mathrm{Var}[Y(\mathbf{X})]
+$$</p>
+<p>where $\mathbf{X} = (X_1, X_2, …, X_k)$ is the input parameter vector, and $Y$ is the model output.</p>
+<p>The first-order Sobol index (main effect sensitivity index) is defined as:</p>
+<p>$$
+S_i = \frac{V_i}{V} = \frac{\mathrm{Var}<em>{X_i} \left( \mathbb{E}</em>{\mathbf{X}_{\sim i}}[Y | X_i] \right)}{V}
+$$</p>
+<p>where $V_i$ is the contribution of parameter $X_i$ alone to the output variance, and $\mathbf{X}_{\sim i}$ represents all parameters except $X_i$.</p>
+<p>The total Sobol index (total effect sensitivity index) is defined as:</p>
+<p>$$
+S_{T_i} = 1 - \frac{V_{\sim i}}{V} = \frac{\mathbb{E}<em>{\mathbf{X}</em>{\sim i}} \left( \mathrm{Var}<em>{X_i}[Y | \mathbf{X}</em>{\sim i}] \right)}{V}
+$$</p>
+<p>where $V_{\sim i}$ is the variance contribution of all parameters except $X_i$. $S_{T_i}$ measures the total contribution of parameter $X_i$ and all its interactions with other parameters to the output.</p>
+<p>Sobol indices are typically calculated using Monte Carlo sampling, where appropriately designed sample matrices are used to estimate the above variance components.</p>
+<h4 id="fast-method-fourier-amplitude-sensitivity-test">FAST Method (Fourier Amplitude Sensitivity Test)</h4>
+<p>The FAST method utilizes the principles of Fourier transforms. It maps the multi-dimensional parameter space to a one-dimensional frequency space and analyzes the spectral components of the model output to calculate parameter sensitivities, thereby improving the efficiency of sensitivity calculations.</p>
+<ul>
+<li><strong>Advantages</strong>: Relatively high computational efficiency, suitable for medium-dimensional parameter spaces, and can estimate parameter sensitivity indices relatively quickly.</li>
+<li><strong>Disadvantages</strong>: Limited ability to capture highly non-linear and higher-order parameter interactions, and sensitivity results may not be sufficiently precise.</li>
+<li>Suitable for models where the input-output relationship is relatively smooth or approximately linear.</li>
+</ul>
+<p>Each input parameter $X_i$ is associated with a different frequency $w_i$ as a parameter of a sinusoidal function, constructing a single-variable function in the parameter space:</p>
+<p>$$
+X_i = G_i(\omega s) = \frac{1}{2} + \frac{1}{\pi} \arcsin(\sin(\omega_i s))
+$$</p>
+<p>where $s$ is a one-dimensional frequency parameter, and $\omega_i$ is the frequency chosen for parameter $X_i$.</p>
+<p>The model output $Y$ varies with $s$, forming a one-dimensional function:</p>
+<p>$$
+Y(s) = f(X_1(s), X_2(s), &hellip;, X_k(s))
+$$</p>
+<p>By performing a Fourier transform on $Y(s)$ and calculating the amplitudes of different frequency components, the sensitivity index $S_i$ for parameter $X_i$ is calculated from the variance contribution of the corresponding frequency component:</p>
+<p>$$
+S_i = \frac{\sum_{m=1}^\infty \left( A_{im}^2 + B_{im}^2 \right)}{\mathrm{Var}[Y]}
+$$</p>
+<p>where $A_{im}$ and $B_{im}$ are the cosine and sine coefficients of the Fourier series corresponding to the frequency $m \omega_i$.</p>
+<h2 id="case-study-analyzing-geometric-parameter-sensitivity-of-lithium-ion-battery-spme-model-using-sobol-method">Case Study: Analyzing Geometric Parameter Sensitivity of Lithium-Ion Battery SPMe Model using Sobol Method</h2>
+<p>Several projects and discussions have mentioned parameter sensitivity analysis in PyBaMM, such as <a href="https://github.com/Mrzhang-hub/pybamm-param-sensitivities">Mrzhang-hub/pybamm-param-sensitivities</a> and <a href="https://pybamm.discourse.group/t/questions-on-checking-sensitivities/103">Questions on checking sensitivities</a>. However, these works primarily focus on the sensitivity analysis of electrochemical and material parameters, with little attention to geometric parameters (e.g., electrode thickness, separator thickness, particle radius). This is mainly because the sensitivity analysis of geometric parameters involves changes in mesh generation and solvers. This case study uses the Sobol method to analyze the sensitivity of geometric parameters in the Single Particle Model with electrolyte (SPMe) for lithium-ion batteries. The main tools used are <code>pybamm</code> (for battery modeling and simulation) and <code>salib</code> (for sensitivity analysis). The project repository is <a href="https://github.com/Mingzefei/battery_model_sensitivity_analysis">Mingzefei/battery_model_sensitivity_analysis</a>.</p>
+<h3 id="core-libraries">Core Libraries</h3>
+<ul>
+<li><strong>PyBaMM (Python Battery Mathematical Modelling)</strong>: An open-source Python battery modeling package that supports various models like DFN, SPM, and SPMe. PyBaMM provides a flexible framework for simulating battery behavior, parameter estimation, and experimental design, enabling rapid construction and solution of complex electrochemical and thermophysical models.</li>
+<li><strong>SALib (Sensitivity Analysis Library in Python)</strong>: A Python library for sensitivity analysis, offering methods like Sobol, Morris, and FAST. SALib helps understand how model outputs are sensitive to changes in input parameters, identify key parameters and their interactions, and can be used for quantifying uncertainty and ranking the importance of model parameters.</li>
+</ul>
+<h3 id="code-implementation">Code Implementation</h3>
+<p>This project is based on PyBaMM&rsquo;s SPMe (Single Particle Model with Electrolyte) model. Typical geometric parameters such as positive electrode thickness, negative electrode thickness, and separator thickness were selected. The Sobol method from SALib was used for global sensitivity analysis. The specific implementation can be found in <a href="https://github.com/Mingzefei/battery_model_sensitivity_analysis/blob/main/notebooks/spme_geometric_sobol_analysis.ipynb">battery_model_sensitivity_analysis/notebooks/spme_geometric_sobol_analysis.ipynb</a>.</p>
+<h4 id="quantifying-time-series-differences">Quantifying Time Series Differences</h4>
+<p>The output of the SPMe model (e.g., voltage) is time-series data. Sensitivity analysis requires quantifying the difference between the output curve $Y(t)$ after parameter changes and the baseline curve $Y_b(t)$. This is considered from the following perspectives:</p>
+<ol>
+<li>
+<p><strong>Position Difference ($\delta_p$)</strong>: Measures the overall positional shift.</p>
+<p>$$ \delta_p[Y(t), Y_b(t)] = \text{mean}[Y(t)] - \text{mean}[Y_b(t)] $$</p>
+</li>
+<li>
+<p><strong>Scale Difference ($\delta_s$)</strong>: Measures the difference in amplitude.</p>
+<p>$$ \delta_s[Y(t), Y_b(t)] = (\max[Y(t)] - \min[Y(t)]) - (\max[Y_b(t)] - \min[Y_b(t)]) $$</p>
+</li>
+<li>
+<p><strong>Shape Difference ($\delta_r$)</strong>: Measures the shape difference after correcting for position and scale. In this study, we use the Root Mean Square Error (RMSE) to quantify the shape difference:</p>
+<p>$$ \delta_r[Y(t), Y_b(t)] = \text{RMSE}(Y(t), Y_b(t)) = \sqrt{\frac{1}{M} \sum_{i=1}^{M} (Y(t_i) - Y_b(t_i))^2} $$</p>
+<p>where $M$ is the number of evaluation time points.</p>
+</li>
+</ol>
+<p>This project will use a combined difference metric $\Delta_i = \delta_p + \delta_s + \delta_r$ as a single measure to quantify the overall difference between the voltage curve $V(t)$ and the baseline voltage curve $V_b(t)$. This metric will serve as the target function output for the Sobol analysis.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+
+   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate_combined_difference</span>(Y, Y_b):
+      <span style="color:#75715e"># Position difference</span>
+      delta_p <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(Y) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>mean(Y_b)
+      
+      <span style="color:#75715e"># Scale difference</span>
+      delta_s <span style="color:#f92672">=</span> (np<span style="color:#f92672">.</span>max(Y) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(Y)) <span style="color:#f92672">-</span> (np<span style="color:#f92672">.</span>max(Y_b) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(Y_b))
+      
+      <span style="color:#75715e"># Shape difference - RMSE</span>
+      delta_r <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>mean((np<span style="color:#f92672">.</span>array(Y) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>array(Y_b))<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)) <span style="color:#75715e"># Ensure Y, Y_b are numpy arrays</span>
+      
+      <span style="color:#75715e"># Combined difference</span>
+      Delta_i <span style="color:#f92672">=</span> delta_p <span style="color:#f92672">+</span> delta_s <span style="color:#f92672">+</span> delta_r
+      <span style="color:#66d9ef">return</span> Delta_i
+</code></pre></div><h4 id="parameter-selection-and-range-setting">Parameter Selection and Range Setting</h4>
+<p>Key geometric parameters in the SPMe model (e.g., positive electrode thickness, negative electrode thickness, separator thickness) are selected, and reasonable physical value ranges are set for each parameter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   param_definitions <span style="color:#f92672">=</span> {
+      <span style="color:#e6db74">&#34;Negative electrode thickness [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Negative electrode thickness [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,  <span style="color:#75715e"># Variation +/- 20%</span>
+      },
+      <span style="color:#e6db74">&#34;Positive electrode thickness [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Positive electrode thickness [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+      },
+      <span style="color:#e6db74">&#34;Separator thickness [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Separator thickness [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+      },
+      <span style="color:#e6db74">&#34;Negative particle radius [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Negative particle radius [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+      },
+      <span style="color:#e6db74">&#34;Positive particle radius [m]&#34;</span>: {
+         <span style="color:#e6db74">&#34;default&#34;</span>: default_param[<span style="color:#e6db74">&#34;Positive particle radius [m]&#34;</span>],
+         <span style="color:#e6db74">&#34;bounds_factor&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+      },
+   }
+
+   problem <span style="color:#f92672">=</span> {
+      <span style="color:#e6db74">&#34;num_vars&#34;</span>: len(param_definitions),
+      <span style="color:#e6db74">&#34;names&#34;</span>: list(param_definitions<span style="color:#f92672">.</span>keys()),
+      <span style="color:#e6db74">&#34;bounds&#34;</span>: [],
+   }
+
+   <span style="color:#66d9ef">for</span> name, props <span style="color:#f92672">in</span> param_definitions<span style="color:#f92672">.</span>items():
+      lower_bound <span style="color:#f92672">=</span> props[<span style="color:#e6db74">&#34;default&#34;</span>] <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> props[<span style="color:#e6db74">&#34;bounds_factor&#34;</span>])
+      upper_bound <span style="color:#f92672">=</span> props[<span style="color:#e6db74">&#34;default&#34;</span>] <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> props[<span style="color:#e6db74">&#34;bounds_factor&#34;</span>])
+      problem[<span style="color:#e6db74">&#34;bounds&#34;</span>]<span style="color:#f92672">.</span>append([lower_bound, upper_bound])
+      print(
+         <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Parameter: </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">, Default: </span><span style="color:#e6db74">{</span>props[<span style="color:#e6db74">&#39;default&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2e</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, Bounds: [</span><span style="color:#e6db74">{</span>lower_bound<span style="color:#e6db74">:</span><span style="color:#e6db74">.2e</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, </span><span style="color:#e6db74">{</span>upper_bound<span style="color:#e6db74">:</span><span style="color:#e6db74">.2e</span><span style="color:#e6db74">}</span><span style="color:#e6db74">]&#34;</span>
+      )
+</code></pre></div><h4 id="sampling-and-simulation-solution">Sampling and Simulation Solution</h4>
+<p>Using SALib&rsquo;s sampling tools (e.g., Saltelli sampling), a large number of parameter combinations are generated within the parameter space. For each set of parameters, PyBaMM is called to run the SPMe simulation, and output indicators (e.g., terminal voltage, capacity during 1C constant current charge/discharge) are recorded.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#f92672">from</span> SALib.sample <span style="color:#f92672">import</span> saltelli
+   <span style="color:#75715e"># import pybamm # Assuming pybamm is installed</span>
+   <span style="color:#75715e"># import numpy as np # Assuming numpy is installed</span>
+
+   <span style="color:#75715e"># Generate parameter samples</span>
+   <span style="color:#75715e"># N is typically a power of 2, e.g., 1024. Total samples will be N * (D + 2) or N * (2D + 2)</span>
+   <span style="color:#75715e"># D is the number of parameters (problem[&#39;num_vars&#39;])</span>
+   param_values <span style="color:#f92672">=</span> saltelli<span style="color:#f92672">.</span>sample(problem, <span style="color:#ae81ff">1024</span>) 
+
+   <span style="color:#75715e"># Run a baseline simulation</span>
+   model_baseline <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>lithium_ion<span style="color:#f92672">.</span>SPMe()  
+   param_baseline <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>ParameterValues(<span style="color:#e6db74">&#34;Chen2020&#34;</span>)  
+   experiment_baseline <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Experiment([<span style="color:#e6db74">&#34;Discharge at 1C until 2.5 V&#34;</span>])  
+   sim_baseline <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Simulation(  
+      model_baseline, experiment<span style="color:#f92672">=</span>experiment_baseline, parameter_values<span style="color:#f92672">=</span>param_baseline  
+   )  
+   sol_baseline <span style="color:#f92672">=</span> sim_baseline<span style="color:#f92672">.</span>solve()  
+   t_eval_baseline <span style="color:#f92672">=</span> sol_baseline[<span style="color:#e6db74">&#34;Time [s]&#34;</span>]<span style="color:#f92672">.</span>entries  
+   voltage_baseline <span style="color:#f92672">=</span> sol_baseline[<span style="color:#e6db74">&#34;Terminal voltage [V]&#34;</span>]<span style="color:#f92672">.</span>entries
+
+   <span style="color:#75715e"># To ensure all simulations are compared at the same time points, define a fixed time vector t_eval_common</span>
+   <span style="color:#75715e"># Use the maximum time from the baseline simulation and interpolate to 200 points</span>
+   max_time_baseline <span style="color:#f92672">=</span> t_eval_baseline[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+   t_eval_common <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>, max_time_baseline, <span style="color:#ae81ff">200</span>) <span style="color:#75715e"># 200 evaluation points</span>
+
+   <span style="color:#75715e"># Interpolate the baseline solution onto t_eval_common</span>
+   voltage_baseline_interp <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>interp(t_eval_common, t_eval_baseline, voltage_baseline)
+
+   print(  
+      <span style="color:#e6db74">&#34;Baseline simulation complete and common evaluation time points (t_eval_common) prepared.&#34;</span>  
+   )  
+   print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Baseline simulation ran for </span><span style="color:#e6db74">{</span>max_time_baseline<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> seconds.&#34;</span>)  
+   print(  
+      <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Common evaluation time points range from </span><span style="color:#e6db74">{</span>t_eval_common[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s to </span><span style="color:#e6db74">{</span>t_eval_common[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s with </span><span style="color:#e6db74">{</span>len(t_eval_common)<span style="color:#e6db74">}</span><span style="color:#e6db74"> points.&#34;</span>  
+   )
+
+   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">evaluate_model_delta_i</span>(parameter_sample):  
+      <span style="color:#e6db74">&#34;&#34;&#34;  
+</span><span style="color:#e6db74">      Runs the PyBaMM SPMe model and calculates the combined difference metric Delta_i 
+</span><span style="color:#e6db74">      with the baseline voltage curve.
+</span><span style="color:#e6db74">      Delta_i = delta_p + delta_s + delta_r  
+</span><span style="color:#e6db74">      where:  
+</span><span style="color:#e6db74">         delta_p: Position difference (mean_run - mean_baseline)  
+</span><span style="color:#e6db74">         delta_s: Scale difference ((max_run - min_run) - (max_baseline - min_baseline))  
+</span><span style="color:#e6db74">         delta_r: Shape difference (RMSE(run, baseline))  
+</span><span style="color:#e6db74">      Parameters:  
+</span><span style="color:#e6db74">         parameter_sample (np.array): Parameter sample generated by SALib.  
+</span><span style="color:#e6db74">      Returns:  
+</span><span style="color:#e6db74">         float: Combined difference metric Delta_i for the voltage curve.  
+</span><span style="color:#e6db74">      &#34;&#34;&#34;</span>  
+      model_run <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>lithium_ion<span style="color:#f92672">.</span>SPMe()  
+      param_run <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>ParameterValues(<span style="color:#e6db74">&#34;Chen2020&#34;</span>) <span style="color:#75715e"># Start with fresh default parameters each time</span>
+
+      current_params <span style="color:#f92672">=</span> {}
+      <span style="color:#66d9ef">for</span> i, name <span style="color:#f92672">in</span> enumerate(problem[<span style="color:#e6db74">&#34;names&#34;</span>]):
+         current_params[name] <span style="color:#f92672">=</span> parameter_sample[i]
+
+      <span style="color:#66d9ef">try</span>:
+         param_run<span style="color:#f92672">.</span>update(current_params)
+         sim_run <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Simulation(
+               model_run, experiment<span style="color:#f92672">=</span>experiment_baseline, parameter_values<span style="color:#f92672">=</span>param_run
+         )
+         sol_run <span style="color:#f92672">=</span> sim_run<span style="color:#f92672">.</span>solve(t_eval<span style="color:#f92672">=</span>t_eval_common)
+         voltage_run <span style="color:#f92672">=</span> sol_run[<span style="color:#e6db74">&#34;Terminal voltage [V]&#34;</span>]<span style="color:#f92672">.</span>entries
+
+         <span style="color:#66d9ef">if</span> len(voltage_run) <span style="color:#f92672">&lt;</span> len(t_eval_common):
+               padding_value <span style="color:#f92672">=</span> (
+                  voltage_run[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+                  <span style="color:#66d9ef">if</span> len(voltage_run) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+                  <span style="color:#66d9ef">else</span> param_run[<span style="color:#e6db74">&#34;Lower voltage cut-off [V]&#34;</span>]
+               )
+               voltage_run_padded <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>full_like(t_eval_common, padding_value)
+               voltage_run_padded[: len(voltage_run)] <span style="color:#f92672">=</span> voltage_run
+               voltage_run <span style="color:#f92672">=</span> voltage_run_padded
+
+         <span style="color:#75715e"># Calculate delta_p (Position difference)</span>
+         delta_p <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(voltage_run) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>mean(voltage_baseline_interp)
+
+         <span style="color:#75715e"># Calculate delta_s (Scale difference)</span>
+         range_run <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(voltage_run) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(voltage_run)
+         range_baseline <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(voltage_baseline_interp) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(voltage_baseline_interp)
+         delta_s <span style="color:#f92672">=</span> range_run <span style="color:#f92672">-</span> range_baseline
+
+         <span style="color:#75715e"># Calculate delta_r (Shape difference - RMSE)</span>
+         delta_r <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>mean((voltage_run <span style="color:#f92672">-</span> voltage_baseline_interp) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>))
+
+         <span style="color:#75715e"># Calculate combined difference metric Delta_i</span>
+         <span style="color:#75715e"># Note: Direct summation might lead to one term dominating due to different scales.</span>
+         <span style="color:#75715e"># Weighting or normalization could be considered, but direct summation is used as per current requirement.</span>
+         delta_i <span style="color:#f92672">=</span> delta_p <span style="color:#f92672">+</span> delta_s <span style="color:#f92672">+</span> delta_r
+
+         <span style="color:#75715e"># print(f&#34;Run with {current_params}, d_p={delta_p:.3f}, d_s={delta_s:.3f}, d_r={delta_r:.3f}, Delta_i={delta_i:.3f}&#34;)</span>
+         <span style="color:#66d9ef">return</span> delta_i
+
+      <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+         <span style="color:#75715e"># print(f&#34;Error during simulation with params {current_params}: {e}&#34;)</span>
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1e6</span>  <span style="color:#75715e"># A large penalty value</span>
+</code></pre></div><h4 id="sensitivity-analysis">Sensitivity Analysis</h4>
+<p>The simulation results are input into SALib&rsquo;s Sobol analysis module to calculate sensitivity indicators such as the first-order Sobol index (main effect index) and total Sobol index (total effect index) for each parameter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#f92672">from</span> SALib.analyze <span style="color:#f92672">import</span> sobol
+
+   <span style="color:#75715e"># Perform Sobol analysis</span>
+   <span style="color:#75715e"># Y_outputs should be the actual output results array from the previous simulation step</span>
+   <span style="color:#75715e"># Note: Handle NaN values in Y_outputs if they can occur during simulation</span>
+   <span style="color:#75715e"># Y_outputs_cleaned = Y_outputs[~np.isnan(Y_outputs)]</span>
+   <span style="color:#75715e"># param_values_cleaned = param_values[~np.isnan(Y_outputs)] </span>
+   <span style="color:#75715e"># If Y_outputs is cleaned, the corresponding param_values also need to be cleaned, </span>
+   <span style="color:#75715e"># but this would break the Saltelli sample structure.</span>
+   <span style="color:#75715e"># A better approach is to assign a reasonable penalty value for failed simulations </span>
+   <span style="color:#75715e"># instead of NaN to maintain sample integrity.</span>
+   Si <span style="color:#f92672">=</span> sobol<span style="color:#f92672">.</span>analyze(problem, Y_outputs, calc_second_order<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, print_to_console<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+
+   <span style="color:#75715e"># Extract first-order and total effect indices</span>
+   S1_indices <span style="color:#f92672">=</span> Si[<span style="color:#e6db74">&#39;S1&#39;</span>]
+   ST_indices <span style="color:#f92672">=</span> Si[<span style="color:#e6db74">&#39;ST&#39;</span>]
+   
+   print(<span style="color:#e6db74">&#34;First-order Sobol indices (S1):&#34;</span>)
+   <span style="color:#66d9ef">for</span> name, s1_val <span style="color:#f92672">in</span> zip(problem[<span style="color:#e6db74">&#39;names&#39;</span>], S1_indices):
+      print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;- </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>s1_val<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+
+   print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">nTotal Sobol indices (ST):&#34;</span>)
+   <span style="color:#66d9ef">for</span> name, st_val <span style="color:#f92672">in</span> zip(problem[<span style="color:#e6db74">&#39;names&#39;</span>], ST_indices):
+      print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;- </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>st_val<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+
+   <span style="color:#75715e"># If calc_second_order=True, second-order indices Si[&#39;S2&#39;] and </span>
+   <span style="color:#75715e"># corresponding parameter pairs Si[&#39;S2_conf&#39;] can also be obtained.</span>
+</code></pre></div><h4 id="results-visualization">Results Visualization</h4>
+<p>The final calculation results are shown in the figures below:<br>
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/imgsobol_s1_st_indices_delta_i.png" alt="sobol_s1_st_indices_delta_i.png|525"><br>
+<img src="https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/imgsobol_s2_heatmap_delta_i.png" alt="sobol_s2_heatmap_delta_i.png|475"></p>
+<ol>
+<li><strong>Key Parameter Sensitivity</strong>: Some parameters (e.g., <code>Positive electrode thickness</code>, <code>Negative electrode thickness</code>) exhibit the highest S1 and ST values, indicating they have the most significant impact on the model output and are core factors requiring precise control in design and manufacturing.</li>
+<li><strong>Parameter Interaction Effects</strong>: The S2 heatmap shows strong S2 values between specific parameter pairs (e.g., <code>Positive electrode thickness</code> and <code>Negative electrode thickness</code>), indicating significant interaction effects between these parameters.</li>
+</ol>
+<p>Relevant literature also indicates that battery geometric parameters (especially electrode thickness) have a significant impact on key performance indicators such as capacity and power density.</p>
+<ul>
+<li><a href="http://arxiv.org/pdf/2504.05924.pdf">A Control-Oriented Simplified Single Particle Model with Grouped Parameter and Sensitivity Analysis for Lithium-Ion Batteries (2025)</a> used Sobol sensitivity analysis to reduce the parameter set of SPM/SPMe from 9 to 6 highly sensitive parameters, with geometric parameters like electrode thickness among them.</li>
+<li><a href="https://arxiv.org/abs/2004.09668">Global Sensitivity Methods for Design of Experiments in Lithium-ion Battery Context (2020)</a> also confirmed the importance of geometric parameters in battery performance modeling and experimental design.</li>
+</ul>
+<p>The above example can be further improved by increasing the number of parameters analyzed, refining the sampling range of parameters, increasing the number of samples, and optimizing the difference quantification method.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/en/tags/parameter-identification/" rel="tag">Parameter Identification</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/en/tags/sensitivity-analysis/" rel="tag">Sensitivity Analysis</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 HUA Guangbin.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

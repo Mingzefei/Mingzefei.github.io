@@ -2,6 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mingzefei.github.io/en/posts/sensitivity_analysis/</loc>
+    <lastmod>2025-05-17T19:22:06+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/en/</loc>
+    <lastmod>2025-05-17T19:22:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/"
+                />
+  </url><url>
+    <loc>https://mingzefei.github.io/en/tags/parameter-identification/</loc>
+    <lastmod>2025-05-17T19:22:06+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/en/posts/</loc>
+    <lastmod>2025-05-17T19:22:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/posts/"
+                />
+  </url><url>
+    <loc>https://mingzefei.github.io/en/tags/sensitivity-analysis/</loc>
+    <lastmod>2025-05-17T19:22:06+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/en/tags/</loc>
+    <lastmod>2025-05-17T19:22:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/tags/"
+                />
+  </url><url>
     <loc>https://mingzefei.github.io/en/tags/academic/</loc>
     <lastmod>2024-10-01T21:10:13+08:00</lastmod>
     <xhtml:link
@@ -28,47 +76,11 @@
                 href="https://mingzefei.github.io/en/tags/code/"
                 />
   </url><url>
-    <loc>https://mingzefei.github.io/en/</loc>
-    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mingzefei.github.io/en/"
-                />
-  </url><url>
-    <loc>https://mingzefei.github.io/en/posts/</loc>
-    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mingzefei.github.io/en/posts/"
-                />
-  </url><url>
     <loc>https://mingzefei.github.io/en/posts/sci_proj_organization/</loc>
     <lastmod>2024-10-01T21:10:13+08:00</lastmod>
   </url><url>
-    <loc>https://mingzefei.github.io/en/tags/</loc>
-    <lastmod>2024-10-01T21:10:13+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mingzefei.github.io/en/tags/"
-                />
+    <loc>https://mingzefei.github.io/en/posts/scientific_plotting/</loc>
+    <lastmod>2024-07-12T16:07:07+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/en/posts/siesta_install/</loc>
     <lastmod>2023-03-20T23:03:47+08:00</lastmod>
@@ -85,6 +97,12 @@
                 hreflang="en"
                 href="https://mingzefei.github.io/en/tags/tool/"
                 />
+  </url><url>
+    <loc>https://mingzefei.github.io/en/tags/folklore/</loc>
+    <lastmod>2022-11-28T21:45:50+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/en/posts/su_shi_xuzhou_flood_control/</loc>
+    <lastmod>2022-11-28T21:45:50+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/en/about/about/</loc>
     <lastmod>2022-11-04T09:55:57+08:00</lastmod>
