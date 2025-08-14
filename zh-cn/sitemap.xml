@@ -2,8 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/code/</loc>
+    <lastmod>2025-08-14T21:45:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mingzefei.github.io/en/tags/code/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://mingzefei.github.io/zh-cn/tags/code/"
+                />
+  </url><url>
     <loc>https://mingzefei.github.io/zh-cn/</loc>
-    <lastmod>2025-05-19T21:27:32+08:00</lastmod>
+    <lastmod>2025-08-14T21:45:07+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -16,7 +29,7 @@
                 />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/posts/</loc>
-    <lastmod>2025-05-19T21:27:32+08:00</lastmod>
+    <lastmod>2025-08-14T21:45:07+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -28,11 +41,8 @@
                 href="https://mingzefei.github.io/zh-cn/posts/"
                 />
   </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/posts/pybamm_main/</loc>
-    <lastmod>2025-05-19T21:27:32+08:00</lastmod>
-  </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/</loc>
-    <lastmod>2025-05-17T19:22:06+08:00</lastmod>
+    <lastmod>2025-08-14T21:45:07+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -43,6 +53,21 @@
                 hreflang="zh-cn"
                 href="https://mingzefei.github.io/zh-cn/tags/"
                 />
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/wsl2-%E6%95%B0%E6%8D%AE%E6%8A%A2%E6%95%91/</loc>
+    <lastmod>2025-08-14T21:45:07+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/wsl2%E6%95%85%E9%9A%9C%E4%BF%AE%E5%A4%8D/</loc>
+    <lastmod>2025-08-14T21:45:07+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2025-08-14T21:45:07+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/tags/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D/</loc>
+    <lastmod>2025-08-14T21:45:07+08:00</lastmod>
+  </url><url>
+    <loc>https://mingzefei.github.io/zh-cn/posts/pybamm_main/</loc>
+    <lastmod>2025-05-19T21:27:32+08:00</lastmod>
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/%E5%85%A8%E5%B1%80%E7%81%B5%E6%95%8F%E6%80%A7%E5%88%86%E6%9E%90/</loc>
     <lastmod>2025-05-17T19:22:06+08:00</lastmod>
@@ -70,19 +95,6 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://mingzefei.github.io/zh-cn/tags/academic/"
-                />
-  </url><url>
-    <loc>https://mingzefei.github.io/zh-cn/tags/code/</loc>
-    <lastmod>2024-07-12T08:07:07+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mingzefei.github.io/en/tags/code/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://mingzefei.github.io/zh-cn/tags/code/"
                 />
   </url><url>
     <loc>https://mingzefei.github.io/zh-cn/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
