@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> - Mingzf 的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/zh-cn" title="Mingzf 的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Mingzf 的博客</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/posts">
+				
+				<span class="menu__text">日志</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/about">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/my_cv">
+				
+				<span class="menu__text">简历</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en">
+				
+				<span class="menu__text">English</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title"></h1>
+			
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-理念模块化与可重用性">1. 理念：模块化与可重用性</a></li>
+    <li><a href="#2-basebatterymodel所有电池模型的蓝图">2. <code>BaseBatteryModel</code>：所有电池模型的蓝图</a></li>
+    <li><a href="#3-具体电池模型dfnspm-及其他">3. 具体电池模型：DFN、SPM 及其他</a></li>
+    <li><a href="#4-子模型构建模块">4. 子模型：构建模块</a></li>
+    <li><a href="#5-定义新模型或修改现有模型">5. 定义新模型或修改现有模型</a></li>
+    <li><a href="#6-设计原理---总结">6. 设计原理 - 总结</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="pybamm-核心子系统模型-models---构建电池世界的蓝图">PyBaMM 核心子系统：模型 (Models) - 构建电池世界的蓝图</h1>
+<p><strong>返回主目录:</strong> <a href="./pybamm_main.md">PyBaMM 项目剖析</a>
+<strong>上一节:</strong> <a href="./pybamm_expression_tree.md">表达式树 (Expression Tree)</a></p>
+<hr>
+<p>在探讨了表达式树奠定的符号基础之后，我们现在转向 PyBaMM 如何利用这个基础来构建<strong>模型 (Models)</strong>。<code>models</code> 模块（主要位于 <code>src/pybamm/models/</code>）是电池物理和化学栩栩如生的地方。它关乎将电池如何工作的概念性理解转化为 PyBaMM 可以求解的一组具体的数学方程。</p>
+<h2 id="1-理念模块化与可重用性">1. 理念：模块化与可重用性</h2>
+<p>电池是复杂的系统。一个完整的物理模型可能涉及电化学、热力学、力学和降解现象。整体处理这个问题对于开发、测试和定制来说将是一场噩梦。</p>
+<p>PyBaMM 的作者为其模型采用了一种<strong>模块化设计理念</strong>。其核心思想是：</p>
+<ul>
+<li><strong>分解：</strong> 一个完整的电池模型（如 Doyle-Fuller-Newman, DFN, 或单粒子模型, SPM）被分解成更小、更易于管理的<strong>子模型 (submodels)</strong>。每个子模型描述一个特定的物理过程或组件（例如，电解质扩散、电极动力学、热效应、颗粒力学）。</li>
+<li><strong>标准化接口：</strong> 子模型被设计为具有相对标准的输入和输出，允许它们以即插即用方式组合。</li>
+<li><strong>可重用性：</strong> 一个定义良好的子模型（例如，用于电解质中菲克扩散的子模型）可以在不同的主要电池模型中重用。</li>
+<li><strong>定制化：</strong> 用户可以轻松地用自定义子模型替换默认子模型（例如，实现新的降解机制），而无需更改主模型结构的其余部分。</li>
+</ul>
+<p>这种方法显著增强了 PyBaMM 的灵活性和可扩展性。</p>
+<h2 id="2-basebatterymodel所有电池模型的蓝图">2. <code>BaseBatteryModel</code>：所有电池模型的蓝图</h2>
+<p>模型系统的核心是 <code>pybamm.BaseBatteryModel</code> 类 (位于 <code>src/pybamm/models/base_battery_model.py</code>)。这个抽象基类充当 PyBaMM 中所有特定电池模型的蓝图。它本身不定义任何特定的物理特性，但它确立了构建电池模型及其控制方程组装的<strong>结构和过程</strong>。</p>
+<p><strong>为什么需要 <code>BaseBatteryModel</code>？</strong></p>
+<ul>
+<li><strong>一致性：</strong> 它确保所有电池模型，无论其具体物理特性如何（例如，铅酸电池与锂离子电池，DFN 与 SPM），在定义变量、方程、边界条件和初始条件时都遵循一致的结构。</li>
+<li><strong>编排：</strong> 它通过以预定义的顺序调用其组成子模型的方法来编排完整模型的构建。</li>
+<li><strong>集中存储：</strong> 它充当定义模型的所有符号方程（<code>rhs</code>、<code>algebraic</code>、<code>initial_conditions</code>、<code>boundary_conditions</code>、<code>variables</code>）的中央存储库。</li>
+</ul>
+<p><strong><code>BaseBatteryModel</code> 的主要职责和工作流程：</strong></p>
+<ol>
+<li><strong>初始化 (<code>__init__</code>)</strong>：接受一个 <code>name</code> 和一个 <code>options</code> 字典。<code>options</code> 字典至关重要，因为它允许用户选择不同的子模型或指定要包含/排除的某些物理效应（例如，<code>options={&quot;thermal&quot;: &quot;lumped&quot;}</code> vs <code>options={&quot;thermal&quot;: &quot;x-full&quot;}</code>）。</li>
+<li><strong>子模型实例化</strong>：根据提供的 <code>options</code>，<code>BaseBatteryModel</code>（或其具体子类，如 <code>lithium_ion.BaseModel</code>）实例化所选的子模型。例如，如果 <code>options[&quot;particle&quot;]</code> 是 &ldquo;Fickian diffusion&rdquo;，它将创建一个菲克扩散颗粒子模型的实例。</li>
+<li><strong>构建模型 (<code>_build_model</code> 及相关方法)：</strong> 这是奇迹发生的地方。<code>BaseBatteryModel</code> 系统地调用其子模型的方法以获取相关的方程和变量：
+<ul>
+<li><code>get_fundamental_variables()</code>：每个子模型定义其基本变量（例如，浓度、电势）。</li>
+<li><code>get_coupled_variables()</code>：子模型定义可能依赖于其他子模型变量的变量。</li>
+<li><code>set_rhs()</code>：子模型为其 ODE 定义右侧项（时间导数）。</li>
+<li><code>set_algebraic()</code>：子模型定义其代数约束。</li>
+<li><code>set_boundary_conditions()</code>：子模型为 PDE 定义边界条件。</li>
+<li><code>set_initial_conditions()</code>：子模型定义其变量的初始状态。</li>
+<li><code>set_events()</code>：子模型可以定义可能终止仿真的事件（例如，电压截止）。</li>
+</ul>
+</li>
+<li><strong>存储方程：</strong> 所有这些符号方程（它们是来自表达式树的 PyBaMM <code>Symbol</code> 对象）都被收集并存储在 <code>BaseBatteryModel</code> 实例内的字典中（例如，<code>self.rhs</code>、<code>self.algebraic</code>、<code>self.variables</code>）。</li>
+</ol>
+<p>从本质上讲，<code>BaseBatteryModel</code> 扮演着指挥家的角色，引导每个子模型（音乐家）为整个交响乐（完整的模型方程组）贡献自己的部分。</p>
+<h2 id="3-具体电池模型dfnspm-及其他">3. 具体电池模型：DFN、SPM 及其他</h2>
+<p>PyBaMM 附带了几个预构建的电池模型，最著名的是锂离子化学模型：</p>
+<ul>
+<li>
+<p><strong><code>pybamm.lithium_ion.DFN</code> (Doyle-Fuller-Newman 模型)：</strong> (例如，在 <code>src/pybamm/models/lithium_ion/dfn.py</code> 中)</p>
+<ul>
+<li>一个综合模型，通常包括电解质中的扩散、固体颗粒中的扩散（通常假设球形对称）以及电化学反应的 Butler-Volmer 动力学。</li>
+<li>它继承自 <code>pybamm.lithium_ion.BaseModel</code>，而后者又继承自 <code>BaseBatteryModel</code>。</li>
+<li>其 <code>__init__</code> 方法调用 <code>super().__init__(options, name)</code>，然后设置构成 DFN 的特定子模型组合。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>pybamm.lithium_ion.SPM</code> (单粒子模型)：</strong> (例如，在 <code>src/pybamm/models/lithium_ion/spm.py</code> 中)</p>
+<ul>
+<li>一个简化模型，假设整个电极的行为类似于单个代表性粒子，在许多情况下忽略了电解质动力学。</li>
+<li>它也继承自 <code>pybamm.lithium_ion.BaseModel</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong><code>options</code> 字典：定制的关键</strong></p>
+<p>当你创建一个模型实例时，例如 <code>model = pybamm.lithium_ion.DFN(options={&quot;thermal&quot;: &quot;x-full&quot;})</code>，<code>options</code> 字典会通过模型层次结构向下传递。像 <code>DFN</code> 这样的具体模型及其子模型使用这些选项来决定：</p>
+<ul>
+<li>要包括哪些特定的物理效应（例如，热效应、颗粒应力、SEI 生长）。</li>
+<li>对特定现象使用哪种数学公式（例如，颗粒中的“菲克扩散”与“均匀”浓度）。</li>
+</ul>
+<p>这种 <code>options</code> 机制是 PyBaMM 灵活性的基石。它允许用户轻松探索不同建模假设的影响，而无需编写全新的模型类。</p>
+<h2 id="4-子模型构建模块">4. 子模型：构建模块</h2>
+<p>子模型是定义物理特性的真正主力军。它们通常位于 <code>src/pybamm/models/submodels/</code> 之类的目录中。每个子模型都专注于电池行为的特定方面。</p>
+<p><strong>子模型类别示例：</strong></p>
+<ul>
+<li><code>particle/</code>：电极颗粒内的固相扩散（例如，<code>fickian_diffusion.py</code>、<code>uniform_profile.py</code>）。</li>
+<li><code>electrolyte_conductivity/</code>：电解质中的离子传输（例如，<code>base_electrolyte_conductivity.py</code>、<code>full_conductivity.py</code>）。</li>
+<li><code>electrode_kinetics/</code>：用于电荷转移反应的 Butler-Volmer 或 Tafel 动力学（例如，<code>base_kinetics.py</code>）。</li>
+<li><code>thermal/</code>：生热和散热（例如，<code>lumped.py</code>、<code>x_full.py</code>）。</li>
+<li><code>porosity/</code>：由于反应或降解引起的孔隙率变化。</li>
+<li><code>interface/</code>：SEI 层生长、锂析出等。</li>
+</ul>
+<p><strong>典型子模型的结构 (例如 <code>src/pybamm/models/submodels/particle/fickian_diffusion.py</code>)：</strong></p>
+<ul>
+<li>它继承自一个基础子模型类 (例如 <code>pybamm.particle.BaseParticle</code>)。</li>
+<li><code>get_fundamental_variables()</code>：定义诸如“X-平均负极颗粒浓度 [mol.m-3]”之类的变量。</li>
+<li><code>get_coupled_variables()</code>：可能根据平均浓度计算表面浓度之类的值。</li>
+<li><code>set_rhs(variables)</code>：定义颗粒内菲克扩散的 PDE，例如 <code>d(c_s)/dt = div(D_s * grad(c_s))</code>。这个方程将使用表达式树中的 <code>Symbol</code> 对象构建。</li>
+<li><code>set_boundary_conditions(variables)</code>：定义颗粒中心（对称性）和表面（与电流相关的通量）的边界条件。</li>
+<li><code>set_initial_conditions(variables)</code>：设置颗粒中的初始浓度分布。</li>
+</ul>
+<p>传递给这些方法的 <code>variables</code> 参数是一个字典，其中包含模型其他部分已定义的符号，从而允许子模型相互耦合。</p>
+<h2 id="5-定义新模型或修改现有模型">5. 定义新模型或修改现有模型</h2>
+<p>理解这种模块化结构是扩展 PyBaMM 的关键：</p>
+<ul>
+<li><strong>创建现有模型的新变体：</strong> 通常只需将不同的 <code>options</code> 传递给现有模型类即可。</li>
+<li><strong>引入新的物理现象：</strong> 通常需要编写一个新的子模型类。该类将定义其自己的变量和方程。然后，你需要修改现有的主模型类（或创建一个继承自 <code>BaseBatteryModel</code> 或更具体的基类如 <code>lithium_ion.BaseModel</code> 的新类），以在其 <code>_build_model</code> 过程中包含你的新子模型，并可能通过 <code>options</code> 字典中的新条目进行控制。</li>
+<li><strong>定义一个全新的电池模型类型（例如，针对不同的化学体系）：</strong> 你可能需要创建一个继承自 <code>BaseBatteryModel</code> 的新类，定义其特定的子模型组件，并管理它们之间的交互。</li>
+</ul>
+<h2 id="6-设计原理---总结">6. 设计原理 - 总结</h2>
+<p>PyBaMM 中的模型架构反映了一个清晰的策略：</p>
+<ul>
+<li><strong>分而治之：</strong> 将电池物理的复杂性分解为可管理的子模型单元。</li>
+<li><strong>促进可重用性：</strong> 设计子模型，使其可以在多种环境中使用。</li>
+<li><strong>通过选项实现定制：</strong> 允许用户轻松配置模型，而无需进行深层代码更改。</li>
+<li><strong>标准化构建过程：</strong> 使用 <code>BaseBatteryModel</code> 确保所有模型都以一致的方式构建并收集其方程。</li>
+</ul>
+<p>这种结构不仅使 PyBaMM 开箱即用功能强大，而且使其成为未来电池建模研究和开发的高度适应性框架。</p>
+<hr>
+<p><strong>下一步:</strong> <a href="./pybamm_parameters.md">参数 (Parameters)</a></p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			<aside class="sidebar">
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 HUA Guangbin.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

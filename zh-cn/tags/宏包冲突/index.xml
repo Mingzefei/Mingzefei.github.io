@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>宏包冲突 on Mingzf 的博客</title>
+    <link>https://mingzefei.github.io/zh-cn/tags/%E5%AE%8F%E5%8C%85%E5%86%B2%E7%AA%81/</link>
+    <description>Recent content in 宏包冲突 on Mingzf 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 21 Nov 2022 09:51:05 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/tags/%E5%AE%8F%E5%8C%85%E5%86%B2%E7%AA%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IOP Latex 模板的部分报错问题</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/iop_latex/</link>
+      <pubDate>Mon, 21 Nov 2022 09:51:05 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/iop_latex/</guid>
+      <description>要在英国物理学会（Institute of Physics, IOP）上发文章，使用官方提供的 Latex 模板编写，期间遇到如下问题，记录如下。 amsmath 和 iopart 不兼容 同时使用两个宏包</description>
+    </item>
+    
+  </channel>
+</rss>

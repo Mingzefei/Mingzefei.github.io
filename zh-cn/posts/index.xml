@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Mingzf 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 17 May 2025 19:22:06 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 May 2025 21:27:32 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PyBaMM 项目剖析</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_main/</link>
+      <pubDate>Mon, 19 May 2025 21:27:32 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_main/</guid>
+      <description>本系列文档旨在深入剖析 PyBaMM (Python Battery Mathematical Modelling) 开源项目的架构与核心功能实现。主要目标读者为希望深入理解 PyBaMM 内部机制、进行二次开发或贡献代码的科研与工程技术人</description>
+    </item>
+    
     <item>
       <title>利用灵敏性分析确定模型参数的敏感性</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E7%81%B5%E6%95%8F%E6%80%A7%E5%88%86%E6%9E%90/</link>
@@ -19,7 +28,7 @@
     <item>
       <title>科研绘图</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</link>
-      <pubDate>Fri, 12 Jul 2024 16:07:07 +0800</pubDate>
+      <pubDate>Fri, 12 Jul 2024 08:07:07 +0000</pubDate>
       
       <guid>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</guid>
       <description>一些原则 分为表示概念的示意图、表示结果的数据图表 数据图表 优先使用位置表示数量，其次是长度、面积 尽量不用饼图（除非必须表示占比） 颜色不是第一选</description>
@@ -135,11 +144,83 @@
     
     <item>
       <title></title>
-      <link>https://mingzefei.github.io/zh-cn/posts/pybamm%E9%A1%B9%E7%9B%AE/</link>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_discretisation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm%E9%A1%B9%E7%9B%AE/</guid>
-      <description></description>
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_discretisation/</guid>
+      <description>PyBaMM 核心子系统：空间方法与离散化 (Spatial Methods &amp;amp; Discretisations) 返回主目录: PyBaMM 项目剖析 上一节: 几何 (Geometry) 将电池模型的物理和化学原理通过表达式树和模型对象转化为数学方程组后</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_experiment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_experiment/</guid>
+      <description>PyBaMM 核心功能：实验 (Experiment) 返回主目录: PyBaMM 项目剖析 上一节: 仿真 (Simulation) PyBaMM 中的 Experiment 类 (位于 src/pybamm/experiment/experiment.py) 允许用户定义一系列操作步骤来模拟电池在特定条件下的行为，例如不同的充</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_expression_tree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_expression_tree/</guid>
+      <description>PyBaMM 核心子系统：表达式树 (Expression Tree) - 深入理解其设计与实现 返回主目录: PyBaMM 项目剖析 PyBaMM 的核心是表达式树 (Expression Tree)。它不仅仅是一个数据结构；它是 PyBaMM 用来理解</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_geometry/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_geometry/</guid>
+      <description>PyBaMM 几何 (Geometry) 模块详解 PyBaMM 中的几何模块 (src/pybamm/geometry/) 负责定义模型方程求解的空间区域（计算域）及其相关的坐标系统。它是连接符号模型与数值离散化的关键环节，为后续的</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_models/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_models/</guid>
+      <description>PyBaMM 核心子系统：模型 (Models) - 构建电池世界的蓝图 返回主目录: PyBaMM 项目剖析 上一节: 表达式树 (Expression Tree) 在探讨了表达式树奠定的符号基础之后，我们现在转向 PyBaMM 如何利用</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_parameters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_parameters/</guid>
+      <description>PyBaMM 核心子系统：参数 (Parameters) - 为模型注入生命 返回主目录: PyBaMM 项目剖析 上一节: 模型 (Models) 在 PyBaMM 中，符号化的模型方程 (通过表达式树构建) 和结构化的模型框架 (通过</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_plotting_and_processing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_plotting_and_processing/</guid>
+      <description>PyBaMM 核心功能：绘图与后处理 (Plotting and Processing) 返回主目录: PyBaMM 项目剖析 上一节: 实验 (Experiment) 在 PyBaMM 中，仿真结果的分析和可视化是理解模型行为和电池性能的关键环节。PyBa</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_simulation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_simulation/</guid>
+      <description>PyBaMM 核心功能：仿真 (Simulation) 返回主目录: PyBaMM 项目剖析 上一节: 求解器 (Solvers) PyBaMM 中的 Simulation 类是用户与模型、参数、求解器和实验进行交互的主要入口点。它封装了从设置模型和</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mingzefei.github.io/zh-cn/posts/pybamm_solvers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/pybamm_solvers/</guid>
+      <description>PyBaMM 核心子系统：数值求解器 (Solvers) 返回主目录: PyBaMM 项目剖析 上一节: 空间方法与离散化 (Spatial Methods &amp;amp; Discretisations) 在模型被成功离散化为一组常微分方程 (ODEs) 或微分代数方程 (DAEs) 之后，下</description>
     </item>
     
   </channel>

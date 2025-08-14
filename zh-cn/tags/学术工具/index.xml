@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>学术工具 on Mingzf 的博客</title>
+    <link>https://mingzefei.github.io/zh-cn/tags/%E5%AD%A6%E6%9C%AF%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 学术工具 on Mingzf 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 22 May 2023 23:05:15 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/tags/%E5%AD%A6%E6%9C%AF%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Latex2Word</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/latex2word/</link>
+      <pubDate>Mon, 22 May 2023 23:05:15 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/latex2word/</guid>
+      <description>从 LaTeX 到 Word：一个自动化转换工具 LaTeX 常用于学术和技术领域的文档排版，尤其适用于公式输入和交叉引用；并且，作为纯文本文件，tex 格式文件容易进</description>
+    </item>
+    
+  </channel>
+</rss>

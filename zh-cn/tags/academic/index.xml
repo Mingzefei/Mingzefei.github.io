@@ -6,11 +6,11 @@
     <description>Recent content in academic on Mingzf 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 12 Jul 2024 16:07:07 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/tags/academic/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Jul 2024 08:07:07 +0000</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/tags/academic/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>科研绘图</title>
       <link>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</link>
-      <pubDate>Fri, 12 Jul 2024 16:07:07 +0800</pubDate>
+      <pubDate>Fri, 12 Jul 2024 08:07:07 +0000</pubDate>
       
       <guid>https://mingzefei.github.io/zh-cn/posts/%E7%A7%91%E7%A0%94%E7%BB%98%E5%9B%BE/</guid>
       <description>一些原则 分为表示概念的示意图、表示结果的数据图表 数据图表 优先使用位置表示数量，其次是长度、面积 尽量不用饼图（除非必须表示占比） 颜色不是第一选</description>
@@ -32,15 +32,6 @@
       
       <guid>https://mingzefei.github.io/zh-cn/posts/sci_writing/</guid>
       <description>月初我写了一篇 paper 初稿。尽管这不是第一次写，但我依然觉得离预期目标还有很大差距。于是我把 Joshua Schimel 的 Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded 打印出来，仔细读了前</description>
-    </item>
-    
-    <item>
-      <title>IOP Latex 模板的部分报错问题</title>
-      <link>https://mingzefei.github.io/zh-cn/posts/iop_latex/</link>
-      <pubDate>Mon, 21 Nov 2022 09:51:05 +0800</pubDate>
-      
-      <guid>https://mingzefei.github.io/zh-cn/posts/iop_latex/</guid>
-      <description>要在英国物理学会（Institute of Physics, IOP）上发文章，使用官方提供的 Latex 模板编写，期间遇到如下问题，记录如下。 amsmath 和 iopart 不兼容 同时使用两个宏包</description>
     </item>
     
   </channel>

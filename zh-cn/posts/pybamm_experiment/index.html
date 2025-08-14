@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> - Mingzf 的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/zh-cn" title="Mingzf 的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Mingzf 的博客</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/posts">
+				
+				<span class="menu__text">日志</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/about">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/my_cv">
+				
+				<span class="menu__text">简历</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en">
+				
+				<span class="menu__text">English</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title"></h1>
+			
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-experiment-类的目的">1. <code>Experiment</code> 类的目的</a></li>
+    <li><a href="#2-定义实验步骤">2. 定义实验步骤</a>
+      <ul>
+        <li><a href="#21-字符串表示法">2.1. 字符串表示法</a></li>
+        <li><a href="#22-字典表示法">2.2. 字典表示法</a></li>
+        <li><a href="#23-周期和子实验">2.3. 周期和子实验</a></li>
+        <li><a href="#24-特殊指令">2.4. 特殊指令</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-experiment-类的内部工作原理">3. <code>Experiment</code> 类的内部工作原理</a></li>
+    <li><a href="#4-使用-experiment-的好处">4. 使用 <code>Experiment</code> 的好处</a></li>
+    <li><a href="#5-示例gitt-实验">5. 示例：GITT 实验</a></li>
+    <li><a href="#6-总结">6. 总结</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="pybamm-核心功能实验-experiment">PyBaMM 核心功能：实验 (Experiment)</h1>
+<p><strong>返回主目录:</strong> <a href="./pybamm_main.md">PyBaMM 项目剖析</a>
+<strong>上一节:</strong> <a href="./pybamm_simulation.md">仿真 (Simulation)</a></p>
+<hr>
+<p>PyBaMM 中的 <code>Experiment</code> 类 (位于 <code>src/pybamm/experiment/experiment.py</code>) 允许用户定义一系列操作步骤来模拟电池在特定条件下的行为，例如不同的充放电策略、恒压阶段、休息阶段，或者更复杂的驾驶循环和功率/电流曲线。</p>
+<h2 id="1-experiment-类的目的">1. <code>Experiment</code> 类的目的</h2>
+<p><code>Experiment</code> 类的主要目的是：</p>
+<ul>
+<li><strong>定义复杂操作序列</strong>: 用户可以通过简单的字符串表示法或直接使用字典列表来定义多步骤的实验。</li>
+<li><strong>模拟真实世界场景</strong>: 能够模拟电池的实际使用情况，如GITT（Galvanostatic Intermittent Titration Technique）、HPPC（Hybrid Pulse Power Characterization）、各种驾驶循环（如 US06、WLTP）等。</li>
+<li><strong>与 <code>Simulation</code> 类集成</strong>: <code>Experiment</code> 对象直接传递给 <code>Simulation</code> 类，由求解器按照定义的步骤执行。</li>
+<li><strong>灵活性</strong>: 支持基于时间、电压、电流、C倍率、SOC（State of Charge）等多种条件的终止和操作。</li>
+<li><strong>周期性操作</strong>: 可以定义重复的充放电循环。</li>
+</ul>
+<h2 id="2-定义实验步骤">2. 定义实验步骤</h2>
+<p>实验由一个或多个操作步骤组成。每个步骤通常定义了电池应如何操作（例如，恒流放电、恒压充电）以及该操作应持续多长时间或在什么条件下终止。</p>
+<h3 id="21-字符串表示法">2.1. 字符串表示法</h3>
+<p>最简单直观的方式是使用字符串列表来定义实验。PyBaMM 会解析这些字符串来创建相应的操作指令。</p>
+<p><strong>基本语法</strong>: <code>&quot;Operation at X unit for Y time_unit or until Z condition&quot;</code></p>
+<ul>
+<li><strong>Operation</strong>: <code>Discharge</code>, <code>Charge</code>, <code>Rest</code>, <code>Hold</code> (通常指恒压)。</li>
+<li><strong>X unit</strong>: 操作的幅度和单位。
+<ul>
+<li>电流: <code>A</code> (安培), <code>mA</code> (毫安), <code>C-rate</code> (C倍率)。例如 <code>1 A</code>, <code>C/10</code>, <code>0.5C</code>。</li>
+<li>功率: <code>W</code> (瓦特), <code>mW</code> (毫瓦)。例如 <code>10 W</code>。</li>
+<li>电压 (用于 <code>Hold</code>): <code>V</code> (伏特), <code>mV</code> (毫伏)。例如 <code>4.2 V</code>。</li>
+</ul>
+</li>
+<li><strong>Y time_unit</strong>: 操作的持续时间。
+<ul>
+<li><code>seconds</code> (或 <code>s</code>), <code>minutes</code> (或 <code>min</code>), <code>hours</code> (或 <code>hr</code>)。</li>
+</ul>
+</li>
+<li><strong>Z condition</strong> (可选的终止条件):
+<ul>
+<li>电压: <code>V</code> (伏特)。例如 <code>until 3.0 V</code>。</li>
+<li>电流 (用于恒压阶段): <code>A</code>, <code>mA</code>, <code>C-rate</code>。例如 <code>until C/50</code>。</li>
+<li>SOC: <code>%</code>。例如 <code>until 80% SOC</code>。</li>
+<li>温度: <code>degC</code> (摄氏度)。例如 <code>until 45 degC</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>示例</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pybamm
+
+experiment_str <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Experiment(
+    [
+        <span style="color:#e6db74">&#34;Discharge at C/10 for 10 hours or until 3.3 V&#34;</span>,  <span style="color:#75715e"># 恒流放电</span>
+        <span style="color:#e6db74">&#34;Rest for 1 hour&#34;</span>,                               <span style="color:#75715e"># 静置</span>
+        <span style="color:#e6db74">&#34;Charge at 1 A until 4.1 V&#34;</span>,                     <span style="color:#75715e"># 恒流充电</span>
+        <span style="color:#e6db74">&#34;Hold at 4.1 V until C/50&#34;</span>,                      <span style="color:#75715e"># 恒压充电，直到电流小于C/50</span>
+        <span style="color:#e6db74">&#34;Discharge at 1C until 2.5 V&#34;</span>,
+        (<span style="color:#e6db74">&#34;Hold at 2.5V for 1 hour&#34;</span>,                     <span style="color:#75715e"># 也可以用元组</span>
+         <span style="color:#e6db74">&#34;Charge at C/2 until 4.2V&#34;</span>,
+         <span style="color:#e6db74">&#34;Hold at 4.2V until C/100&#34;</span>), <span style="color:#75715e"># 元组可用于组织相关步骤序列，实际的重复周期定义见 2.3 节的 &#39;(...)*N&#39; 语法</span>
+    ]
+)
+</code></pre></div><h3 id="22-字典表示法">2.2. 字典表示法</h3>
+<p>或者，实验也可以通过一个字典列表来定义，每个字典代表一个操作步骤。这种方式提供了更精细的控制，但相对繁琐一些。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">experiment_dict <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Experiment(
+    [
+        {
+            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;discharge&#34;</span>,
+            <span style="color:#e6db74">&#34;value&#34;</span>: <span style="color:#ae81ff">0.1</span>, <span style="color:#e6db74">&#34;unit&#34;</span>: <span style="color:#e6db74">&#34;C-rate&#34;</span>,
+            <span style="color:#e6db74">&#34;duration&#34;</span>: <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#34;duration_unit&#34;</span>: <span style="color:#e6db74">&#34;hours&#34;</span>,
+            <span style="color:#e6db74">&#34;termination&#34;</span>: {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;voltage&#34;</span>, <span style="color:#e6db74">&#34;value&#34;</span>: <span style="color:#ae81ff">3.3</span>, <span style="color:#e6db74">&#34;unit&#34;</span>: <span style="color:#e6db74">&#34;V&#34;</span>}
+        },
+        {
+            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;rest&#34;</span>,
+            <span style="color:#e6db74">&#34;duration&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;duration_unit&#34;</span>: <span style="color:#e6db74">&#34;hours&#34;</span>
+        },
+        <span style="color:#75715e"># ... 其他步骤</span>
+    ]
+)
+</code></pre></div><p>PyBaMM 内部会将字符串表示法转换为这种字典结构进行处理。</p>
+<h3 id="23-周期和子实验">2.3. 周期和子实验</h3>
+<p>可以通过将步骤列表嵌套在元组中并后跟一个数字来定义重复周期。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">experiment_cycling <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Experiment(
+    [
+        <span style="color:#e6db74">&#34;Charge at 1C until 4.2V&#34;</span>,
+        <span style="color:#e6db74">&#34;Hold at 4.2V until C/50&#34;</span>,
+        (
+            <span style="color:#e6db74">&#34;Discharge at 1C until 3.0V&#34;</span>,
+            <span style="color:#e6db74">&#34;Charge at 1C until 4.2V&#34;</span>,
+            <span style="color:#e6db74">&#34;Hold at 4.2V until C/50&#34;</span>,
+        ) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># 将这个放电-充电-恒压序列重复10次</span>
+        <span style="color:#e6db74">&#34;Rest for 30 minutes&#34;</span>
+    ]
+)
+</code></pre></div><h3 id="24-特殊指令">2.4. 特殊指令</h3>
+<ul>
+<li><strong><code>period</code></strong>: 可以为每个操作步骤或整个实验指定 <code>period</code> 参数，这定义了求解器保存数据点的时间间隔。例如：<code>&quot;Discharge at 1 A for 1 hour period 60 s&quot;</code> (每60秒保存一次数据)。</li>
+<li><strong><code>temperature</code></strong>: 可以为每个步骤或整个实验设置环境温度。例如：<code>&quot;Discharge at C/5 for 2 hours temperature 25 degC&quot;</code>。</li>
+<li><strong><code>events</code> (记录事件)</strong>: 用户可以定义在实验过程中需要监测和记录的特定条件。这些事件的发生不会终止当前的实验步骤（步骤终止由时长或 <code>until</code> 条件控制），但其发生的时间和状态会被记录在 <code>Solution</code> 对象中，便于后续分析。
+<ul>
+<li><strong>全局记录事件</strong>: 在 <code>Experiment</code> 初始化时，可以通过 <code>events</code> 参数（一个字符串列表）指定对整个实验生效的记录事件。列表中的每个字符串应对应模型中的一个变量或一个表达式，当该表达式变为非零时，事件被记录。例如: <code>events=[&quot;Minimum negative particle surface concentration [mol.m-3] &lt; 0.001&quot;, &quot;Cell temperature [degC] &gt; 45&quot;]</code>。</li>
+<li><strong>步骤特定记录事件 (通过字典定义)</strong>: 在使用字典列表定义实验步骤时，每个步骤的字典可以包含一个 <code>\&quot;events\&quot;</code> 键。其值是一个字符串列表，定义了该步骤中需要额外监测和记录的事件。列表中的每个字符串应对应模型中的一个变量或一个表达式，当该表达式变为非零时，事件被记录。例如: <code>{\&quot;type\&quot;: \&quot;discharge\&quot;, ..., \&quot;events\&quot;: [\&quot;State of charge [%] &lt; 20.5\&quot;, \&quot;Cell temperature [degC] &gt; 44.5\&quot;]}</code>。</li>
+<li><strong>注意</strong>: 目前，在标准的实验步骤字符串表示法中直接嵌入步骤特定的记录事件定义并不常见或支持。推荐使用字典格式定义实验步骤，或使用全局记录事件，以实现对事件记录的精细控制。</li>
+</ul>
+</li>
+<li><strong><code>drive_cycles</code></strong>: 可以加载外部文件（如CSV）作为驱动循环，其中包含时间序列的电流、功率或电压数据。例如：<code>&quot;Drive cycle from file: drive_cycle.csv&quot;</code>。文件应包含两列：时间 (s) 和对应的值 (A, W, 或 V)。</li>
+</ul>
+<h2 id="3-experiment-类的内部工作原理">3. <code>Experiment</code> 类的内部工作原理</h2>
+<ol>
+<li><strong>解析</strong>: 当创建 <code>Experiment</code> 对象时，输入的字符串列表或字典列表会被解析成一个标准的内部操作指令列表。每个指令都是一个字典，包含了操作类型、值、单位、持续时间、终止条件等详细信息。</li>
+<li><strong>转换</strong>: 这些操作指令会进一步转换为求解器可以理解的格式。例如，“C-rate”会根据 <code>Simulation</code> 对象中提供的 <code>C_rate</code> 和标称容量转换为具体的电流值。</li>
+<li><strong>与求解器交互</strong>: 在 <code>sim.solve()</code> 过程中，<code>Simulation</code> 对象会按顺序将实验的每个步骤传递给求解器。
+<ul>
+<li>求解器根据当前步骤的定义（如恒流、恒压）来设置模型的边界条件或源项。</li>
+<li>求解器会监控该步骤的终止条件（例如，达到某个电压、持续时间结束、电流降至某个值）。</li>
+<li>一旦一个步骤的终止条件满足，求解器会停止，保存该步骤的解，然后 <code>Simulation</code> 对象会准备并启动实验中的下一个步骤，直到所有步骤完成或某个全局终止条件满足。</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-使用-experiment-的好处">4. 使用 <code>Experiment</code> 的好处</h2>
+<ul>
+<li><strong>标准化测试</strong>: 轻松实现标准的电池测试程序。</li>
+<li><strong>复杂场景模拟</strong>: 能够模拟复杂的实际应用场景，如电动汽车的驾驶循环。</li>
+<li><strong>参数敏感性分析</strong>: 结合参数集，可以研究不同操作条件下电池性能的变化。</li>
+<li><strong>模型验证</strong>: 通过将仿真结果与在相同实验条件下获得的实验数据进行比较来验证模型。</li>
+</ul>
+<h2 id="5-示例gitt-实验">5. 示例：GITT 实验</h2>
+<p>GITT 是一种常用的电化学技术，用于确定电极材料的化学扩散系数。它包括一系列短的恒流脉冲，然后是长时间的静置，以使浓度在电极内达到平衡。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># GITT 示例: 10个 C/20 的放电脉冲，每个持续6分钟，然后休息30分钟</span>
+<span style="color:#75715e"># 整个过程在电压低于3.0V时终止</span>
+gitt_experiment <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Experiment(
+    [
+        (<span style="color:#e6db74">&#34;Discharge at C/20 for 6 minutes&#34;</span>, <span style="color:#e6db74">&#34;Rest for 30 minutes&#34;</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>
+    ],
+    termination<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;3.0V&#34;</span>
+)
+
+<span style="color:#75715e"># model = pybamm.lithium_ion.DFN()</span>
+<span style="color:#75715e"># param = pybamm.ParameterValues(&#34;Chen2020&#34;)</span>
+<span style="color:#75715e"># sim = pybamm.Simulation(model, experiment=gitt_experiment, parameter_values=param, solver=pybamm.CasadiSolver())</span>
+<span style="color:#75715e"># sol = sim.solve()</span>
+<span style="color:#75715e"># sol.plot([</span>
+<span style="color:#75715e">#     &#34;Current [A]&#34;,</span>
+<span style="color:#75715e">#     &#34;Terminal voltage [V]&#34;,</span>
+<span style="color:#75715e">#     &#34;Electrolyte concentration [mol.m-3]&#34;,</span>
+<span style="color:#75715e">#     &#34;Negative particle surface concentration [mol.m-3]&#34;,</span>
+<span style="color:#75715e">#     &#34;Positive particle surface concentration [mol.m-3]&#34;,</span>
+<span style="color:#75715e"># ])</span>
+</code></pre></div><h2 id="6-总结">6. 总结</h2>
+<p>PyBaMM 的 <code>Experiment</code> 类为定义和执行复杂的电池操作序列提供了一个强大而灵活的工具。通过其直观的字符串表示法和对各种操作条件的支持，用户可以轻松地模拟从标准测试协议到定制驾驶循环的各种场景，从而深入了解电池在不同条件下的行为和性能。</p>
+<hr>
+<p><strong>下一步:</strong> <a href="./pybamm_plotting_and_processing.md">绘图与后处理 (Plotting &amp; Solution Processing)</a></p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			<aside class="sidebar">
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 HUA Guangbin.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

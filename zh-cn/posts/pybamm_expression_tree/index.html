@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> - Mingzf 的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/zh-cn" title="Mingzf 的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Mingzf 的博客</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/posts">
+				
+				<span class="menu__text">日志</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/about">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/my_cv">
+				
+				<span class="menu__text">简历</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en">
+				
+				<span class="menu__text">English</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title"></h1>
+			
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-为什么用符号驯服复杂性">1. “为什么”：用符号驯服复杂性</a></li>
+    <li><a href="#2-pybammsymbol通用语言">2. <code>pybamm.Symbol</code>：通用语言</a></li>
+    <li><a href="#3-角色阵容关键的-symbol-子类型">3. 角色阵容：关键的 <code>Symbol</code> 子类型</a></li>
+    <li><a href="#4-自动微分的魔力">4. 自动微分的魔力</a></li>
+    <li><a href="#5-从符号到数字casadi-连接">5. 从符号到数字：CasADi 连接</a></li>
+    <li><a href="#6-设计原理---总结">6. 设计原理 - 总结</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="pybamm-核心子系统表达式树-expression-tree---深入理解其设计与实现">PyBaMM 核心子系统：表达式树 (Expression Tree) - 深入理解其设计与实现</h1>
+<p><strong>返回主目录:</strong> <a href="./pybamm_main.md">PyBaMM 项目剖析</a></p>
+<hr>
+<p>PyBaMM 的核心是<strong>表达式树 (Expression Tree)</strong>。它不仅仅是一个数据结构；它是 PyBaMM 用来理解和操作电池行为复杂数学模型的符号语言。如果你想真正掌握 PyBaMM 的工作原理，或者希望扩展其功能，那么对表达式树的深入理解至关重要。</p>
+<h2 id="1-为什么用符号驯服复杂性">1. “为什么”：用符号驯服复杂性</h2>
+<p>电池模型是由相互关联的偏微分方程 (PDE)、常微分方程 (ODE) 和代数约束组成的网络。以一种既人类可读又易于数值求解的方式直接定义这些方程是一项艰巨的任务。手动推导这些系统的雅可比矩阵？那就更难了，而且极易出错。</p>
+<p>这就是以表达式树为代表的符号方法的闪光点。其核心思想是将每个数学实体——常数、变量、加法或梯度等运算——表示为一个对象。然后，这些对象可以像你在纸上书写它们一样组合起来，构建复杂的方程。</p>
+<p>个人认为，PyBaMM 的作者可能设想了一个这样的系统：</p>
+<ul>
+<li><strong>模型定义直观：</strong> 物理学家和电化学家应该能够以最小的阻力将其数学模型转换为代码，使用一种反映熟悉的数学符号的语法。</li>
+<li><strong>数学运算自动化：</strong> 诸如微分之类的繁琐且易错的任务应该由机器处理。</li>
+<li><strong>内置灵活性：</strong> 用另一个物理方程替换一个物理方程，或者添加一个新的项，不应该需要进行大规模的重写。</li>
+<li><strong>性能是数值求解的关键：</strong> 虽然 Python 非常适合定义模型，但求解模型的繁重工作需要快速完成。符号表示必须能够转换为高效的表达形式。</li>
+</ul>
+<p>位于 <code>src/pybamm/expression_tree/</code> 的表达式树是这些考虑的直接产物。</p>
+<h2 id="2-pybammsymbol通用语言">2. <code>pybamm.Symbol</code>：通用语言</h2>
+<p>表达式树的基石是 <code>pybamm.Symbol</code> 类 (位于 <code>src/pybamm/expression_tree/symbol.py</code>)。可以将其视为每个数学难题的抽象基础。无论是简单的数字、与时间相关的变量，还是复杂的空间算子，它都继承自 <code>Symbol</code>。</p>
+<p><strong>为什么需要一个通用的基类？</strong>
+这种设计为所有数学对象提供了一个通用的接口和一组预期的行为。它允许 PyBaMM 以多态的方式处理方程的不同部分。当 PyBaMM 处理一个方程时（例如，对其进行离散化或微分），它可以遍历 <code>Symbol</code> 对象的树，知道每个对象都会响应某些方法（例如用于微分的 <code>diff()</code> 或用于尝试获取数值的 <code>evaluate()</code>）。</p>
+<p><strong><code>Symbol</code> 的主要特征：</strong></p>
+<ul>
+<li><code>name</code>：用于识别和提高可读性。</li>
+<li><code>children</code>：一个元组，包含此符号操作的其他 <code>Symbol</code> 实例。对于 <code>a + b</code>，<code>Addition</code> 符号将以 <code>a</code> 和 <code>b</code> 作为其子节点。这就是形成“树”形结构的原因。</li>
+<li><code>domain</code>：指定此符号在电池中的有效区域（例如，“负极”、“隔膜”、“集流体”）。这对于空间离散化至关重要。</li>
+<li><strong>运算符重载：</strong> 这是可用性方面的一大创举。Python 的魔术方法，如 <code>__add__</code>、<code>__mul__</code>、<code>__neg__</code>，在 <code>Symbol</code> (或其子类) 中被重写。这意味着你可以编写 <code>c = a + b</code>，其中 <code>a</code> 和 <code>b</code> 是 <code>Symbol</code> 对象，Python 会自动创建一个新的 <code>Symbol</code> (具体来说，是一个 <code>pybamm.Addition</code> 对象) 来表示它们的和。这使得代码看起来非常像它所代表的数学表达式。例如：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pybamm
+a <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Scalar(<span style="color:#ae81ff">1</span>)
+b <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Scalar(<span style="color:#ae81ff">2</span>)
+c <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b 
+print(type(c)) <span style="color:#75715e"># 输出: &lt;class &#39;pybamm.expression_tree.binary_operators.Addition&#39;&gt;</span>
+</code></pre></div></li>
+</ul>
+<h2 id="3-角色阵容关键的-symbol-子类型">3. 角色阵容：关键的 <code>Symbol</code> 子类型</h2>
+<p>虽然 <code>Symbol</code> 是抽象父类，但其具体的子类赋予了表达式树强大的功能。以下是一些最重要的参与者：</p>
+<ul>
+<li>
+<p><strong>表示已知数和未知数：</strong></p>
+<ul>
+<li><code>Scalar(value)</code>：最简单的类型。表示一个固定的数值，如 <code>pybamm.Scalar(0)</code> 或 <code>pybamm.Scalar(3.14)</code>。</li>
+<li><code>Parameter(name)</code>：表示一个物理参数，在模型方程首次定义时其值是未知的（例如，“扩散系数 [m2.s-1]”）。其数值将在稍后的“参数化”步骤中提供。这种分离对于使用不同参数集运行同一模型或进行参数估计至关重要。</li>
+<li><code>InputParameter(name)</code>：与 <code>Parameter</code> 类似，但其值可以在仿真<em>期间</em>更改，通常用于外部控制，如施加的电流。</li>
+<li><code>Variable(name, domain)</code>：我们要解的未知数（例如，“电解质浓度 [mol.m-3]”）。这些是我们 DAE 系统 <code>f(t, y, y_dot) = 0</code> 中的 <code>y</code>。</li>
+<li><code>IndependentVariable</code> (及其子类 <code>Time</code>, <code>SpatialVariable</code>)：这些是我们的 <code>Variable</code> 所依赖的 <code>t</code>、<code>x</code>、<code>r</code> 等。<code>pybamm.Time()</code> 是 <code>t</code>，而 <code>pybamm.SpatialVariable(&quot;x&quot;, domain=[&quot;negative electrode&quot;, ...])</code> 定义了主要的空间坐标。</li>
+</ul>
+</li>
+<li>
+<p><strong>构建方程 - 运算符：</strong></p>
+<ul>
+<li><code>UnaryOperator(child)</code> 和 <code>BinaryOperator(left_child, right_child)</code>：它们本身分别是所有接受一个或两个 <code>Symbol</code> 输入的运算的基类。
+<ul>
+<li><code>UnaryOperator</code> 的示例：<code>Negation (-a)</code>、<code>AbsoluteValue(abs(a))</code>、<code>Gradient(grad(a))</code>、<code>Divergence(div(a))</code>。</li>
+<li><code>BinaryOperator</code> 的示例：<code>Addition(a+b)</code>、<code>Subtraction(a-b)</code>、<code>Multiplication(a*b)</code>、<code>Division(a/b)</code>、<code>Power(a**b)</code>。</li>
+</ul>
+</li>
+<li>当你编写 <code>N = -D * pybamm.grad(c)</code> 时，PyBaMM 会在后台忙于创建 <code>Gradient</code>、<code>Multiplication</code> 和 <code>Negation</code> 对象，并将它们与 <code>D</code> 和 <code>c</code> 作为子节点连接起来。</li>
+</ul>
+</li>
+<li>
+<p><strong>函数：</strong></p>
+<ul>
+<li><code>Function(python_function, *children)</code>：允许将任意 Python 函数（如 <code>numpy.sin</code>）嵌入到表达式树中。</li>
+<li><code>SpecificFunction</code> 子类（例如 <code>Exponent</code>、<code>Logarithm</code>）：对于常见的数学函数，PyBaMM 通常使用特定的子类。这很重要，因为它允许 PyBaMM 知道这些函数的符号导数（例如，<code>pybamm.exp(u)</code> 相对于 <code>u</code> 的导数是 <code>pybamm.exp(u)</code>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>用于多域问题的结构符号：</strong></p>
+<ul>
+<li><code>Concatenation(*children)</code>：将定义在不同域上的符号连接成单个符号。例如，电解质浓度可能在负极、隔膜和正极上分段定义，然后连接起来。</li>
+<li><code>Broadcast(child, domain)</code>：获取在较小域（例如集流体）上定义的符号，并将其“广播”到较大域（例如整个电极），实质上使其在新域上空间恒定，但仍是符号结构的一部分。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-自动微分的魔力">4. 自动微分的魔力</h2>
+<p>表达式树最强大的功能之一是其执行符号微分的能力。每个 <code>Symbol</code> 对象都有一个 <code>diff(variable)</code> 方法。调用该方法时，它会遍历树并根据每个节点的类型应用链式法则和其他微分规则。</p>
+<p><strong>为什么这如此重要？</strong>
+许多 DAE 的数值求解器（尤其是隐式求解器）需要雅可比矩阵（控制方程相对于变量的偏导数矩阵）。对于复杂的电池模型，手动计算雅可比矩阵简直是一场噩梦。PyBaMM 可以自动且准确地完成这项工作。</p>
+<p>例如，如果有一个符号 <code>f</code> 定义为浓度 <code>c</code> 的平方 (<code>f = c**2</code>)，其中 <code>c</code> 是一个 <code>pybamm.Variable</code> 对象，那么调用 <code>f.diff(c)</code> 将返回一个新的 <code>Symbol</code> 树，这个树代表了 <code>2*c</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pybamm
+c <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>Variable(<span style="color:#e6db74">&#34;concentration&#34;</span>)
+f <span style="color:#f92672">=</span> c<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>
+dfdc <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>diff(c)
+print(dfdc) <span style="color:#75715e"># 输出: (2.0 * concentration)</span>
+</code></pre></div><p>每个 <code>Symbol</code> 子类中的 <code>_diff()</code> 方法实现了该符号类型的特定微分规则（例如，<code>Multiplication(u,v)._diff(variable)</code> 将返回 <code>u.diff(variable)*v + u*v.diff(variable)</code>）。</p>
+<h2 id="5-从符号到数字casadi-连接">5. 从符号到数字：CasADi 连接</h2>
+<p>虽然 PyBaMM 的内部表达式树非常适合定义模型和执行一些符号操作，但它并没有针对原始数值速度进行优化。为此，PyBaMM 明智地利用了 <strong>CasADi</strong>。</p>
+<p>CasADi 是一个强大的开源工具，用于符号计算和算法微分，可以从符号表达式生成高效的 C 代码。</p>
+<p><strong>工作流程：</strong></p>
+<ol>
+<li>你在 PyBaMM 中定义模型，创建一个 PyBaMM 表达式树。</li>
+<li>当需要求解时，PyBaMM 将其内部表达式树转换为 CasADi 的符号表示。每个 <code>Symbol</code> 都有一个 <code>to_casadi()</code> 方法（或内部的 <code>_to_casadi(self, casadi_objs)</code>）来处理这种转换。这个方法会递归地将 PyBaMM 符号及其子符号转换为等效的 CasADi 对象。</li>
+<li>然后 CasADi 接管以下工作：
+<ul>
+<li>如果需要，计算雅可比矩阵。</li>
+<li>为模型方程及其雅可比矩阵生成 C 代码。</li>
+<li>直接与 SUNDIALS IDA（PyBaMM 经常使用）等数值求解器接口。</li>
+</ul>
+</li>
+</ol>
+<p>个人推测，这种两阶段方法使 PyBaMM 两全其美：一个用户友好、灵活的 Python 前端用于模型定义，以及一个高性能的基于 C 的后端（通过 CasADi）用于数值求解。作者们没有为高性能符号数学重新发明轮子；他们集成了一个一流的工具。</p>
+<h2 id="6-设计原理---总结">6. 设计原理 - 总结</h2>
+<p>PyBaMM 中的表达式树证明了一个经过深思熟虑的设计：</p>
+<ul>
+<li><strong>关注点分离：</strong> 模型的数学定义与其数值解完全分离。表达式树是连接两者的桥梁。</li>
+<li><strong>抽象与直观：</strong> <code>Symbol</code> 及其运算符重载提供了一种抽象而直观的方式来用代码编写数学表达式。</li>
+<li><strong>自动化：</strong> 关键但繁琐的任务（如微分）实现了自动化，减少了错误并缩短了开发时间。</li>
+<li><strong>可扩展性：</strong> 基于类的结构使得添加新型符号或运算相对简单。</li>
+<li><strong>通过集成实现高性能：</strong> 认识到纯 Python 在速度方面的局限性，与 CasADi 的集成是实现高性能的务实选择。</li>
+</ul>
+<p>理解表达式树不仅仅是了解这些类；更重要的是理解这些设计选择如何使 PyBaMM 在电池建模方面既强大又灵活。</p>
+<hr>
+<p><strong>下一步:</strong> <a href="./pybamm_models.md">模型 (Models)</a></p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			<aside class="sidebar">
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 HUA Guangbin.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

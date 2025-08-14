@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> - Mingzf 的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/zh-cn" title="Mingzf 的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Mingzf 的博客</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/posts">
+				
+				<span class="menu__text">日志</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/about">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/my_cv">
+				
+				<span class="menu__text">简历</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en">
+				
+				<span class="menu__text">English</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title"></h1>
+			
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-几何模块的核心作用">1. 几何模块的核心作用</a></li>
+    <li><a href="#2-域-domain-与子域-sub-domain">2. 域 (Domain) 与子域 (Sub-domain)</a></li>
+    <li><a href="#3-坐标系-coordinate-systems">3. 坐标系 (Coordinate Systems)</a></li>
+    <li><a href="#4-pybammgeometry-类">4. <code>pybamm.Geometry</code> 类</a></li>
+    <li><a href="#5-几何参数-geometricparameters">5. 几何参数 (<code>GeometricParameters</code>)</a></li>
+    <li><a href="#6-几何模型定义和离散化之间的交互">6. 几何、模型定义和离散化之间的交互</a></li>
+    <li><a href="#上一节-参数-parameterspybamm_parametersmd"><strong>返回主目录:</strong> <a href="./pybamm_main.md">PyBaMM 项目剖析</a>
+<strong>上一节:</strong> <a href="./pybamm_parameters.md">参数 (Parameters)</a></a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="pybamm-几何-geometry-模块详解">PyBaMM 几何 (Geometry) 模块详解</h1>
+<p>PyBaMM 中的几何模块 (<code>src/pybamm/geometry/</code>) 负责定义模型方程求解的空间区域（计算域）及其相关的坐标系统。它是连接符号模型与数值离散化的关键环节，为后续的网格生成和空间算子离散化提供基础。</p>
+<h2 id="1-几何模块的核心作用">1. 几何模块的核心作用</h2>
+<p>几何模块在 PyBaMM 中的核心作用包括：</p>
+<ul>
+<li><strong>定义计算域 (Computational Domain):</strong> 明确模型中各个物理过程发生的空间范围。例如，在电池模型中，这些域通常包括负极、隔膜、正极、以及可能的集流体区域。对于包含颗粒相的模型，还会定义颗粒内部的微观域。</li>
+<li><strong>指定坐标系 (Coordinate Systems):</strong> 为每个域指定相应的空间坐标变量（如宏观的 <code>x</code> 坐标，颗粒内部的 <code>r</code> 坐标）及其取值范围。这些坐标通常是标准化的，并在参数化后映射到实际的物理尺寸。</li>
+<li><strong>支持离散化 (Support for Discretisation):</strong> 提供构建网格 (Mesh) 所需的几何信息。离散化模块 (<code>pybamm.Discretisation</code>) 会依据几何对象来生成网格，并将模型中的空间微分算子（如梯度、散度）转换为数值形式（如有限差分矩阵）。</li>
+<li><strong>参数化 (Parameterisation):</strong> 几何尺寸（如电极厚度 <code>L_n</code>, <code>L_s</code>, <code>L_p</code>，颗粒半径 <code>R_n</code>, <code>R_p</code>）在模型中通常表示为符号参数。通过 <code>pybamm.ParameterValues</code> 对象赋予这些参数具体数值后，几何模块才能确定最终的坐标范围和边界位置。</li>
+<li><strong>核心类 <code>pybamm.Geometry</code>:</strong> 这是几何模块的中心类，用于存储和管理所有域的几何信息。它通常在模型设置完成后，传递给 <code>Discretisation</code> 对象进行处理。</li>
+</ul>
+<h2 id="2-域-domain-与子域-sub-domain">2. 域 (Domain) 与子域 (Sub-domain)</h2>
+<p>在 PyBaMM 中，物理域和子域通常用字符串来标识，这些是模型中变量和方程定义的基础。</p>
+<ul>
+<li>
+<p><strong>Domain (域):</strong> 指的是模型中主要的、宏观的物理区域。常见的域包括：</p>
+<ul>
+<li><code>&quot;negative electrode&quot;</code></li>
+<li><code>&quot;separator&quot;</code></li>
+<li><code>&quot;positive electrode&quot;</code></li>
+<li><code>&quot;current collector&quot;</code> (在考虑集流体效应时使用，可以是1D、2D或3D)</li>
+</ul>
+</li>
+<li>
+<p><strong>Sub-domain (子域):</strong> 通常指嵌入在主域内的微观尺度域。最常见的例子是多孔电极中的活性材料颗粒：</p>
+<ul>
+<li><code>&quot;negative particle&quot;</code> (描述负极活性材料颗粒内部)</li>
+<li><code>&quot;positive particle&quot;</code> (描述正极活性材料颗粒内部)
+这些子域有其自身的坐标系统（如颗粒半径 <code>r</code>）。</li>
+</ul>
+</li>
+</ul>
+<p>模型在定义变量时会指定其所在的域，例如：
+<code>c_e = pybamm.Variable(&quot;Electrolyte concentration&quot;, domain=[&quot;negative electrode&quot;, &quot;separator&quot;, &quot;positive electrode&quot;])</code>
+<code>c_s_n = pybamm.Variable(&quot;Negative particle concentration&quot;, domain=&quot;negative particle&quot;, auxiliary_domains={&quot;secondary&quot;: &quot;negative electrode&quot;})</code>
+(这里的 <code>auxiliary_domains</code> 用于指明子域 <code>negative particle</code> 是在宏观域 <code>negative electrode</code> 中分布的。)</p>
+<h2 id="3-坐标系-coordinate-systems">3. 坐标系 (Coordinate Systems)</h2>
+<p>PyBaMM 使用标准化的空间变量，这些变量在 <code>src/pybamm/geometry/standard_spatial_vars.py</code> 中定义。</p>
+<ul>
+<li><strong><code>x</code> (宏观坐标):</strong> 通常表示沿着电芯厚度方向的一维坐标。
+<ul>
+<li><code>x_n</code>: 负极内的坐标 (通常从 0 到 1，对应物理尺寸 0 到 <code>L_n</code>)。</li>
+<li><code>x_s</code>: 隔膜内的坐标 (通常从 0 到 1，对应物理尺寸 <code>L_n</code> 到 <code>L_n + L_s</code>)。</li>
+<li><code>x_p</code>: 正极内的坐标 (通常从 0 到 1，对应物理尺寸 <code>L_n + L_s</code> 到 <code>L_n + L_s + L_p</code>)。</li>
+<li><code>x_cc</code>: 集流体内的坐标。</li>
+</ul>
+</li>
+<li><strong><code>r</code> (微观坐标):</strong> 通常表示球形活性材料颗粒内部的径向坐标。
+<ul>
+<li><code>r_n</code>: 负极颗粒内的径向坐标 (通常从 0 到 1，对应物理尺寸 0 到 <code>R_n</code>)。</li>
+<li><code>r_p</code>: 正极颗粒内的径向坐标 (通常从 0 到 1，对应物理尺寸 0 到 <code>R_p</code>)。</li>
+</ul>
+</li>
+<li><strong><code>R</code> (颗粒半径参数):</strong> 注意 <code>R_n</code> 和 <code>R_p</code> 通常指颗粒的半径，它们是几何参数，而不是坐标变量。</li>
+<li><strong><code>y</code>, <code>z</code> (平面坐标):</strong> 用于描述二维或三维集流体模型中的平面坐标。</li>
+</ul>
+<p><code>pybamm.Geometry</code> 对象负责将这些抽象的域名（如 <code>&quot;negative electrode&quot;</code>）映射到具体的空间坐标变量（如 <code>pybamm.standard_spatial_vars.x_n</code>）及其经过参数化后的数值范围。</p>
+<h2 id="4-pybammgeometry-类">4. <code>pybamm.Geometry</code> 类</h2>
+<ul>
+<li>
+<p><strong>定义与使用:</strong></p>
+<ul>
+<li><code>pybamm.Geometry</code> 类 (定义于 <code>src/pybamm/geometry/geometry.py</code>) 是几何信息的核心容器。</li>
+<li>它通常通过一个字典来初始化，该字典的键是域名，值是包含该域详细信息的字典（例如，该域关联的空间变量、坐标范围、边界等）。</li>
+<li>PyBaMM 提供了预定义的几何构建函数，如 <code>pybamm.battery_geometry()</code> (定义于 <code>src/pybamm/geometry/battery_geometry.py</code>)。这个函数可以根据模型选项（如维度 &ldquo;1D&rdquo;, &ldquo;2D current collector&rdquo;, &ldquo;particle phase&rdquo; 等）和已处理的参数自动生成常用的电池几何结构。用户也可以根据需求构建自定义的几何对象。</li>
+</ul>
+</li>
+<li>
+<p><strong>结构示例:</strong>
+一个典型的 <code>Geometry</code> 对象内部可能如下所示（简化）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{
+    <span style="color:#e6db74">&#34;negative electrode&#34;</span>: {
+        <span style="color:#e6db74">&#34;primary&#34;</span>: pybamm<span style="color:#f92672">.</span>standard_spatial_vars<span style="color:#f92672">.</span>x_n,
+        <span style="color:#e6db74">&#34;min&#34;</span>: pybamm<span style="color:#f92672">.</span>Scalar(<span style="color:#ae81ff">0</span>),
+        <span style="color:#e6db74">&#34;max&#34;</span>: param<span style="color:#f92672">.</span>n<span style="color:#f92672">.</span>L,  <span style="color:#75715e"># L_n after processing</span>
+        <span style="color:#e6db74">&#34;tabs&#34;</span>: {<span style="color:#e6db74">&#34;negative&#34;</span>: <span style="color:#e6db74">&#34;left&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>: <span style="color:#e6db74">&#34;right&#34;</span>} <span style="color:#75715e"># Example for current collector</span>
+    },
+    <span style="color:#e6db74">&#34;separator&#34;</span>: {
+        <span style="color:#e6db74">&#34;primary&#34;</span>: pybamm<span style="color:#f92672">.</span>standard_spatial_vars<span style="color:#f92672">.</span>x_s,
+        <span style="color:#e6db74">&#34;min&#34;</span>: param<span style="color:#f92672">.</span>n<span style="color:#f92672">.</span>L,
+        <span style="color:#e6db74">&#34;max&#34;</span>: param<span style="color:#f92672">.</span>n<span style="color:#f92672">.</span>L <span style="color:#f92672">+</span> param<span style="color:#f92672">.</span>s<span style="color:#f92672">.</span>L
+    },
+    <span style="color:#75715e"># ... other domains like positive electrode, particles ...</span>
+}
+</code></pre></div></li>
+</ul>
+<h2 id="5-几何参数-geometricparameters">5. 几何参数 (<code>GeometricParameters</code>)</h2>
+<p>几何参数类定义在 <code>src/pybamm/parameters/geometric_parameters.py</code> 中，它们的作用是<strong>定义符号化的几何参数</strong>，这些参数随后会被 <code>ParameterValues</code> 对象赋予具体数值。</p>
+<ul>
+<li><strong><code>GeometricParameters</code>:</strong> 包含通用的几何参数。</li>
+<li><strong><code>DomainGeometricParameters</code>:</strong> 定义与宏观域相关的几何参数，例如：
+<ul>
+<li><code>L_n</code>: 负极厚度</li>
+<li><code>L_s</code>: 隔膜厚度</li>
+<li><code>L_p</code>: 正极厚度</li>
+<li><code>L_cc</code>: 集流体厚度</li>
+<li><code>L_y</code>, <code>L_z</code>: 电池单元的宽度和高度 (用于2D/3D集流体模型)</li>
+</ul>
+</li>
+<li><strong><code>ParticleGeometricParameters</code>:</strong> 定义与颗粒子域相关的几何参数，例如：
+<ul>
+<li><code>R_n_typ</code>: 典型的负极颗粒半径</li>
+<li><code>R_p_typ</code>: 典型的正极颗粒半径</li>
+</ul>
+</li>
+</ul>
+<p>这些符号参数在 <code>ParameterValues</code> 类 (如 <code>pybamm.ParameterValues(&quot;Chen2020&quot;)</code>) 中被处理并替换为具体的数值。</p>
+<h2 id="6-几何模型定义和离散化之间的交互">6. 几何、模型定义和离散化之间的交互</h2>
+<p>这三者紧密协作，将物理概念转化为可计算的数值问题：</p>
+<ol>
+<li>
+<p><strong>模型定义 (<code>pybamm.models</code>):</strong></p>
+<ul>
+<li>模型定义了变量和方程，并指定了它们作用的 <code>domain</code> 和 <code>auxiliary_domains</code>。</li>
+<li>模型本身不包含具体的坐标值或网格信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>参数加载与处理 (<code>pybamm.ParameterValues</code>):</strong></p>
+<ul>
+<li>加载参数集，为符号化的几何参数（如 <code>L_n</code>, <code>R_p</code>）赋予具体数值。</li>
+<li>处理后的参数（包含数值化的几何尺寸）会被模型使用。</li>
+</ul>
+</li>
+<li>
+<p><strong>几何构建 (<code>pybamm.Geometry</code>):</strong></p>
+<ul>
+<li><code>pybamm.Geometry</code> 对象被创建，通常使用如 <code>pybamm.battery_geometry(model.options, parameter_values)</code> 这样的辅助函数。</li>
+<li>此对象会读取模型选项和已处理的参数值。</li>
+<li><code>Geometry</code> 对象为模型中涉及的每个域建立具体的空间坐标变量及其数值范围（例如，<code>x_n</code> 的范围是 <code>0</code> 到 <code>L_n</code> 的具体值）。</li>
+</ul>
+</li>
+<li>
+<p><strong>离散化 (<code>pybamm.Discretisation</code>):</strong></p>
+<ul>
+<li><code>Discretisation</code> 对象接收模型、<code>Geometry</code> 对象和所选的空间离散化方法 (<code>pybamm.spatial_methods</code>)。</li>
+<li><strong>网格生成 (<code>pybamm.Mesh</code>):</strong> 首先，根据 <code>Geometry</code> 为每个域创建相应的子网格 (<code>SubMesh</code>)，组合成完整的 <code>Mesh</code>。网格包含了离散点（节点）的坐标。</li>
+<li><strong>算子离散化:</strong> 遍历模型中的所有方程和变量。空间微分算子（如 <code>pybamm.grad</code>, <code>pybamm.div</code>）被替换为基于网格的离散形式（例如，有限体积法中的差分矩阵）。</li>
+<li><strong>变量映射:</strong> 变量被映射到网格上的节点或单元中心。</li>
+<li>最终，整个模型被转换为一个大的（通常是稀疏的）微分代数方程组 (DAEs) 或常微分方程组 (ODEs)，可以被数值求解器 (<code>pybamm.solvers</code>) 求解。</li>
+</ul>
+</li>
+</ol>
+<p>通过这个流程，PyBaMM 实现了从抽象的物理和数学描述到具体的数值计算的转换，而几何模块在其中扮演了定义“在哪里算”和“坐标是什么”的关键角色。</p>
+<h2 id="上一节-参数-parameterspybamm_parametersmd"><strong>返回主目录:</strong> <a href="./pybamm_main.md">PyBaMM 项目剖析</a>
+<strong>上一节:</strong> <a href="./pybamm_parameters.md">参数 (Parameters)</a></h2>
+<p><strong>下一步:</strong> <a href="./pybamm_discretisation.md">空间方法与离散化 (Spatial Methods &amp; Discretisations)</a></p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			<aside class="sidebar">
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 HUA Guangbin.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

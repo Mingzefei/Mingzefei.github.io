@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo主题定制 on Mingzf 的博客</title>
+    <link>https://mingzefei.github.io/zh-cn/tags/hugo%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6/</link>
+    <description>Recent content in Hugo主题定制 on Mingzf 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 27 Feb 2023 22:35:46 +0800</lastBuildDate><atom:link href="https://mingzefei.github.io/zh-cn/tags/hugo%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mainroad 主题的 Hugo 相关修改</title>
+      <link>https://mingzefei.github.io/zh-cn/posts/mainroad_beian/</link>
+      <pubDate>Mon, 27 Feb 2023 22:35:46 +0800</pubDate>
+      
+      <guid>https://mingzefei.github.io/zh-cn/posts/mainroad_beian/</guid>
+      <description>当前的个人网站使用 Hogo 生成，主题为 Mainroad，在客制化时遇到一些问题，解决过程记录如下。 备案号添加 在配置文件中添加备案信息。 # in config.toml # below [Params]</description>
+    </item>
+    
+  </channel>
+</rss>

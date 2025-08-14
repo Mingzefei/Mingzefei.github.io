@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> - Mingzf 的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/zh-cn" title="Mingzf 的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Mingzf 的博客</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/posts">
+				
+				<span class="menu__text">日志</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/about">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/my_cv">
+				
+				<span class="menu__text">简历</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en">
+				
+				<span class="menu__text">English</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title"></h1>
+			
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-离散化的目标与重要性">1. 离散化的目标与重要性</a></li>
+    <li><a href="#2-pybamm-中的核心离散化组件">2. PyBaMM 中的核心离散化组件</a>
+      <ul>
+        <li><a href="#21-pybammdiscretisation-类">2.1. <code>pybamm.Discretisation</code> 类</a></li>
+        <li><a href="#22-网格-pybammmesh">2.2. 网格 (<code>pybamm.Mesh</code>)</a></li>
+        <li><a href="#23-空间方法有限体积法-pybammfinitevolume">2.3. 空间方法：有限体积法 (<code>pybamm.FiniteVolume</code>)</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-离散化过程详解">3. 离散化过程详解</a></li>
+    <li><a href="#4-用户如何控制离散化">4. 用户如何控制离散化</a></li>
+    <li><a href="#5-设计考量与-github-讨论">5. 设计考量与 GitHub 讨论</a></li>
+    <li><a href="#6-总结">6. 总结</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="pybamm-核心子系统空间方法与离散化-spatial-methods--discretisations">PyBaMM 核心子系统：空间方法与离散化 (Spatial Methods &amp; Discretisations)</h1>
+<p><strong>返回主目录:</strong> <a href="./pybamm_main.md">PyBaMM 项目剖析</a>
+<strong>上一节:</strong> <a href="./pybamm_geometry.md">几何 (Geometry)</a></p>
+<hr>
+<p>将电池模型的物理和化学原理通过表达式树和模型对象转化为数学方程组后，下一步关键步骤便是对其进行<strong>离散化 (Discretisation)</strong>。特别是对于包含偏微分方程 (PDEs) 的模型，空间离散化是将其转换为一个大型常微分方程组 (ODEs) 或微分代数方程组 (DAEs) 的核心过程，从而能够被数值求解器处理。PyBaMM 在 <code>src/pybamm/spatial_methods/</code> 和 <code>src/pybamm/discretisations/</code> 目录下实现了其离散化功能，其中有限体积法 (Finite Volume Method, FVM) 是其主要的策略。</p>
+<h2 id="1-离散化的目标与重要性">1. 离散化的目标与重要性</h2>
+<p>离散化的主要目标是将连续的数学模型（尤其是PDEs中的空间导数项）近似为一组代数方程，这些方程定义在空间域的离散点（或单元）上。</p>
+<ul>
+<li><strong>PDE 到 ODE/DAE 的转换：</strong> 例如，一个描述浓度 <code>c(x,t)</code> 演化的PDE <code>∂c/∂t = ∂/∂x (D ∂c/∂x) + S</code>，经过空间离散化后，会变成关于每个离散点 <code>x_i</code> 上的浓度 <code>c_i(t)</code> 的ODE系统 <code>dc_i/dt = f(c_i-1, c_i, c_i+1, ...)</code>。</li>
+<li><strong>准确性与计算成本的权衡：</strong> 离散化的精细程度（例如，网格点的数量）直接影响解的准确性，但同时也显著增加计算量。</li>
+<li><strong>守恒性：</strong> 对于描述物理量（如电荷、质量）守恒的方程，离散化方法本身是否保持这种守恒性非常重要。有限体积法在这方面具有天然优势。</li>
+<li><strong>边界条件的处理：</strong> 离散化必须能够准确地施加模型中定义的各种边界条件。</li>
+</ul>
+<p>PyBaMM 的设计旨在提供一个灵活且鲁棒的离散化框架，能够处理各种电池几何和模型复杂性。</p>
+<h2 id="2-pybamm-中的核心离散化组件">2. PyBaMM 中的核心离散化组件</h2>
+<h3 id="21-pybammdiscretisation-类">2.1. <code>pybamm.Discretisation</code> 类</h3>
+<p>此类 (位于 <code>src/pybamm/discretisations/discretisation.py</code>) 是离散化过程的总指挥。其主要职责包括：</p>
+<ul>
+<li><strong>管理网格 (Mesh):</strong> 根据几何信息创建和存储网格。</li>
+<li><strong>选择和应用空间方法:</strong> 目前主要支持有限体积法 (<code>pybamm.FiniteVolume</code>)。</li>
+<li><strong>处理和离散化模型方程:</strong> 遍历模型中的所有方程（<code>rhs</code>, <code>algebraic</code>, <code>boundary_conditions</code> 等），并将其中包含的空间变量和算子（如梯度、散度）替换为其离散形式。</li>
+<li><strong>变量的映射:</strong> 将连续的符号变量映射到离散的网格点上。</li>
+</ul>
+<p><code>Discretisation</code> 对象在模型构建完成后、求解器介入之前被调用，它接收一个模型对象和几何参数，输出一个适合求解器处理的离散化后的模型。</p>
+<h3 id="22-网格-pybammmesh">2.2. 网格 (<code>pybamm.Mesh</code>)</h3>
+<p>网格定义了空间域的离散化结构。<code>pybamm.Mesh</code> 类 (位于 <code>src/pybamm/meshes/</code>) 负责根据 <code>pybamm.Geometry</code> 对象中定义的域和空间变量来生成和存储网格点。</p>
+<ul>
+<li><strong>子网格 (SubMesh):</strong> 一个完整的网格通常由多个子网格构成，每个子网格对应几何中的一个特定域（如负极、隔膜、正极，或颗粒内部）。</li>
+<li><strong>网格类型:</strong> PyBaMM 支持多种网格类型，例如 <code>Uniform1DSubMesh</code> (均匀一维网格) 和 <code>Chebyshev1DSubMesh</code> (切比雪夫节点网格，常用于谱方法或需要边界附近更高分辨率的情况)。用户通常可以通过求解器选项或直接在参数中指定每个域的网格点数量。</li>
+<li><strong>网格点位置:</strong> 网格存储了节点 (nodes) 和单元中心 (cell centres) 的坐标，这对于有限体积法的实施至关重要。</li>
+</ul>
+<h3 id="23-空间方法有限体积法-pybammfinitevolume">2.3. 空间方法：有限体积法 (<code>pybamm.FiniteVolume</code>)</h3>
+<p>有限体积法 (FVM) 是 PyBaMM 中主要的（也是默认的）空间离散化技术。该方法 (实现在 <code>src/pybamm/spatial_methods/finite_volume.py</code>) 的核心思想是将求解域划分为一系列不重叠的控制体积 (control volumes)，然后在每个控制体积内对守恒定律的积分形式进行近似。</p>
+<p><strong>选择FVM的可能原因 (设计考量):</strong></p>
+<ul>
+<li><strong>守恒性:</strong> FVM 天然保证离散方程在每个控制体积内以及整个求解域上是守恒的。这对于电池模型中电流、离子通量等物理量的精确计算至关重要。个人认为，这是选择FVM作为主要离散化方法的一个非常关键的因素，因为物理守恒性是模型预测准确性的基础。</li>
+<li><strong>灵活性:</strong> FVM 可以相对容易地应用于非均匀网格和复杂几何。个人推测，这种灵活性使得PyBaMM能够更容易地扩展到不同类型和维度的电池模型。</li>
+<li><strong>边界条件处理:</strong> 通量在控制体积边界上的计算使得边界条件（尤其是 Neumann 边界条件，即通量边界条件）的施加更为自然。个人认为，这简化了模型边界条件在数值实现层面的复杂性。</li>
+</ul>
+<p>在 PyBaMM 中，<code>FiniteVolume</code> 类负责：</p>
+<ul>
+<li><strong>离散化空间算子:</strong> 将符号化的梯度 (<code>pybamm.Gradient</code>)、散度 (<code>pybamm.Divergence</code>)、拉普拉斯算子等转换为作用于离散变量的稀疏矩阵。例如，<code>div(N)</code> 会被转换为一个矩阵 <code>M_div</code>，使得 <code>M_div * N_vector</code> 表示离散的散度。</li>
+<li><strong>处理不同坐标系:</strong> 利用从 <code>Geometry</code> 获取的坐标系信息 (笛卡尔、球极、柱极)，正确地计算微分算子在这些坐标系下的离散形式（例如，考虑球坐标系下的面积和体积因子）。</li>
+<li><strong>插值:</strong> 在需要时（例如，计算单元边界上的值或通量），使用合适的插值方法（如中心差分、迎风格式等，尽管PyBaMM似乎主要依赖中心差分）。</li>
+</ul>
+<h2 id="3-离散化过程详解">3. 离散化过程详解</h2>
+<p>当 <code>Discretisation</code> 对象的 <code>process_model(model, check_model=True)</code> 方法被调用时，会发生以下主要步骤：</p>
+<ol>
+<li>
+<p><strong>设置几何和网格:</strong></p>
+<ul>
+<li>从模型中获取几何定义。</li>
+<li>基于几何和用户指定的网格点数创建 <code>Mesh</code> 对象。</li>
+<li>将网格信息与模型中的空间变量关联起来。</li>
+</ul>
+</li>
+<li>
+<p><strong>离散化变量:</strong></p>
+<ul>
+<li>模型中的每个 <code>pybamm.Variable</code> 对象，如果其定义域是空间相关的，会被映射到网格点上。例如，<code>c(x,t)</code> 变成一个向量 <code>c_i(t)</code>。</li>
+<li><code>PrimaryBroadcast</code>、<code>SecondaryBroadcast</code> 等符号用于处理在不同维度上传播的变量。例如，一个在集流体上定义的0D变量（如温度）可以被广播到整个1D电极域。</li>
+</ul>
+</li>
+<li>
+<p><strong>离散化空间算子:</strong></p>
+<ul>
+<li>这是核心步骤。<code>FiniteVolume</code> 类的方法会被调用来处理表达式树中的 <code>Gradient</code>, <code>Divergence</code>, <code>Laplacian</code> 等算子。</li>
+<li>对于一个算子，例如 <code>pybamm.grad(symbol)</code>，离散化器会：
+<ul>
+<li>确定 <code>symbol</code> 所在的域和网格。</li>
+<li>根据坐标系和网格类型，生成一个表示离散梯度运算的稀疏矩阵 <code>M_grad</code>。</li>
+<li>将 <code>pybamm.grad(symbol)</code> 替换为 <code>M_grad * symbol_discrete</code>。</li>
+</ul>
+</li>
+<li>类似地，<code>pybamm.div(symbol)</code> 被替换为 <code>M_div * symbol_discrete</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>处理边界条件:</strong></p>
+<ul>
+<li>模型中定义的 <code>pybamm.BoundaryValue(symbol, side)</code> 用于指定边界上的值或通量。</li>
+<li>在FVM中，这通常涉及到修改离散算子矩阵的第一行和/或最后一行，或者在方程组中引入额外的约束，以确保边界条件得到满足。</li>
+<li>例如，对于 <code>∂c/∂x = 0</code> 在左边界，离散梯度算子的相应行会被修改以反映这个零通量条件。</li>
+</ul>
+</li>
+<li>
+<p><strong>构建离散方程:</strong></p>
+<ul>
+<li>模型中的 <code>rhs</code> 和 <code>algebraic</code> 字典存储了符号形式的ODE和DAE方程。</li>
+<li>离散化过程会遍历这些方程中的所有符号，将空间相关的变量和算子替换为其离散形式。</li>
+<li>最终结果是，<code>model.concatenated_rhs</code> 和 <code>model.concatenated_algebraic</code> (如果存在) 包含了完全由 <code>pybamm.StateVector</code> (表示所有离散变量的向量) 和时间 <code>t</code> 组成的表达式，这些可以直接传递给数值求解器。</li>
+</ul>
+</li>
+<li>
+<p><strong>设置初始条件:</strong></p>
+<ul>
+<li>模型中的 <code>initial_conditions</code> 字典中的表达式也会被离散化，为 <code>StateVector</code> 中的每个元素提供初始值。</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-用户如何控制离散化">4. 用户如何控制离散化</h2>
+<p>用户主要通过以下方式影响离散化：</p>
+<ul>
+<li><strong>网格点数 (<code>var_pts</code>):</strong> 在创建 <code>ParameterValues</code> 对象时，可以传递一个 <code>var_pts</code> 字典，指定每个空间变量（如 <code>x_n</code>, <code>x_s</code>, <code>x_p</code>, <code>r_n</code>, <code>r_p</code>）的网格点数量。或者，也可以在创建 <code>Simulation</code> 对象时，通过 <code>var_pts</code> 参数直接传递给底层的 <code>Discretisation</code> 对象。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pybamm
+<span style="color:#75715e"># 示例1: 通过 ParameterValues (通常在旧版本或特定工作流中)</span>
+<span style="color:#75715e"># param = pybamm.ParameterValues(&#34;Marquis2019&#34;)</span>
+<span style="color:#75715e"># var_pts_param = {</span>
+<span style="color:#75715e">#     pybamm.standard_spatial_vars.x_n: 30, # 负极30个点</span>
+<span style="color:#75715e">#     pybamm.standard_spatial_vars.x_s: 30, # 隔膜30个点</span>
+<span style="color:#75715e">#     pybamm.standard_spatial_vars.x_p: 30, # 正极30个点</span>
+<span style="color:#75715e">#     pybamm.standard_spatial_vars.r_n: 15, # 负极颗粒15个点</span>
+<span style="color:#75715e">#     pybamm.standard_spatial_vars.r_p: 15  # 正极颗粒15个点</span>
+<span style="color:#75715e"># }</span>
+<span style="color:#75715e"># # 注意：直接在ParameterValues中设置var_pts的方式可能已不推荐，</span>
+<span style="color:#75715e"># # 更常见的做法是在Simulation或Discretisation层面指定。</span>
+<span style="color:#75715e"># # param.update({&#34;Number of points for x_n&#34;: 30, ...}, check_already_exists=False) # 一种可能的旧方式</span>
+
+<span style="color:#75715e"># 示例2: 通过 Simulation (推荐方式)</span>
+model <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>lithium_ion<span style="color:#f92672">.</span>DFN()
+param <span style="color:#f92672">=</span> pybamm<span style="color:#f92672">.</span>ParameterValues(<span style="color:#e6db74">&#34;Marquis2019&#34;</span>)
+var_pts_sim <span style="color:#f92672">=</span> {
+    pybamm<span style="color:#f92672">.</span>standard_spatial_vars<span style="color:#f92672">.</span>x_n: <span style="color:#ae81ff">20</span>,
+    pybamm<span style="color:#f92672">.</span>standard_spatial_vars<span style="color:#f92672">.</span>x_s: <span style="color:#ae81ff">20</span>,
+    pybamm<span style="color:#f92672">.</span>standard_spatial_vars<span style="color:#f92672">.</span>x_p: <span style="color:#ae81ff">20</span>,
+    pybamm<span style="color:#f92672">.</span>standard_spatial_vars<span style="color:#f92672">.</span>r_n: <span style="color:#ae81ff">10</span>,
+    pybamm<span style="color:#f92672">.</span>standard_spatial_vars<span style="color:#f92672">.</span>r_p: <span style="color:#ae81ff">10</span>
+}
+<span style="color:#75715e"># sim = pybamm.Simulation(model, parameter_values=param, var_pts=var_pts_sim)</span>
+
+<span style="color:#75715e"># 示例3: 直接创建 Discretisation 对象 (高级用法)</span>
+<span style="color:#75715e"># geometry = model.default_geometry</span>
+<span style="color:#75715e"># param.process_geometry(geometry)</span>
+<span style="color:#75715e"># mesh = pybamm.Mesh(geometry, model.default_submesh_types, var_pts_sim)</span>
+<span style="color:#75715e"># disc = pybamm.Discretisation(mesh, model.default_spatial_methods)</span>
+</code></pre></div></li>
+<li><strong>空间方法选择:</strong> 虽然目前FVM是主导，但 <code>Discretisation</code> 类的设计理论上允许未来扩展到其他方法。个人认为，这种模块化设计为PyBaMM未来的发展提供了良好的基础。</li>
+<li><strong>自定义模型中的几何:</strong> 用户定义的几何会直接影响网格的生成和算子的离散化。</li>
+</ul>
+<h2 id="5-设计考量与-github-讨论">5. 设计考量与 GitHub 讨论</h2>
+<p>PyBaMM 选择有限体积法 (FVM) 作为其核心离散化策略，这在许多基于PDE的物理建模框架中是很常见的，尤其是在需要保证守恒性的情况下。FVM 将求解域划分为控制体积，并在每个体积内对守恒定律的积分形式进行近似，这天然保证了物理量的守恒，如电荷和物质。</p>
+<p>在 PyBaMM 的 GitHub 仓库中，可以找到关于离散化策略、网格选择和数值方法实现的深入讨论。以下是一些相关的议题和讨论方向，可以帮助理解其设计决策和持续的开发工作：</p>
+<ul>
+<li>
+<p><strong>有限体积法的实现细节和优化:</strong></p>
+<ul>
+<li>讨论区中可能有关于特定算子（如非线性扩散的拉普拉斯算子）离散化方案的改进建议，或者边界条件处理的特定策略。</li>
+<li>例如，可以搜索 &ldquo;FVM gradient discretisation&rdquo; 或 &ldquo;boundary condition flux FVM&rdquo; 相关的 issues 或 discussions。</li>
+</ul>
+</li>
+<li>
+<p><strong>网格策略与自适应网格:</strong></p>
+<ul>
+<li>PyBaMM 支持多种子网格类型，如均匀网格和切比雪夫网格。选择合适的网格对精度和效率至关重要。</li>
+<li>一个相关的讨论可能是关于在电极/电解质界面或电流集中区域实现更精细网格的策略。</li>
+<li><strong>实际案例参考:</strong>
+<ul>
+<li>Issue #495 (<a href="https://github.com/pybamm-team/PyBaMM/pull/495">Implement Chebyshev discretisation in r direction by tinosulzer · Pull Request #495 · pybamm-team/PyBaMM</a>) 讨论并实现了在颗粒径向坐标 (r-coordinate) 上使用切比雪夫网格，这对于精确捕捉颗粒内部的浓度梯度非常重要，尤其是在高倍率条件下。</li>
+<li>Issue #103 (<a href="https://github.com/pybamm-team/PyBaMM/issues/103">Adaptive meshing · Issue #103 · pybamm-team/PyBaMM</a>) 提出了自适应网格的需求，这是一个高级特性，可以根据求解过程中的梯度动态调整网格密度，从而在保持精度的同时提高计算效率。虽然这个 issue 可能已经关闭或有新的进展，但它反映了社区对网格优化的关注。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>高阶离散化方法:</strong></p>
+<ul>
+<li>虽然标准的FVM通常是二阶精度，但社区可能讨论过引入更高阶的离散化方法以在相同网格数下获得更高精度，或者在需要时减少网格点数。</li>
+<li>搜索 &ldquo;higher-order discretisation&rdquo; 或 &ldquo;spectral methods&rdquo; 可能会找到相关讨论。</li>
+</ul>
+</li>
+<li>
+<p><strong>与其他数值方法的比较 (如 FEM):</strong></p>
+<ul>
+<li>有时会有关于为什么选择FVM而不是有限元法(FEM)或其他方法的讨论。这些讨论可以揭示FVM在电池建模特定场景下的优势，例如其固有的守恒性和相对简单的实现。</li>
+<li>例如，可以查找类似 &ldquo;FVM vs FEM for battery models&rdquo; 的讨论主题。</li>
+</ul>
+</li>
+<li>
+<p><strong>特定模型的离散化挑战:</strong></p>
+<ul>
+<li>对于某些具有特殊几何（如多孔电极的复杂微结构）或物理现象（如相变）的模型，其离散化可能会遇到特定挑战。相关的 GitHub issues 可能会讨论这些问题并提出解决方案。</li>
+</ul>
+</li>
+</ul>
+<p>通过查阅这些 GitHub 上的讨论和代码实现，可以更深入地理解 PyBaMM 在离散化方面的设计哲学、技术选择以及未来的发展方向。</p>
+<h2 id="6-总结">6. 总结</h2>
+<p>PyBaMM 的离散化子系统是将复杂的、基于PDE的电池模型转化为可数值求解的代数方程组的关键桥梁。通过 <code>Discretisation</code> 类对网格生成、空间方法（主要是有限体积法）应用的精心编排，PyBaMM 能够系统地处理模型中的空间依赖性，并将符号化的数学运算转换为具体的矩阵运算。用户可以通过控制网格参数来平衡计算精度和成本。其设计也为未来可能的扩展（如支持更多空间方法或更复杂的网格策略）保留了接口。</p>
+<p>对有限体积法等数值方法的深入理解，以及对 PyBaMM 如何将其应用于电池模型的具体实现的了解，对于高级用户和希望为项目贡献代码的研究人员来说至关重要。</p>
+<hr>
+<p><strong>下一步:</strong> <a href="./pybamm_solvers.md">求解器 (Solvers)</a></p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			<aside class="sidebar">
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 HUA Guangbin.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

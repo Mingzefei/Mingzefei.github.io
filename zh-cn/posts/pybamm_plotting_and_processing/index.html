@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> - Mingzf 的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/zh-cn" title="Mingzf 的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Mingzf 的博客</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/posts">
+				
+				<span class="menu__text">日志</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/about">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/zh-cn/about/my_cv">
+				
+				<span class="menu__text">简历</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/en">
+				
+				<span class="menu__text">English</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26Y8LPEFKG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26Y8LPEFKG');
+    </script>
+</header>
+
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title"></h1>
+			
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-solution-对象结果的容器">1. <code>Solution</code> 对象：结果的容器</a></li>
+    <li><a href="#2-访问和处理变量">2. 访问和处理变量</a>
+      <ul>
+        <li><a href="#21-通过键访问变量">2.1. 通过键访问变量</a></li>
+        <li><a href="#22-对变量进行操作">2.2. 对变量进行操作</a></li>
+        <li><a href="#23-插值">2.3. 插值</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-内置绘图功能-solutionplot">3. 内置绘图功能 (<code>solution.plot()</code>)</a></li>
+    <li><a href="#4-quickplot-类更灵活的绘图">4. <code>QuickPlot</code> 类：更灵活的绘图</a></li>
+    <li><a href="#5-导出数据">5. 导出数据</a>
+      <ul>
+        <li><a href="#51-保存-solution-对象">5.1. 保存 <code>Solution</code> 对象</a></li>
+        <li><a href="#52-保存为-csv-或-matlab-mat-文件">5.2. 保存为 CSV 或 MATLAB .mat 文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-与其他库集成">6. 与其他库集成</a></li>
+    <li><a href="#7-总结">7. 总结</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="pybamm-核心功能绘图与后处理-plotting-and-processing">PyBaMM 核心功能：绘图与后处理 (Plotting and Processing)</h1>
+<p><strong>返回主目录:</strong> <a href="./pybamm_main.md">PyBaMM 项目剖析</a>
+<strong>上一节:</strong> <a href="./pybamm_experiment.md">实验 (Experiment)</a></p>
+<hr>
+<p>在 PyBaMM 中，仿真结果的分析和可视化是理解模型行为和电池性能的关键环节。PyBaMM 提供了内置的绘图功能以及与其他流行数据分析和可视化库（如 Matplotlib, NumPy, Pandas）的良好兼容性，方便用户进行深入的后处理。</p>
+<h2 id="1-solution-对象结果的容器">1. <code>Solution</code> 对象：结果的容器</h2>
+<p>当 <code>Simulation.solve()</code> 或 <code>Simulation.step()</code> 方法成功执行后，会返回一个 <code>pybamm.Solution</code> 对象 (或在 <code>sim.solution</code> 中累积)。这个对象是所有仿真数据的中心，包含了：</p>
+<ul>
+<li><strong>时间点 (<code>solution.t</code>)</strong>: 求解器实际采用的时间步长数组。个人认为，理解这些时间点并非总是等间隔的非常重要，尤其是在使用自适应步长的求解器时。</li>
+<li><strong>状态向量 (<code>solution.y</code>)</strong>: 在每个时间点上，模型中所有状态变量的值。这是一个二维数组，行对应状态变量，列对应时间点。个人推测，这个原始状态向量对于普通用户可能不那么直观，通常会通过 <code>solution.processed_variables</code> 来访问更有意义的物理量。</li>
+<li><strong>模型变量 (<code>solution.model.variables</code>)</strong>: 一个字典，包含了模型中定义的所有变量的符号表示。</li>
+<li><strong>已处理的变量 (<code>solution.processed_variables</code>)</strong>: 一个字典，存储了 <code>pybamm.ProcessedVariable</code> 对象。这些对象是在求解后根据模型变量和状态向量计算得到的，可以直接用于绘图和分析。</li>
+<li><strong>终止信息</strong>: <code>solution.termination</code> (终止原因字符串), <code>solution.t_event</code> (事件发生的时间), <code>solution.y_event</code> (事件发生时的状态向量)。</li>
+<li><strong>输入参数 (<code>solution.inputs</code>)</strong>: 仿真过程中使用的输入参数。</li>
+<li><strong>子解 (对于实验)</strong>: 如果仿真包含多个实验步骤，<code>solution.cycles</code> 或 <code>solution.steps</code> 属性可以用来访问每个独立步骤的解。</li>
+</ul>
+<h2 id="2-访问和处理变量">2. 访问和处理变量</h2>
+<h3 id="21-通过键访问变量">2.1. 通过键访问变量</h3>
+<p>最直接的方式是通过变量名字符串从 <code>Solution</code> 对象中获取已处理的变量：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pybamm
+
+<span style="color:#75715e"># 假设已经运行了仿真并得到了 solution 对象</span>
+<span style="color:#75715e"># solution = sim.solve()</span>
+
+<span style="color:#75715e"># 获取端电压</span>
+terminal_voltage <span style="color:#f92672">=</span> solution[<span style="color:#e6db74">&#34;Terminal voltage [V]&#34;</span>]
+
+<span style="color:#75715e"># 获取负极颗粒表面浓度</span>
+<span style="color:#75715e"># 注意：对于空间分布的变量，其 .data 属性通常是二维或三维的 (空间维度 x 时间)</span>
+neg_particle_surf_conc <span style="color:#f92672">=</span> solution[<span style="color:#e6db74">&#34;Negative particle surface concentration [mol.m-3]&#34;</span>]
+
+<span style="color:#75715e"># 查看变量的数据和对应的时间点</span>
+<span style="color:#75715e"># print(terminal_voltage.data) # 一维数组，对应每个 solution.t</span>
+<span style="color:#75715e"># print(neg_particle_surf_conc.t) # 通常与 solution.t 相同</span>
+<span style="color:#75715e"># print(neg_particle_surf_conc.data) # 二维数组 (位置 x 时间)</span>
+</code></pre></div><p><code>solution[var_name]</code> 返回的是一个 <code>pybamm.ProcessedVariable</code> 对象。其主要属性有：</p>
+<ul>
+<li><code>.data</code>: 变量在各个时间点和空间点（如果适用）的数值。</li>
+<li><code>.t</code>: 对应的时间点数组。</li>
+<li><code>.x</code>, <code>.r_n</code>, <code>.r_p</code>, <code>.z</code> 等: 对应的空间坐标点数组（如果变量在这些域上定义）。</li>
+<li><code>.entries</code>: 对于向量或张量型变量，这是其各个分量的 <code>ProcessedVariable</code> 对象列表。</li>
+</ul>
+<h3 id="22-对变量进行操作">2.2. 对变量进行操作</h3>
+<p><code>ProcessedVariable</code> 对象重载了许多算术运算符，允许直接对它们进行计算，结果通常也是 <code>ProcessedVariable</code> 对象或 NumPy 数组。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 示例：计算过电位 (假设 Eta_r 和 Eta_e 是已处理变量)</span>
+<span style="color:#75715e"># eta_r = solution[&#34;Reaction overpotential [V]&#34;]</span>
+<span style="color:#75715e"># eta_e = solution[&#34;Electrolyte overpotential [V]&#34;]</span>
+<span style="color:#75715e"># total_overpotential = eta_r + eta_e # 逐点相加</span>
+
+<span style="color:#75715e"># 也可以直接对 .data 操作 (返回 NumPy 数组)</span>
+<span style="color:#75715e"># voltage_times_two = terminal_voltage.data * 2</span>
+</code></pre></div><h3 id="23-插值">2.3. 插值</h3>
+<p><code>Solution</code> 对象本身以及 <code>ProcessedVariable</code> 对象都可以像函数一样被调用，以在新的时间点（或空间点）上进行插值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 在新的时间点 t_new 上插值整个解 (所有变量)</span>
+<span style="color:#75715e"># t_new = np.linspace(0, solution.t[-1]/2, 100)</span>
+<span style="color:#75715e"># interpolated_solution_at_t_new = solution(t_new)</span>
+<span style="color:#75715e"># 个人理解：调用 solution(t_new) 会对所有已处理的变量在 t_new 上进行插值，并返回一个新的 Solution 对象，其 .t 和 .y 以及 processed_variables 都会更新为插值后的结果。</span>
+
+<span style="color:#75715e"># 对单个变量进行插值</span>
+<span style="color:#75715e"># new_voltages = terminal_voltage(t_new) # 返回一个包含插值电压的 NumPy 数组</span>
+<span style="color:#75715e"># 个人理解：调用 processed_variable(t_new) 通常返回一个 NumPy 数组，包含该变量在 t_new 上的插值数据。</span>
+
+<span style="color:#75715e"># 对于空间变量，可以指定空间坐标进行插值</span>
+<span style="color:#75715e"># x_interest = np.array([0.1, 0.5, 0.9]) # 假设 x 是归一化长度</span>
+<span style="color:#75715e"># conc_at_x_interest_and_t_new = neg_particle_surf_conc(t_new, x=x_interest)</span>
+<span style="color:#75715e"># 结果维度将是 (len(x_interest), len(t_new))</span>
+<span style="color:#75715e"># 个人推测：对于空间变量的插值，如果原始数据是离散的网格点，这里会使用适当的插值方法（如线性或样条插值）来估计指定空间点的值。</span>
+</code></pre></div><h2 id="3-内置绘图功能-solutionplot">3. 内置绘图功能 (<code>solution.plot()</code>)</h2>
+<p>PyBaMM 的 <code>Solution</code> 对象带有一个便捷的 <code>plot</code> 方法，用于快速可视化结果。它底层使用 Matplotlib。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 绘制一组预定义的默认变量</span>
+<span style="color:#75715e"># solution.plot()</span>
+
+<span style="color:#75715e"># 绘制指定的变量列表</span>
+<span style="color:#75715e"># solution.plot(output_variables=[</span>
+<span style="color:#75715e">#     &#34;Current [A]&#34;,</span>
+<span style="color:#75715e">#     &#34;Terminal voltage [V]&#34;,</span>
+<span style="color:#75715e">#     &#34;Negative electrode potential [V]&#34;,</span>
+<span style="color:#75715e">#     &#34;Positive electrode potential [V]&#34;,</span>
+<span style="color:#75715e">#     &#34;Electrolyte concentration [mol.m-3]&#34;</span>
+<span style="color:#75715e"># ])</span>
+
+<span style="color:#75715e"># 控制绘图选项</span>
+<span style="color:#75715e"># fig = solution.plot(</span>
+<span style="color:#75715e">#     output_variables=[&#34;Terminal voltage [V]&#34;, &#34;Current [A]&#34;],</span>
+<span style="color:#75715e">#     time_unit=&#34;hours&#34;, # 时间单位 (seconds, minutes, hours)</span>
+<span style="color:#75715e">#     spatial_unit=&#34;um&#34;, # 空间单位 (m, mm, um)</span>
+<span style="color:#75715e">#     show_legend=True,</span>
+<span style="color:#75715e">#     show_plot=True, # 是否立即显示图像</span>
+<span style="color:#75715e">#     testing=False # 设为 True 则不显示，用于测试</span>
+<span style="color:#75715e"># )</span>
+<span style="color:#75715e"># fig[0].savefig(&#34;voltage_current_plot.png&#34;) # fig 是一个包含 matplotlib.Figure 对象的列表</span>
+</code></pre></div><p><code>solution.plot()</code> 会自动处理不同维度变量的绘图：</p>
+<ul>
+<li><strong>0D 变量</strong> (如端电压, 电流): 绘制为时间序列图。</li>
+<li><strong>1D 变量</strong> (如电解质浓度沿 x 轴分布): 通常会生成一个二维图（x轴 vs 时间，颜色表示值）或在特定时间点/空间点的切片图。</li>
+<li><strong>2D 变量</strong> (如颗粒内浓度 r vs x): 可能生成动画或特定时间/空间切片的图像。</li>
+</ul>
+<h2 id="4-quickplot-类更灵活的绘图">4. <code>QuickPlot</code> 类：更灵活的绘图</h2>
+<p><code>pybamm.QuickPlot</code> 类 (位于 <code>pybamm/plot/quick_plot.py</code>) 提供了比 <code>solution.plot()</code> 更细致的绘图控制。它允许用户指定要绘制的 <code>Simulation</code> 对象（或 <code>Solution</code> 列表）、变量、绘图布局、时间单位等。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pybamm
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np <span style="color:#75715e"># 确保导入 numpy 用于示例中的 np.linspace</span>
+
+<span style="color:#75715e"># 假设 sim1, sim2 是两个不同的 Simulation 对象 (或已求解的 Solution)</span>
+<span style="color:#75715e"># model = pybamm.lithium_ion.DFN()</span>
+<span style="color:#75715e"># param = pybamm.ParameterValues(&#34;Marquis2019&#34;)</span>
+<span style="color:#75715e"># sim1 = pybamm.Simulation(model, parameter_values=param)</span>
+<span style="color:#75715e"># sim2 = pybamm.Simulation(model, parameter_values=param) # 示例中用同一个模型和参数，实际可不同</span>
+<span style="color:#75715e"># sol1 = sim1.solve([0, 3600])</span>
+<span style="color:#75715e"># sol2 = sim2.solve([0, 3600]) # 实际应用中，对比的解通常来自不同模型或参数</span>
+
+<span style="color:#75715e"># output_vars = [&#34;Terminal voltage [V]&#34;, &#34;Current [A]&#34;]</span>
+<span style="color:#75715e"># plot = pybamm.QuickPlot([sol1, sol2], output_variables=output_vars, labels=[&#34;DFN Solution 1&#34;, &#34;DFN Solution 2&#34;])</span>
+<span style="color:#75715e"># plot.plot(0) # 绘制时间 t=0 的图像 (对于时间序列通常是整个序列)</span>
+<span style="color:#75715e"># plot.dynamic_plot() # 创建一个交互式动态图 (需要 ipywidgets)</span>
+<span style="color:#75715e"># # plot.fig.savefig(&#34;comparison_plot.png&#34;) # QuickPlot 对象本身没有 fig 属性，需要从 plot.plots 字典中获取 fig</span>
+<span style="color:#75715e"># if plot.plots:  # 检查是否有图像生成</span>
+<span style="color:#75715e">#     # QuickPlot 可能为每个输出变量生成一个子图，或者将它们组合。</span>
+<span style="color:#75715e">#     # 这里假设我们保存第一个生成的图像的 Figure 对象。</span>
+<span style="color:#75715e">#     # 具体的 Figure 对象需要根据 plot.plots 的结构来获取。</span>
+<span style="color:#75715e">#     # 例如，如果 output_vars 中的每个变量都在独立的 Figure 中：</span>
+<span style="color:#75715e">#     # first_var_key = list(plot.plots.keys())[0]</span>
+<span style="color:#75715e">#     # fig_to_save = plot.plots[first_var_key][&#34;fig&#34;]</span>
+<span style="color:#75715e">#     # fig_to_save.savefig(&#34;comparison_plot.png&#34;)</span>
+<span style="color:#75715e">#     # 或者，如果所有变量共享一个 Figure，可能需要不同的访问方式。</span>
+<span style="color:#75715e">#     # 对于 plot.plot(0) 生成的静态图，通常会有一个主 Figure 对象。</span>
+<span style="color:#75715e">#     # 更稳妥的方式是查阅 QuickPlot 的具体实现或文档来确定如何访问 Figure 对象。</span>
+<span style="color:#75715e">#     # 暂时注释掉保存部分，因为访问 fig 的方式不确定</span>
+</code></pre></div><p><code>QuickPlot</code> 的主要功能：</p>
+<ul>
+<li><strong>比较多个解</strong>: 可以将多个 <code>Solution</code> 对象绘制在同一张图上进行比较。</li>
+<li><strong>动态图 (<code>dynamic_plot</code>)</strong>: 创建可以通过滑块交互式地改变时间点的动态图，非常适合观察空间变量随时间的变化。</li>
+<li><strong>动画 (<code>create_gif</code> 或 <code>create_animation</code>)</strong>: 将动态图保存为 GIF 或其他视频格式。</li>
+<li><strong>自定义 Matplotlib 轴</strong>: 用户可以提供自己的 Matplotlib <code>Axes</code> 对象进行绘图。</li>
+</ul>
+<h2 id="5-导出数据">5. 导出数据</h2>
+<p>仿真结果可以方便地导出为常见的数据格式，以便在其他软件中进行分析或存档。</p>
+<h3 id="51-保存-solution-对象">5.1. 保存 <code>Solution</code> 对象</h3>
+<p>整个 <code>Solution</code> 对象（或 <code>Simulation</code> 对象）可以被序列化（pickle）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># solution.save(&#34;my_solution.pkl&#34;)</span>
+<span style="color:#75715e"># loaded_solution = pybamm.load_solution(&#34;my_solution.pkl&#34;)</span>
+
+<span style="color:#75715e"># sim.save(&#34;my_simulation.pkl&#34;)</span>
+<span style="color:#75715e"># loaded_sim = pybamm.load_simulation(&#34;my_simulation.pkl&#34;)</span>
+</code></pre></div><h3 id="52-保存为-csv-或-matlab-mat-文件">5.2. 保存为 CSV 或 MATLAB .mat 文件</h3>
+<p><code>Solution</code> 对象提供了 <code>save_data</code> 方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 保存所有变量到 CSV (每个变量一个文件，文件名基于变量名)</span>
+<span style="color:#75715e"># solution.save_data(&#34;solution_data_all.csv&#34;, variables=None, to_format=&#34;csv&#34;, short_names=None)</span>
+<span style="color:#75715e"># 个人认为：当 variables=None 时，PyBaMM 会尝试保存模型中定义的所有变量，这可能会产生大量文件，适用于需要全面数据备份的场景。</span>
+
+<span style="color:#75715e"># 保存指定变量到单个 CSV 文件</span>
+<span style="color:#75715e"># solution.save_data(</span>
+<span style="color:#75715e">#     &#34;selected_data.csv&#34;,</span>
+<span style="color:#75715e">#     variables=[&#34;Time [s]&#34;, &#34;Current [A]&#34;, &#34;Terminal voltage [V]&#34;],</span>
+<span style="color:#75715e">#     to_format=&#34;csv&#34;</span>
+<span style="color:#75715e"># )</span>
+<span style="color:#75715e"># 个人推测：当指定 variables 列表并使用 to_format=&#34;csv&#34; 时，如果这些变量具有相同的时间基准，它们可能会被合并到一个CSV文件中，列名为变量名。</span>
+<span style="color:#75715e"># 如果变量具有不同的维度或时间基准，行为可能有所不同，可能仍会生成多个文件或引发错误，具体需查阅文档或测试。</span>
+
+<span style="color:#75715e"># 保存到 MATLAB .mat 文件</span>
+<span style="color:#75715e"># solution.save_data(&#34;solution_data.mat&#34;, to_format=&#34;matlab&#34;)</span>
+<span style="color:#75715e"># 个人理解：保存为 .mat 文件会将 Solution 对象中的数据（可能是所有 processed_variables）打包到一个 MATLAB 可读的文件中，方便在 MATLAB 环境中进行后续分析。</span>
+</code></pre></div><p>导出的数据可以直接加载到 Pandas DataFrame 或 MATLAB 中进行进一步处理。</p>
+<h2 id="6-与其他库集成">6. 与其他库集成</h2>
+<p>由于 PyBaMM 的变量数据通常以 NumPy 数组的形式存在，因此很容易与 NumPy, SciPy, Pandas, Matplotlib, Seaborn 等库集成，进行高级数据分析、统计和定制化绘图。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># import pandas as pd</span>
+<span style="color:#75715e"># import matplotlib.pyplot as plt</span>
+
+<span style="color:#75715e"># # 获取数据到 Pandas DataFrame</span>
+<span style="color:#75715e"># time_s = solution[&#34;Time [s]&#34;].data</span>
+<span style="color:#75715e"># voltage_V = solution[&#34;Terminal voltage [V]&#34;].data</span>
+<span style="color:#75715e"># current_A = solution[&#34;Current [A]&#34;].data</span>
+
+<span style="color:#75715e"># df = pd.DataFrame({</span>
+<span style="color:#75715e">#     &#34;Time [s]&#34;: time_s,</span>
+<span style="color:#75715e">#     &#34;Voltage [V]&#34;: voltage_V,</span>
+<span style="color:#75715e">#     &#34;Current [A]&#34;: current_A</span>
+<span style="color:#75715e"># })</span>
+
+<span style="color:#75715e"># print(df.describe())</span>
+
+<span style="color:#75715e"># # 使用 Matplotlib 自定义绘图</span>
+<span style="color:#75715e"># plt.figure()</span>
+<span style="color:#75715e"># plt.plot(df[&#34;Time [s]&#34;], df[&#34;Voltage [V]&#34;], label=&#34;Voltage&#34;)</span>
+<span style="color:#75715e"># plt.xlabel(&#34;Time [s]&#34;)</span>
+<span style="color:#75715e"># plt.ylabel(&#34;Voltage [V]&#34;)</span>
+<span style="color:#75715e"># plt.legend()</span>
+<span style="color:#75715e"># plt.show()</span>
+</code></pre></div><h2 id="7-总结">7. 总结</h2>
+<p>PyBaMM 提供了从快速概览到深度分析的全面后处理和可视化工具。<code>Solution</code> 对象是所有结果数据的核心，通过其内置方法和与 Python 生态系统中其他强大库的兼容性，用户可以有效地提取、处理、可视化和导出仿真数据，从而深入理解电池模型的行为并验证其预测。</p>
+<hr>
+<p><strong>返回主目录:</strong> <a href="./pybamm_main.md">PyBaMM 项目剖析</a></p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+
+
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: '6K1b7yCAWBISieeYhYiYm52A-gzGzoHsz',
+      appKey: 'Xzo9x3Euwd2redfSk9bHafaB',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+
+			</div>
+			<aside class="sidebar">
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 HUA Guangbin.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+            </div>
+            <div style="font-size: 10px"><a href="http://beian.miit.gov.cn" target="_blank" >苏ICP备2022045537号</a>
+</div>   
+		</div>
+	</div>
+<footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
