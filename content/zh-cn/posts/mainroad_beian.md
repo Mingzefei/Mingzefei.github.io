@@ -1,10 +1,13 @@
 ---
-title: "Mainroad 主题的 Hugo 相关修改"
-description: ""
-date: "2023-02-27T22:35:46+08:00"
+title: Mainroad 主题的 Hugo 相关修改
+description: ''
+date: '2023-02-27T22:35:46+08:00'
 tags:
-  - "tool"
-sidebar: true
+  - 网站备案
+  - Hugo主题定制
+  - tool
+  - 文档格式转换
+sidebar: false
 ---
 
 当前的个人网站使用 [Hogo](https://gohugo.io/) 生成，主题为 [Mainroad](https://github.com/Vimux/Mainroad/)，在客制化时遇到一些问题，解决过程记录如下。

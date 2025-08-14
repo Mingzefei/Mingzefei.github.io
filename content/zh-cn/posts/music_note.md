@@ -1,13 +1,16 @@
 ---
-title: "music notes"
-description: ""
-date: "2023-07-19T21:07:33+08:00"
-thumbnail: ""
+title: music notes
+description: ''
+date: '2023-07-19T21:07:33+08:00'
+thumbnail: ''
 categories:
-  - ""
+  - ''
 tags:
-  - ""
-sidebar: true
+  - 音乐赏析
+  - 古典音乐
+  - 音乐感想
+  - 民俗
+sidebar: false
 ---
 
 作为一个没有任何音乐基础的人，在这里记录下自己听音乐时的感想，以及音乐的信息。

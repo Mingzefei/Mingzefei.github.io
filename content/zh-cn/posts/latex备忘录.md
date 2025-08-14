@@ -1,10 +1,13 @@
 ---
-title: "Latex 备忘录"
-description: ""
-date: "2023-12-01T14:12:03+08:00"
-tags: 
-  - "latex"
-sidebar: true
+title: Latex 备忘录
+description: ''
+date: '2023-12-01T14:12:03+08:00'
+tags:
+  - LaTeX技巧
+  - 公式编辑
+  - latex
+  - 学术写作
+sidebar: false
 ---
 
 一些关于 Latex 的琐碎笔记，提升编辑体验和最终效果。

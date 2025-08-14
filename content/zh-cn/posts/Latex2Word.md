@@ -1,11 +1,13 @@
 ---
-title: "Latex2Word"
-description: ""
-date: "2023-05-22T23:05:15+08:00"
+title: Latex2Word
+description: ''
+date: '2023-05-22T23:05:15+08:00'
 tags:
-  - "latex"
-  - "tools"
-sidebar: true
+  - 文档格式转换
+  - 学术工具
+  - latex
+  - tools
+sidebar: false
 ---
 
 ## 从 LaTeX 到 Word：一个自动化转换工具

@@ -1,11 +1,13 @@
 ---
-title: "IOP Latex 模板的部分报错问题"
-description: ""
-date: "2022-11-21T09:51:05+08:00"
+title: IOP Latex 模板的部分报错问题
+description: ''
+date: '2022-11-21T09:51:05+08:00'
 tags:
-  - "latex"
-  - "academic"
-sidebar: true
+  - 宏包冲突
+  - 模板报错解决
+  - LaTeX模板问题
+  - 学术写作
+sidebar: false
 ---
 
 要在英国物理学会（Institute of Physics, IOP）上发文章，使用[官方提供的 Latex 模板](https://publishingsupport.iopscience.iop.org/questions/latex-template/)编写，期间遇到如下问题，记录如下。

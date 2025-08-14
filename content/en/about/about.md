@@ -7,12 +7,6 @@ tags:
 sidebar: false
 ---
 
-## About Me
-
-I am Guangbin Hua (华广斌), graduated from the School of Materials Science and Engineering at Beihang University in 2022, where I received a Bachelor of Engineering degree under the guidance of Prof. Qianfan Zhang (张千帆), with a minor in Mathematics and Applied Mathematics. In 2025, I graduated from the School of Reliability and Systems Engineering at Beihang University under the mentorship of Prof. Zili Wang (王自力), Academician of Chinese Academy of Engineering, earning a Master of Engineering degree with interdisciplinary advantages in materials, control, and reliability.  
-My research interests primarily focus on simulation modeling and performance optimization, especially reliability-related modeling and optimization; research objects include battery storage and microelectronic interconnections.
-
-Currently, I am conducting research at home, refining the results of my master's studies, and actively applying for doctoral programs. If you have doctoral recruitment plans or collaboration opportunities, I sincerely look forward to connecting with you!
 
 ## Origin of the Website Name
 
